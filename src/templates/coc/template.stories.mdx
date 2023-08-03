@@ -1,7 +1,7 @@
 import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
 import { object } from "@storybook/addon-knobs";
 import { CocTemplate } from "./template";
-import { cocTemplateCertificate } from "../samples/customTemplate";
+import { invoiceTemplateCertificate } from "../samples/customTemplate";
 
 
 <Meta title="MDX|CocTemplate" component={CocTemplate} />
@@ -18,6 +18,6 @@ import { cocTemplateCertificate } from "../samples/customTemplate";
 
 <Preview>
   <Story name="basic sample">
-    <CocTemplate document={object("document", cocTemplateCertificate)} />
+    <CocTemplate document={object("document", invoiceTemplateCertificate)} />
   </Story>
 </Preview>
