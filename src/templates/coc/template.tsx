@@ -1,13 +1,18 @@
 import React, { FunctionComponent } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
-import { InvoiceTemplateCertificate } from "../samples/customTemplate";
-import { documentTemplates } from "@govtechsg/decentralized-renderer-react-components/build/types/utils";
+import { BLTemplateCertificate } from "../samples/customTemplate";
 
 const containerStyle = css`
   padding: 10px;
   margin: auto;
-  width: 100%;
+  width: 70%;
+  font-family: "Open Sans", sans-serif;
+`;
+
+const cellStyleFlex = css`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const rowStyle = css`
@@ -66,7 +71,7 @@ const tableHeaderCellStyle = css`
   border: 1px solid #000;
   padding: 8px;
   text-align: left;
-  font-weight: 800;
+  font-weight: 600;
 `;
 
 const tableStyle = css`
@@ -80,13 +85,13 @@ const tableStyle = css`
   }
 `;
 
-export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertificate> & { className?: string }> = ({
+export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate> & { className?: string }> = ({
   document,
   className = ""
 }) => {
   return (
     <div css={containerStyle} className={className} id="custom-template">
-      <h1 css={titleStyle}>COMMERCIAL INVOICE</h1>
+      <h1 css={titleStyle}>BILL OF LADING</h1>
       <div css={innerContainer}>
         <div css={rowStyle}>
           <div css={cellStyle}>
@@ -96,12 +101,28 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
             <p>{document.exporter.phoneNumber}</p>
             <p>{document.exporter.email}</p>
           </div>
-          <div css={cellStyle}>
-            <h4>Invoice Details</h4>
-            <p>Title: {document.title}</p>
-            <p>Number: {document.swiftCode}</p>
-            <p>{`Date: ${document.invoiceCreationDate}`}</p>
-            <p>Insurance Policy Number: {document.insurancePolicyNumber}</p>
+          <div css={rowStyle}>
+            <div css={cellStyle}>
+              <h4>BL Number & Date</h4>
+              <div css={cellStyleFlex}>
+                <p>{document.blNumber}</p>
+                <p>{document.blDateofIssue}</p>
+              </div>
+            </div>
+
+            <div css={cellStyle}>
+              <h4>Seal Number</h4>
+              <p>{document.sealNumber}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Product Number</h4>
+              <p>{document.productNo}</p>
+            </div>
+
+            <div css={cellStyle}>
+              <h4>LC Reference No.</h4>
+              <p>{document.lcRefNumber}</p>
+            </div>
           </div>
         </div>
         <div css={rowStyle}>
@@ -114,20 +135,59 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>Bill of Ladding Number</h4>
-              <p>{document.blNumber}</p>
+              <h4>Carrier Booking Ref. No.</h4>
+              <p>{document.carrierBookingRefNo}</p>
+              <h4 style={{ marginTop: "20px" }}>Carrier Identification No.</h4>
+              <p>{document.carrierIdentificationfNo}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Bill of Ladding Date</h4>
-              <p>{document.blDate}</p>
+              <h4>Shipping Ref. No.</h4>
+              <p>{document.shippingRefNo}</p>
+              <h4 style={{ marginTop: "20px" }}>Proper Shipping Name</h4>
+              <p>{document.properShippingName}</p>
+            </div>
+          </div>
+        </div>
+        <div css={rowStyle}>
+          <div css={cellStyle}>
+            <h4>Consignee</h4>
+            <p>{document.consignee.name}</p>
+            <p>{document.consignee.address}</p>
+            <p>{document.consignee.phoneNumber}</p>
+            <p>{document.consignee.email}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>Carrier</h4>
+            <p>{document.carrier.name}</p>
+            <p>{document.carrier.address}</p>
+            <p>{document.carrier.phoneNumber}</p>
+            <p>{document.carrier.email}</p>
+          </div>
+        </div>
+        <div css={rowStyle}>
+          <div css={cellStyle}>
+            <h4>Notifying Party</h4>
+            <p>{document.notifyingParty.name}</p>
+            <p>{document.notifyingParty.address}</p>
+            <p>{document.notifyingParty.phoneNumber}</p>
+            <p>{document.notifyingParty.email}</p>
+          </div>
+          <div css={rowStyle}>
+            <div css={cellStyle}>
+              <h4>Freight</h4>
+              <p>{document.freight}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Buyer Contract</h4>
-              <p>{document.buyerContract}</p>
+              <h4>Shipped on Board</h4>
+              <p>{document.shippedOnBoardDate}</p>
             </div>
             <div css={cellStyle}>
-              <h4>LC Reference No.</h4>
-              <p>{document.lcRefNumber}</p>
+              <h4>Cargo Movement Type Origin Code</h4>
+              <p>{document.cargoMovTypeOriginCode}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Cargo Movement Type Destination Code</h4>
+              <p>{document.cargoMovTypeDestinationCode}</p>
             </div>
           </div>
         </div>
@@ -138,8 +198,11 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
               <p>{document.modeOfDispatch}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Vessel Name</h4>
-              <p>{document.vesselName}</p>
+              <h4>Vessel Name & Voyage Number</h4>
+              <div css={cellStyleFlex}>
+                <p>{document.vesselName}</p>
+                <p>{document.voyageNumber}</p>
+              </div>
             </div>
             <div css={cellStyle}>
               <h4>Port of Loading</h4>
@@ -159,118 +222,142 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
 
         <div css={fourColumnsRowStyle}>
           <div css={cellStyle}>
-            <h4>Country of Origin</h4>
-            <p>{document.countryOfOrigin}</p>
+            <h4>City & Country of Origin</h4>
+            <p>
+              {document.cityOfOrigin}, {document.countryOfOrigin}
+            </p>
           </div>
           <div css={cellStyle}>
-            <h4>Country of Destination</h4>
-            <p>{document.countryOfDestination}</p>
+            <h4>City & Country of Destination</h4>
+            <p>
+              {document.cityOfOrigin}, {document.countryOfOrigin}
+            </p>
           </div>
           <div css={cellStyle}>
             <h4>Incoterms</h4>
             <p>{document.incoterms}</p>
           </div>
           <div css={cellStyle}>
-            <h4>Is Electronic Invoice</h4>
-            <p>{document.isElectronicInvoice}</p>
+            <h4>Buyer Contract</h4>
+            <p>{document.buyerContract}</p>
           </div>
         </div>
+        <div css={fourColumnsRowStyle}>
+          <div css={cellStyle}>
+            <h4>Place of Delivery</h4>
+            <p>{document.placeOfDelivery}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>Final Destination</h4>
+            <p>{document.finalDestination}</p>
+          </div>
+
+          <div css={cellStyle}>
+            <h4>Danger Level</h4>
+            <p>{document.dangerLevel}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>UNDG Code</h4>
+            <p>{document.UNDGCode}</p>
+          </div>
+        </div>
+
         <div css={singleRowStyle}>
           <table css={[cellStyle, tableStyle]}>
             <tr>
-              <td css={tableHeaderCellStyle}>HS Code</td>
-              <td css={tableHeaderCellStyle}>Commodity Name</td>
+              <td css={tableHeaderCellStyle}>Marks & Numbers</td>
+              <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
               <td css={tableHeaderCellStyle}>Commodity Description</td>
-              <td css={tableHeaderCellStyle}>Gross weight (KG)</td>
-              <td css={tableHeaderCellStyle}>Moisture Content %</td>
-              <td css={tableHeaderCellStyle}>Qty</td>
-              <td css={tableHeaderCellStyle}>Unit Price</td>
-              <td css={tableHeaderCellStyle} style={{ width: "150px" }}>
-                Total Price
+
+              <td css={tableHeaderCellStyle}>Temperature </td>
+              <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                Gross weight (KG)
+              </td>
+              <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                Measurements (Volume)
               </td>
             </tr>
-            {document.commodity.map((commodity, index) => (
+            {document.packages.map((singlePackage, index) => (
               <tr key={index}>
-                <td css={tableCellStyle}>{commodity.hsCode}</td>
-                <td css={tableCellStyle}>{commodity.name}</td>
-                <td css={tableCellStyle}>{commodity.description}</td>
-                <td css={tableCellStyle}>{commodity.grossWeight}</td>
-                <td css={tableCellStyle}>{commodity.moistureContent}</td>
-                <td css={tableCellStyle}>{commodity.qty}</td>
-                <td css={tableCellStyle}>{commodity.unitPrice}</td>
-                <td css={tableCellStyle}>{commodity.unitPrice * commodity.qty}</td>
+                <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
+                <td css={tableCellStyle}>
+                  {singlePackage.noOfPackage} X {singlePackage.type}
+                </td>
+                <td css={tableCellStyle}>{singlePackage.description}</td>
+                <td css={tableCellStyle}>
+                  {singlePackage.temp} {singlePackage.tempUnit}
+                </td>
+                <td css={tableCellStyle}>{singlePackage.grossWeight}</td>
+                <td css={tableCellStyle}>{singlePackage.volume}</td>
               </tr>
             ))}
           </table>
         </div>
 
         <div css={rowStyle}>
-          <div css={cellStyle}>
-            <h4>Additional Information</h4>
-            <p>{document.additionalInformation}</p>
+          <div css={rowStyle}>
+            <div css={cellStyle}>
+              <h4>Container Number</h4>
+              <p>{document.containerNo}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Container Type</h4>
+              <p>{document.containerType}</p>
+            </div>
           </div>
-
           <table css={[cellStyle, tableStyle]}>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
-                Total Commercial Value
+                Total Consignment Value
               </td>
-              <td css={tableHeaderCellStyle}>
-                {document.commodity.reduce((acc, commodity) => acc + commodity.unitPrice * commodity.qty, 0)}
+              <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                {document.packages.reduce((acc, singlePackage) => acc + singlePackage.grossWeight, 0)}
               </td>
-            </tr>
-            <tr>
-              <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
-                Misc. Charges (packing, shipping, etc.) (+)
+              <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                {document.packages.reduce((acc, singlePackage) => acc + singlePackage.volume, 0)}
               </td>
-              <td css={tableHeaderCellStyle} style={{ width: "150px" }}>
-                {document.miscCharges}
-              </td>
-            </tr>
-            <tr>
-              <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
-                Credit Amount (-)
-              </td>
-              <td css={tableHeaderCellStyle} style={{ width: "150px" }}>
-                {document.creditAmount}
-              </td>
-            </tr>
-            <tr>
-              <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
-                Total Invoice Value
-              </td>
-              <td css={tableHeaderCellStyle}>
-                {document.commodity.reduce((acc, commodity) => acc + commodity.unitPrice * commodity.qty, 0) +
-                  document?.miscCharges -
-                  document?.creditAmount}
-              </td>
-            </tr>
-            <tr>
-              <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
-                Payment Due Date
-              </td>
-              <td css={tableHeaderCellStyle}>{document.paymentDueDate}</td>
             </tr>
           </table>
         </div>
-        <div css={rowStyle}>
+
+        <div css={fourColumnsRowStyle}>
           <div css={cellStyle}>
-            <h4>Bank Details</h4>
-            <p>{`Benefiaciary's Bank Name: ${document.bankName}`}</p>
-            <p>{`Benefiaciary's Name: ${document.importer.name}`}</p>
-            <p>Bank Account Number: {document.bankAccountNumber}</p>
-            <p>Swift Code: {document.swiftCode}</p>
+            <h4>Total Number of Containers</h4>
+            <p>{document.totalNoOfConatiners}</p>
           </div>
           <div css={cellStyle}>
-            <h4>I certify that state export prices and description of goods are true and correct</h4>
+            <h4>Temperature setting for Reefer Containers</h4>
+            <p>{document.tempSettingForReferContainer}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>Agent Ref. No.</h4>
+            <p>{document.ffREfnum}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>Transport Document Type</h4>
+            <p>{document.transportDocType}</p>
+          </div>
+        </div>
+        <div css={rowStyle}>
+          <div css={rowStyle}>
+            <div css={cellStyle}>
+              <h4>Terms and Condition of Carriage</h4>
+              <p>{document.termsAndConditionOfCarraige}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Disclaimer</h4>
+              <p>{document.disclaimer}</p>
+            </div>
+          </div>
+          <div css={cellStyle}>
             <img
               css={signatureStyle}
               src="https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
               alt="Signature"
             />
             <p>Name of Authorised Signatory: {document.exporter.name}</p>
-            <p>Place of Issue: {document.placeOfIssue}</p>
-            <p>{`Date: ${document.invoiceCreationDate}`}</p>
+            <p>Place of Issue: {document.placeOfBlIssue}</p>
+            <p>{`Date: ${document.blDateofIssue}`}</p>
           </div>
         </div>
       </div>

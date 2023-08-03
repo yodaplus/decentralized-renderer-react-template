@@ -1,70 +1,83 @@
 import { v2 } from "@govtechsg/open-attestation";
 
-interface ComodityInterface {
-  hsCode: string;
-  name: string;
+interface PackageInterface {
+  marksAndNo: string;
   description: string;
+  type: string;
+  noOfPackage: string;
   grossWeight: number;
-  moistureContent: number;
-  qty: number;
-  unitPrice: number;
+  volume: number;
+  temp: number;
+  tempUnit: string;
 }
-export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
-  exporter: {
-    name: string;
-    address: string;
-    phoneNumber: string;
-    email: string;
-  };
 
-  title: string;
-  invoiceNumber: string;
-  invoiceCreationDate: string;
-  insurancePolicyNumber: string;
-
-  importer: {
-    name: string;
-    address: string;
-    phoneNumber: string;
-    email: string;
-  };
+interface Entity {
+  name: string;
+  address: string;
+  phoneNumber: string;
+  email: string;
+}
+export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
+  exporter: Entity;
 
   blNumber: string;
-  blDate: string;
-
+  blDateofIssue: string;
+  sealNumber: string;
+  productNo: string;
   buyerContract: string;
   lcRefNumber: string;
 
+  carrierBookingRefNo: string;
+  shippingRefNo: string;
+  properShippingName: string;
+  carrierIdentificationfNo: string;
+
+  importer: Entity;
+  consignee: Entity;
+  carrier: Entity;
+  notifyingParty: Entity;
+
+  freight: string;
+  shippedOnBoardDate: string;
+
+  cargoMovTypeOriginCode: string;
+  cargoMovTypeDestinationCode: string;
+
   modeOfDispatch: string;
   vesselName: string;
+  voyageNumber: string;
   portOfLoading: string;
   portOfDischarge: string;
+  cityOfOrigin: string;
+  cityOfDestination: string;
   countryOfOrigin: string;
   countryOfDestination: string;
+  placeOfDelivery: string;
+  finalDestination: string;
 
   paymentMethod: string;
   paymentTerms: string;
 
   incoterms: string;
-  isElectronicInvoice: string;
+  dangerLevel: string;
+  UNDGCode: string;
 
-  commodity: ComodityInterface[];
+  packages: PackageInterface[];
 
-  additionalInformation: string;
+  containerNo: string;
+  containerType: string;
+  totalNoOfConatiners: string;
+  tempSettingForReferContainer: string;
+  ffREfnum: string;
+  transportDocType: string;
 
-  miscCharges: number;
-  creditAmount: number;
-  paymentDueDate: string;
-
+  termsAndConditionOfCarraige: string;
+  disclaimer: string;
+  placeOfBlIssue: string;
   signature: string;
-  placeOfIssue: string;
-
-  bankAccountNumber: string;
-  bankName: string;
-  swiftCode: string;
 }
 
-export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
+export const bltemplateCertificate: BLTemplateCertificate = {
   $template: {
     name: "COC",
     type: v2.TemplateType.EmbeddedRenderer,
@@ -72,8 +85,8 @@ export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
   },
   issuers: [
     {
-      name: "My name",
-      documentStore: "0xBBb55Bd1D709955241CAaCb327A765e2b6D69c8b",
+      name: "Ocean Shipping Co.",
+      tokenRegistry: "0xBBb55Bd1D709955241CAaCb327A765e2b6D69c8b",
       identityProof: {
         location: "few-green-cat.sandbox.openattestation.com",
         type: v2.IdentityProofType.DNSTxt
@@ -82,79 +95,95 @@ export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
   ],
 
   exporter: {
-    name: "Exporter 1",
-    address: "Exporter Address 1",
-    phoneNumber: "+1-555-555-5555",
-    email: "exporter1@example.com"
+    name: "Exporter ABC",
+    address: "123 Export St., Export Town, EX 12345",
+    phoneNumber: "+1-555-123-4567",
+    email: "exporterabc@example.com"
   },
 
-  title: "Sample Invoice",
-  invoiceNumber: "INV123456789",
-  invoiceCreationDate: "2023-08-01",
-  insurancePolicyNumber: "IPN987654321",
+  blNumber: "BL987654321",
+  blDateofIssue: "2023-08-01",
+  sealNumber: "SN12345",
+  productNo: "P123456789",
+  buyerContract: "Contract 42",
+  lcRefNumber: "LCREF654321",
 
   importer: {
-    name: "Importer 1",
-    address: "Importer Address 1",
-    phoneNumber: "+1-555-555-5556",
-    email: "importer1@example.com"
+    name: "Importer XYZ",
+    address: "456 Import Ave., Import City, IM 67890",
+    phoneNumber: "+1-555-987-6543",
+    email: "importerxyz@example.com"
+  },
+  consignee: {
+    name: "Consignee DEF",
+    address: "789 Consignee Rd., Consigneeville, CO 11223",
+    phoneNumber: "+1-555-789-0123",
+    email: "consignee1@example.com"
+  },
+  carrier: {
+    name: "Carrier GHI",
+    address: "321 Carrier Ln., Carrier City, CA 44556",
+    phoneNumber: "+1-555-321-0987",
+    email: "carrierghi@example.com"
+  },
+  notifyingParty: {
+    name: "Notifying Party JKL",
+    address: "654 Notify St., Notify Town, NO 77889",
+    phoneNumber: "+1-555-654-3210",
+    email: "notifyingpartyjkl@example.com"
   },
 
-  blNumber: "BL123456789",
-  blDate: "2023-08-01",
-  buyerContract: "Contract 1",
-  lcRefNumber: "LCREF123456",
+  freight: "Prepaid",
+  shippedOnBoardDate: "2023-07-15",
+
+  cargoMovTypeOriginCode: "SEA",
+  cargoMovTypeDestinationCode: "AIR",
+  carrierBookingRefNo: "CBR123456",
+  carrierIdentificationfNo: "CBR123456",
+  shippingRefNo: "SHIPREF654321",
+  properShippingName: "Electronics Equipment",
 
   modeOfDispatch: "Sea",
-  vesselName: "Vessel 1",
-  portOfDischarge: "Port 1",
-  portOfLoading: "Port 2",
-  countryOfOrigin: "Country 1",
-  countryOfDestination: "Country 2",
+  vesselName: "Vessel Voyager",
+  voyageNumber: "VS98765",
+  portOfLoading: "Port of Export Town",
+  portOfDischarge: "Port of Import City",
+  cityOfOrigin: "Export Town",
+  cityOfDestination: "Import City",
+  countryOfOrigin: "Exportland",
+  countryOfDestination: "Importland",
+  placeOfDelivery: "Delivery Point A",
+  finalDestination: "Final Destination B",
 
-  paymentMethod: "Online",
+  paymentMethod: "Credit Card",
   paymentTerms: "30 Days",
-  incoterms: "Incoterm 1",
-  isElectronicInvoice: "Yes",
 
-  commodity: [
+  incoterms: "FOB",
+  dangerLevel: "Low",
+  UNDGCode: "UNDG12345",
+
+  packages: [
     {
-      hsCode: "HS123456",
-      name: "Commodity 1",
-      description: "Description for Commodity 1",
-      grossWeight: 500,
-      moistureContent: 10,
-      qty: 100,
-      unitPrice: 5
-    },
-    {
-      hsCode: "HS123456",
-      name: "Commodity 2",
-      description: "Description for Commodity 2",
-      grossWeight: 500,
-      moistureContent: 10,
-      qty: 100,
-      unitPrice: 5
-    },
-    {
-      hsCode: "HS123456",
-      name: "Commodity 3",
-      description: "Description for Commodity 3",
-      grossWeight: 500,
-      moistureContent: 10,
-      qty: 100,
-      unitPrice: 5
+      marksAndNo: "Mark123",
+      description: "Electronics",
+      type: "Box",
+      noOfPackage: "100",
+      grossWeight: 2000,
+      volume: 1000,
+      temp: 20,
+      tempUnit: "Celsius"
     }
   ],
 
-  additionalInformation: "Additional Information",
-  miscCharges: 100,
-  creditAmount: 500,
-  paymentDueDate: "2023-08-31",
-  bankAccountNumber: "1234567890",
-  bankName: "Sample Bank",
-  swiftCode: "SAMPLESWIFT",
+  containerNo: "CONT1234567",
+  containerType: "40ft",
+  totalNoOfConatiners: "10",
+  tempSettingForReferContainer: "Temperature Setting A",
+  ffREfnum: "FF123456",
+  transportDocType: "Sea Waybill",
 
-  signature: "https://www.pngegg.com/en/png-zumpd",
-  placeOfIssue: "Sample Place"
+  termsAndConditionOfCarraige: "Standard Terms Apply",
+  disclaimer: "Standard Disclaimer",
+  placeOfBlIssue: "Export Town Office",
+  signature: "https://www.pngegg.com/en/png-zumpd"
 };
