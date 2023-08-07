@@ -2,17 +2,22 @@ import React, { FunctionComponent } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
 import { InvoiceTemplateCertificate } from "../samples/customTemplate";
-import { documentTemplates } from "@govtechsg/decentralized-renderer-react-components/build/types/utils";
 
 const containerStyle = css`
   padding: 10px;
   margin: auto;
-  width: 100%;
+  width: 70%;
+  font-family: "Open Sans", sans-serif;
 `;
 
 const rowStyle = css`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+`;
+
+const cellStyleFlex = css`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const innerContainer = css`
@@ -66,7 +71,7 @@ const tableHeaderCellStyle = css`
   border: 1px solid #000;
   padding: 8px;
   text-align: left;
-  font-weight: 800;
+  font-weight: 600;
 `;
 
 const tableStyle = css`
@@ -138,8 +143,11 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
               <p>{document.modeOfDispatch}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Vessel Name</h4>
-              <p>{document.vesselName}</p>
+              <h4>Vessel Name & Voyage Number</h4>
+              <div css={cellStyleFlex}>
+                <p>{document.vesselName}</p>
+                <p>{document.voyageNumber}</p>
+              </div>
             </div>
             <div css={cellStyle}>
               <h4>Port of Loading</h4>
@@ -159,20 +167,24 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
 
         <div css={fourColumnsRowStyle}>
           <div css={cellStyle}>
-            <h4>Country of Origin</h4>
-            <p>{document.countryOfOrigin}</p>
+            <h4>City & Country of Origin</h4>
+            <p>
+              {document.cityOfOrigin},{document.countryOfOrigin}
+            </p>
           </div>
           <div css={cellStyle}>
-            <h4>Country of Destination</h4>
-            <p>{document.countryOfDestination}</p>
+            <h4>City & Country of Destination</h4>
+            <p>
+              {document.cityOfDestination}, {document.countryOfDestination}
+            </p>
           </div>
           <div css={cellStyle}>
-            <h4>Incoterms</h4>
-            <p>{document.incoterms}</p>
+            <h4>Place of Delivery</h4>
+            <p>{document.placeOfDelivery}</p>
           </div>
           <div css={cellStyle}>
-            <h4>Is Electronic Invoice</h4>
-            <p>{document.isElectronicInvoice}</p>
+            <h4>Final Destination</h4>
+            <p>{document.finalDestination}</p>
           </div>
         </div>
         <div css={singleRowStyle}>
@@ -250,6 +262,12 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
                 Payment Due Date
               </td>
               <td css={tableHeaderCellStyle}>{document.paymentDueDate}</td>
+            </tr>
+            <tr>
+              <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
+                Incoterms
+              </td>
+              <td css={tableHeaderCellStyle}>{document.incoterms}</td>
             </tr>
           </table>
         </div>
