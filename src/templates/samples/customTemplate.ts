@@ -185,5 +185,5 @@ export const bltemplateCertificate: BLTemplateCertificate = {
   termsAndConditionOfCarraige: "Standard Terms Apply",
   disclaimer: "Standard Disclaimer",
   placeOfBlIssue: "Export Town Office",
-  signature: "https://www.pngegg.com/en/png-zumpd"
+  signature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
 };

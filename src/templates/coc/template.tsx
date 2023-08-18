@@ -350,11 +350,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             </div>
           </div>
           <div css={cellStyle}>
-            <img
-              css={signatureStyle}
-              src="https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
-              alt="Signature"
-            />
+            <img css={signatureStyle} src={document?.signature} alt="Signature" />
             <p>Name of Authorised Signatory: {document.exporter.name}</p>
             <p>Place of Issue: {document.placeOfBlIssue}</p>
             <p>{`Date: ${document.blDateofIssue}`}</p>
