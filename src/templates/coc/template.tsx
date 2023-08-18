@@ -281,11 +281,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
           </div>
           <div css={cellStyle}>
             <h4>I certify that state export prices and description of goods are true and correct</h4>
-            <img
-              css={signatureStyle}
-              src="https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
-              alt="Signature"
-            />
+            <img css={signatureStyle} src={document?.signature} alt="Signature" />
             <p>Name of Authorised Signatory: {document.exporter.name}</p>
             <p>Place of Issue: {document.placeOfIssue}</p>
             <p>{`Date: ${document.invoiceCreationDate}`}</p>

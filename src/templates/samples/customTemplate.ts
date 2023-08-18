@@ -165,6 +165,6 @@ export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
   bankName: "Sample Bank",
   swiftCode: "SAMPLESWIFT",
 
-  signature: "https://www.pngegg.com/en/png-zumpd",
+  signature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
   placeOfIssue: "Sample Place"
 };
