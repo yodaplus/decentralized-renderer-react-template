@@ -34,6 +34,11 @@ const singleRowStyle = css`
   grid-template-columns: 1fr;
 `;
 
+const oneCell = css`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const cellStyle = css`
   border: 1px solid #000;
   padding: 8px;
@@ -127,8 +132,8 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
               <p>{document.blDate}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Buyer Contract</h4>
-              <p>{document.buyerContract}</p>
+              <h4>Exporter LEI</h4>
+              <p>{document.exporterLEI}</p>
             </div>
             <div css={cellStyle}>
               <h4>LC Reference No.</h4>
@@ -268,6 +273,12 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
                 Incoterms
               </td>
               <td css={tableHeaderCellStyle}>{document.incoterms}</td>
+            </tr>
+            <tr>
+              <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
+                Buyer Contract
+              </td>
+              <td css={tableHeaderCellStyle}>{document.buyerContract}</td>
             </tr>
           </table>
         </div>

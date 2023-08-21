@@ -16,6 +16,7 @@ export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
     phoneNumber: string;
     email: string;
   };
+  exporterLEI: string;
 
   title: string;
   invoiceNumber: string;
@@ -92,6 +93,7 @@ export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
     phoneNumber: "+1-555-555-5555",
     email: "exporter1@example.com"
   },
+  exporterLEI: "Exporter12340",
 
   title: "Sample Invoice",
   invoiceNumber: "INV123456789",
