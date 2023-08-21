@@ -26,6 +26,7 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   productNo: string;
   buyerContract: string;
   lcRefNumber: string;
+  exporterLEI: string;
 
   carrierBookingRefNo: string;
   shippingRefNo: string;
@@ -100,6 +101,7 @@ export const bltemplateCertificate: BLTemplateCertificate = {
     phoneNumber: "+1-555-123-4567",
     email: "exporterabc@example.com"
   },
+  exporterLEI: "LEI123456",
 
   blNumber: "BL987654321",
   blDateofIssue: "2023-08-01",

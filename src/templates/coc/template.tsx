@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
 import { BLTemplateCertificate } from "../samples/customTemplate";
+import { documentTemplates } from "@govtechsg/decentralized-renderer-react-components/build/types/utils";
 
 const containerStyle = css`
   padding: 10px;
@@ -174,8 +175,8 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>Freight</h4>
-              <p>{document.freight}</p>
+              <h4>Exporter LEI</h4>
+              <p>{document.exporterLEI}</p>
             </div>
             <div css={cellStyle}>
               <h4>Shipped on Board</h4>
@@ -214,9 +215,10 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             </div>
           </div>
           <div css={cellStyle}>
-            <h4>Terms / Method of Payment</h4>
+            <h4>Terms / Method of Payment / Freight</h4>
             <p>{document.paymentTerms}</p>
             <p>{document.paymentMethod}</p>
+            <p>{document.freight}</p>
           </div>
         </div>
 
