@@ -215,8 +215,8 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             </div>
           </div>
           <div css={cellStyle}>
-            <h4>Terms / Method of Payment / Freight</h4>
-            <p>{document.paymentTerms}</p>
+            <h4>Payment Terms / Method of Payment / Freight</h4>
+            <p>{document.paymentTerms} Days</p>
             <p>{document.paymentMethod}</p>
             <p>{document.freight}</p>
           </div>
@@ -232,7 +232,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
           <div css={cellStyle}>
             <h4>City & Country of Destination</h4>
             <p>
-              {document.cityOfOrigin}, {document.countryOfOrigin}
+              {document.cityOfDestination}, {document.countryOfDestination}
             </p>
           </div>
           <div css={cellStyle}>
