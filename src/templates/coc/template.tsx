@@ -270,6 +270,12 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
             </tr>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
+                Currency
+              </td>
+              <td css={tableHeaderCellStyle}>{document.currency}</td>
+            </tr>
+            <tr>
+              <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                 Incoterms
               </td>
               <td css={tableHeaderCellStyle}>{document.incoterms}</td>

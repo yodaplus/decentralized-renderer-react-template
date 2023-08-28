@@ -60,6 +60,7 @@ export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
 
   miscCharges: number;
   creditAmount: number;
+  currency: string;
   paymentDueDate: string;
 
   signature: string;
@@ -162,6 +163,7 @@ export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
   additionalInformation: "Additional Information",
   miscCharges: 100.56,
   creditAmount: 500.23,
+  currency: "USD",
   paymentDueDate: "2023-08-31",
   bankAccountNumber: "1234567890",
   bankName: "Sample Bank",
