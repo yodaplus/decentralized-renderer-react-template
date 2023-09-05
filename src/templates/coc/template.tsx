@@ -124,11 +124,11 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>Bill of Ladding Number</h4>
+              <h4>Bill of Lading Number</h4>
               <p>{document.blNumber}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Bill of Ladding Date</h4>
+              <h4>Bill of Lading Date</h4>
               <p>{document.blDate}</p>
             </div>
             <div css={cellStyle}>
