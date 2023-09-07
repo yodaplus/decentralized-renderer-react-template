@@ -109,7 +109,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
           <div css={cellStyle}>
             <h4>Invoice Details</h4>
             <p>Title: {document.title}</p>
-            <p>Number: {document.swiftCode}</p>
+            <p>Number: {document.invoiceNumber}</p>
             <p>{`Date: ${document.invoiceCreationDate}`}</p>
             <p>Insurance Policy Number: {document.insurancePolicyNumber}</p>
           </div>
