@@ -104,11 +104,12 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>BL Number & Date</h4>
-              <div css={cellStyleFlex}>
-                <p>{document.blNumber}</p>
-                <p>{document.blDateofIssue}</p>
-              </div>
+              <h4>Bill of Lading Number</h4>
+              <p>{document.blNumber}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Bill of Lading Date</h4>
+              <p>{document.blDateofIssue}</p>
             </div>
 
             <div css={cellStyle}>
@@ -118,11 +119,6 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             <div css={cellStyle}>
               <h4>Product Number</h4>
               <p>{document.productNo}</p>
-            </div>
-
-            <div css={cellStyle}>
-              <h4>LC Reference No.</h4>
-              <p>{document.lcRefNumber}</p>
             </div>
           </div>
         </div>
@@ -138,14 +134,18 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             <div css={cellStyle}>
               <h4>Carrier Booking Ref. No.</h4>
               <p>{document.carrierBookingRefNo}</p>
-              <h4 style={{ marginTop: "20px" }}>Carrier Identification No.</h4>
-              <p>{document.carrierIdentificationfNo}</p>
             </div>
             <div css={cellStyle}>
               <h4>Shipping Ref. No.</h4>
               <p>{document.shippingRefNo}</p>
-              <h4 style={{ marginTop: "20px" }}>Proper Shipping Name</h4>
-              <p>{document.properShippingName}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Carrier Identification No.</h4>
+              <p>{document.shippingRefNo}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Standard Carrier Alpha Code (SCAC)</h4>
+              <p>{document.standardCarrierAlphaCode}</p>
             </div>
           </div>
         </div>
@@ -179,8 +179,8 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
               <p>{document.exporterLEI}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Shipped on Board</h4>
-              <p>{document.shippedOnBoardDate}</p>
+              <h4>LC Reference No.</h4>
+              <p>{document.lcRefNumber}</p>
             </div>
             <div css={cellStyle}>
               <h4>Cargo Movement Type Origin Code</h4>
@@ -192,18 +192,33 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             </div>
           </div>
         </div>
+        <div css={fourColumnsRowStyle}>
+          <div css={cellStyle}>
+            <h4>Proper Shipping Name</h4>
+            <p>{document.properShippingName}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>Method of Dispatch</h4>
+            <p>{document.modeOfDispatch}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>Freight</h4>
+            <p>{document.freight}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>Shipped on Board</h4>
+            <p>{document.shippedOnBoardDate}</p>
+          </div>
+        </div>
         <div css={rowStyle}>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>Method of Dispatch</h4>
-              <p>{document.modeOfDispatch}</p>
+              <h4>Vessel Name</h4>
+              <p>{document.vesselName}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Vessel Name & Voyage Number</h4>
-              <div css={cellStyleFlex}>
-                <p>{document.vesselName}</p>
-                <p>{document.voyageNumber}</p>
-              </div>
+              <h4>Voyage Number</h4>
+              <p>{document.voyageNumber}</p>
             </div>
             <div css={cellStyle}>
               <h4>Port of Loading</h4>
@@ -215,10 +230,9 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             </div>
           </div>
           <div css={cellStyle}>
-            <h4>Payment Terms / Method of Payment / Freight</h4>
+            <h4>Payment Terms / Method of Payment</h4>
             <p>{document.paymentTerms} Days</p>
             <p>{document.paymentMethod}</p>
-            <p>{document.freight}</p>
           </div>
         </div>
 
@@ -283,7 +297,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
               <tr key={index}>
                 <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
                 <td css={tableCellStyle}>
-                  {singlePackage.noOfPackage} X {singlePackage.type}
+                  {singlePackage.type} X {singlePackage.noOfPackage}
                 </td>
                 <td css={tableCellStyle}>{singlePackage.description}</td>
                 <td css={tableCellStyle}>

@@ -32,6 +32,7 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   shippingRefNo: string;
   properShippingName: string;
   carrierIdentificationfNo: string;
+  standardCarrierAlphaCode: string;
 
   importer: Entity;
   consignee: Entity;
@@ -144,6 +145,7 @@ export const bltemplateCertificate: BLTemplateCertificate = {
   carrierIdentificationfNo: "CBR123456",
   shippingRefNo: "SHIPREF654321",
   properShippingName: "Electronics Equipment",
+  standardCarrierAlphaCode: "SCAC",
 
   modeOfDispatch: "Sea",
   vesselName: "Vessel Voyager",
