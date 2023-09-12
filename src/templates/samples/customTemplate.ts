@@ -32,6 +32,7 @@ export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocum
   totalGrossWeight: number;
   certifyingBody: string;
   particularsOfTransportDetails: string;
+  date: string;
 }
 
 export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = {
@@ -83,5 +84,6 @@ export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = 
   declarationByExporter: "Declaration by Exporter",
 
   councilSignature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
-  exporterSignature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
+  exporterSignature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
+  date: "2023-08-01"
 };
