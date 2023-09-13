@@ -14,7 +14,7 @@ const print = css`
 const containerStyle = css`
   padding: 10pt;
   margin: auto;
-  width: 95%;
+  width: 90%;
   font-family: "Open Sans", sans-serif;
   overflow-wrap: anywhere;
   white-space: break-spaces;
