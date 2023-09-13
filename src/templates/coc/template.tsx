@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
-import { InvoiceTemplateCertificate } from "../samples/customTemplate";
+import { CertOfOriginTemplateCertificate } from "../samples/customTemplate";
 
 const containerStyle = css`
-  padding: 10px;
+  padding: 10pt;
   margin: auto;
-  width: 70%;
+  width: 90%;
   font-family: "Open Sans", sans-serif;
 `;
 
@@ -15,42 +15,68 @@ const rowStyle = css`
   grid-template-columns: repeat(2, 1fr);
 `;
 
+const oneColumnRowStyle = css`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+`;
+
+const tableRowStyle = css`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+`;
+
 const cellStyleFlex = css`
   display: flex;
   justify-content: space-between;
 `;
 
 const innerContainer = css`
-  border: 1px solid #000;
+  border: 0.5pt solid #000;
 `;
 
-const fourColumnsRowStyle = css`
+const fiveColumnsRowStyle = css`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 `;
 
-const singleRowStyle = css`
-  display: grid;
-  grid-template-columns: 1fr;
-`;
+// const singleRowStyle = css`
+//   display: grid;
+//   grid-template-columns: 1fr;
+// `;
 
-const oneCell = css`
-  display: flex;
-  justify-content: space-between;
-`;
+// const oneCell = css`
+//   display: flex;
+//   justify-content: space-between;
+// `;
 
-const cellStyle = css`
-  border: 1px solid #000;
-  padding: 8px;
-
-  padding: 10px;
+const cellForMidColStyle = css`
+  border: 0.5pt solid #000;
+  padding: 3.5pt;
+  height: 350px;
   p {
     margin: 0;
     font-weight: bold;
+    font-size: 8pt;
   }
   h4 {
     margin: 0;
     font-weight: normal;
+    font-size: 8pt;
+  }
+`;
+
+const cellStyle = css`
+  border: 0.5pt solid #000;
+  padding: 3.5pt;
+  p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 8pt;
+  }
+  h4 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 8pt;
   }
 `;
 
@@ -59,140 +85,161 @@ const titleStyle = css`
 `;
 
 const signatureStyle = css`
-  width: 100px;
+  width: 75pt;
   height: auto;
   display: block;
-  margin: 10px 0;
+  margin: 2pt 0;
 `;
 
-const tableCellStyle = css`
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
-  padding: 8px;
-  text-align: left;
-`;
+// const tableCellStyle = css`
+//   border-left: 1px solid #000;
+//   border-right: 1px solid #000;
+//   padding: 8px;
+//   text-align: left;
+// `;
 
-const tableHeaderCellStyle = css`
-  border: 1px solid #000;
-  padding: 8px;
-  text-align: left;
-  font-weight: 600;
-`;
+// const tableHeaderCellStyle = css`
+//   border: 1px solid #000;
+//   padding: 8px;
+//   text-align: left;
+//   font-weight: 600;
+// `;
 
-const tableStyle = css`
-  width: 100%;
-  border-collapse: collapse;
-  & tr:first-child td {
-    border-top: 1px solid #000;
-  }
-  & tr:last-child td {
-    border-bottom: 2px solid #000;
-  }
-`;
+// const tableStyle = css`
+//   width: 100%;
+//   border-collapse: collapse;
+//   & tr:first-child td {
+//     border-top: 1px solid #000;
+//   }
+//   & tr:last-child td {
+//     border-bottom: 2px solid #000;
+//   }
+// `;
 
-export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertificate> & { className?: string }> = ({
-  document,
-  className = ""
-}) => {
+export const CocTemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCertificate> & {
+  className?: string;
+}> = ({ document, className = "" }) => {
+  console.log(document);
   return (
     <div css={containerStyle} className={className} id="custom-template">
-      <h1 css={titleStyle}>COMMERCIAL INVOICE</h1>
+      <h5 css={titleStyle}>CERTIFICATE OF ORIGIN</h5>
       <div css={innerContainer}>
         <div css={rowStyle}>
-          <div css={cellStyle}>
-            <h4>Exporter</h4>
-            <p>{document.exporter.name}</p>
-            <p>{document.exporter.address}</p>
-            <p>{document.exporter.phoneNumber}</p>
-            <p>{document.exporter.email}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Invoice Details</h4>
-            <p>Title: {document.title}</p>
-            <p>Number: {document.invoiceNumber}</p>
-            <p>{`Date: ${document.invoiceCreationDate}`}</p>
-            <p>Insurance Policy Number: {document.insurancePolicyNumber}</p>
-          </div>
-        </div>
-        <div css={rowStyle}>
-          <div css={cellStyle}>
-            <h4>Importer</h4>
-            <p>{document.importer.name}</p>
-            <p>{document.importer.address}</p>
-            <p>{document.importer.phoneNumber}</p>
-            <p>{document.importer.email}</p>
-          </div>
-          <div css={rowStyle}>
+          <div css={oneColumnRowStyle}>
             <div css={cellStyle}>
-              <h4>Bill of Lading Number</h4>
-              <p>{document.blNumber}</p>
+              <h4>Exporter</h4>
+              <br />
+              <p>{document.exporter.name}</p>
+              <p>{document.exporter.address}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Bill of Lading Date</h4>
-              <p>{document.blDate}</p>
+              <h4>Consignee</h4>
+              <br />
+              <p>{document.importer.name}</p>
+              <p>{document.importer.address}</p>
             </div>
-            <div css={cellStyle}>
-              <h4>Exporter LEI</h4>
-              <p>{document.exporterLEI}</p>
-            </div>
-            <div css={cellStyle}>
-              <h4>LC Reference No.</h4>
-              <p>{document.lcRefNumber}</p>
+          </div>
+          <div css={cellStyle}>
+            <h4>Certificate No.</h4>
+            <div
+              style={{
+                textAlign: "center"
+              }}
+            >
+              <p>{document.cooCertificateNumber}</p>
+              <br />
+              <p>CERTIFICATE OF ORIGIN</p>
+              <p>OF</p>
+              <p>THE PEOPLE'S REPUBLIC OF {document.countryOfOrigin}</p>
             </div>
           </div>
         </div>
         <div css={rowStyle}>
+          <div css={oneColumnRowStyle}>
+            <div css={cellStyle}>
+              <h4>Means Of transport and route</h4>
+              <br />
+              <p>{document.particularsOfTransportDetails}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Country / region of destination</h4>
+              <br />
+              <p>{document.countryOfDestination}</p>
+            </div>
+          </div>
+          <div css={cellStyle}>
+            <h4>For certifying authority use only</h4>
+            <p
+              style={{
+                textAlign: "center"
+              }}
+            >
+              {document.certifyingBody}
+            </p>
+          </div>
+        </div>
+        {/* <div css={rowStyle}>
           <div css={rowStyle}>
             <div css={cellStyle}>
               <h4>Method of Dispatch</h4>
-              <p>{document.modeOfDispatch}</p>
+              <p>{document.additionalNumbers}</p>
             </div>
             <div css={cellStyle}>
               <h4>Vessel Name & Voyage Number</h4>
               <div css={cellStyleFlex}>
-                <p>{document.vesselName}</p>
-                <p>{document.voyageNumber}</p>
+                <p>{document.additionalNumbers}</p>
+                <p>{document.additionalNumbers}</p>
               </div>
             </div>
             <div css={cellStyle}>
               <h4>Port of Loading</h4>
-              <p>{document.portOfLoading}</p>
+              <p>{document.additionalNumbers}</p>
             </div>
             <div css={cellStyle}>
               <h4>Port of Discharge</h4>
-              <p>{document.portOfDischarge}</p>
+              <p>{document.additionalNumbers}</p>
             </div>
           </div>
           <div css={cellStyle}>
             <h4>Terms / Method of Payment</h4>
-            <p>{document.paymentTerms}</p>
-            <p>{document.paymentMethod}</p>
+            <p>{document.additionalNumbers}</p>
+            <p>{document.additionalNumbers}</p>
           </div>
-        </div>
+        </div> */}
 
-        <div css={fourColumnsRowStyle}>
-          <div css={cellStyle}>
-            <h4>City & Country of Origin</h4>
-            <p>
-              {document.cityOfOrigin},{document.countryOfOrigin}
-            </p>
+        <div css={fiveColumnsRowStyle}>
+          <div css={cellForMidColStyle}>
+            <h4>Marks & Numbers</h4>
+            <br />
+            <p>{document.identificationMarks}</p>
           </div>
-          <div css={cellStyle}>
-            <h4>City & Country of Destination</h4>
-            <p>
-              {document.cityOfDestination}, {document.countryOfDestination}
-            </p>
+          <div css={cellForMidColStyle}>
+            <h4>Numbers and kinds of packages: description of goods</h4>
+            <br />
+            <p>{document.descOfGoods}</p>
+            <br />
+            ******************************
+            <br />
+            <p>{document.additionalNumbers}</p>
           </div>
-          <div css={cellStyle}>
-            <h4>Place of Delivery</h4>
-            <p>{document.placeOfDelivery}</p>
+          <div css={cellForMidColStyle}>
+            <h4>H.S.Code</h4>
+            <br />
+            <p>{document.hsCode}</p>
           </div>
-          <div css={cellStyle}>
-            <h4>Final Destination</h4>
-            <p>{document.finalDestination}</p>
+          <div css={cellForMidColStyle}>
+            <h4>Quantity</h4>
+            <br />
+            <p>{document.quantity}</p>
+          </div>
+          <div css={cellForMidColStyle}>
+            <h4>Number and date of invoices</h4>
+            <br />
+            <p>{document.invoiceNumber}</p>
+            <p>{document.invoiceCreationDate}</p>
           </div>
         </div>
-        <div css={singleRowStyle}>
+        {/* <div css={singleRowStyle}>
           <table css={[cellStyle, tableStyle]}>
             <tr>
               <td css={tableHeaderCellStyle}>HS Code</td>
@@ -219,29 +266,27 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
               </tr>
             ))}
           </table>
-        </div>
+        </div> */}
 
-        <div css={rowStyle}>
+        {/* <div css={tableRowStyle}>
           <div css={cellStyle}>
             <h4>Additional Information</h4>
-            <p>{document.additionalInformation}</p>
+            <p>{document.additionalNumbers}</p>
           </div>
-
+          
           <table css={[cellStyle, tableStyle]}>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                 Total Commercial Value
               </td>
-              <td css={tableHeaderCellStyle}>
-                {document.commodity.reduce((acc, commodity) => acc + commodity.unitPrice * commodity.qty, 0)}
-              </td>
+              <td css={tableHeaderCellStyle}>{document.additionalNumbers}</td>
             </tr>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                 Misc. Charges (packing, shipping, etc.) (+)
               </td>
               <td css={tableHeaderCellStyle} style={{ width: "150px" }}>
-                {document.miscCharges}
+                {document.additionalNumbers}
               </td>
             </tr>
             <tr>
@@ -249,59 +294,80 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
                 Credit Amount (-)
               </td>
               <td css={tableHeaderCellStyle} style={{ width: "150px" }}>
-                {document.creditAmount}
+                {document.additionalNumbers}
               </td>
             </tr>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                 Total Invoice Value
               </td>
-              <td css={tableHeaderCellStyle}>
-                {document.commodity.reduce((acc, commodity) => acc + commodity.unitPrice * commodity.qty, 0) +
-                  document?.miscCharges -
-                  document?.creditAmount}
-              </td>
+              <td css={tableHeaderCellStyle}>{document.additionalNumbers}</td>
             </tr>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                 Payment Due Date
               </td>
-              <td css={tableHeaderCellStyle}>{document.paymentDueDate}</td>
+              <td css={tableHeaderCellStyle}>{document.additionalNumbers}</td>
             </tr>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                 Currency
               </td>
-              <td css={tableHeaderCellStyle}>{document.currency}</td>
+              <td css={tableHeaderCellStyle}>{document.additionalNumbers}</td>
             </tr>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                 Incoterms
               </td>
-              <td css={tableHeaderCellStyle}>{document.incoterms}</td>
+              <td css={tableHeaderCellStyle}>{document.additionalNumbers}</td>
             </tr>
             <tr>
               <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                 Buyer Contract
               </td>
-              <td css={tableHeaderCellStyle}>{document.buyerContract}</td>
+              <td css={tableHeaderCellStyle}>{document.additionalNumbers}</td>
             </tr>
           </table>
-        </div>
+        </div> */}
         <div css={rowStyle}>
           <div css={cellStyle}>
-            <h4>Bank Details</h4>
-            <p>{`Benefiaciary's Bank Name: ${document.bankName}`}</p>
-            <p>{`Benefiaciary's Name: ${document.importer.name}`}</p>
-            <p>Bank Account Number: {document.bankAccountNumber}</p>
-            <p>Swift Code: {document.swiftCode}</p>
+            <p>Declaration By Exporter</p>
+            <br />
+            <div
+              style={{
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column"
+              }}
+            >
+              <p>{document.declarationByExporter}</p>
+              <img css={signatureStyle} src={document?.exporterSignature} alt="Signature" />
+              {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
+              <p>{document.countryOfOrigin}</p>
+              <p>{`Date: ${document.date}`}</p>
+            </div>
           </div>
           <div css={cellStyle}>
-            <h4>I certify that state export prices and description of goods are true and correct</h4>
-            <img css={signatureStyle} src={document?.signature} alt="Signature" />
-            <p>Name of Authorised Signatory: {document.exporter.name}</p>
-            <p>Place of Issue: {document.placeOfIssue}</p>
-            <p>{`Date: ${document.invoiceCreationDate}`}</p>
+            <p>Certification</p>
+            <br />
+
+            <div
+              style={{
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column"
+              }}
+            >
+              <p>{document.declarationByCouncil}</p>
+              <img css={signatureStyle} src={document?.exporterSignature} alt="Signature" />
+              {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
+              <p>{document.countryOfOrigin}</p>
+              <p>{`Date: ${document.date}`}</p>
+            </div>
           </div>
         </div>
       </div>

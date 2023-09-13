@@ -13,7 +13,7 @@ export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocum
 
   invoiceNumber: string;
   invoiceCreationDate: string;
-
+  quantity: number;
   declarationByCouncil: string;
   declarationByExporter: string;
   exporterSignature: string;
@@ -77,6 +77,7 @@ export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = 
   particularsOfTransportDetails: "Particulars of Transport Details",
 
   totalGrossWeight: 500,
+  quantity: 100,
 
   additionalNumbers: "Additional Information",
 
