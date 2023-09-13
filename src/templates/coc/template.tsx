@@ -298,11 +298,13 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
                 <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
                 <td css={tableHeaderCellStyle}>Commodity Description</td>
 
-                <td css={tableHeaderCellStyle}>Temperature </td>
-                <td css={tableHeaderCellStyle} style={{ width: "120pt" }}>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
+                  Temperature{" "}
+                </td>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
                   Gross weight (KG)
                 </td>
-                <td css={tableHeaderCellStyle} style={{ width: "120pt" }}>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
                   Measurements (Volume)
                 </td>
               </tr>
@@ -336,13 +338,13 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             </div>
             <table css={[cellStyle, tableStyle]}>
               <tr>
-                <td css={tableHeaderCellStyle} style={{ textAlign: "right", width: "40pt" }}>
+                <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
                   Total Consignment Value
                 </td>
-                <td css={tableHeaderCellStyle} style={{ width: "40pt" }}>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
                   {document.packages.reduce((acc, singlePackage) => acc + singlePackage.grossWeight, 0)}
                 </td>
-                <td css={tableHeaderCellStyle} style={{ width: "40pt" }}>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
                   {document.packages.reduce((acc, singlePackage) => acc + singlePackage.volume, 0)}
                 </td>
               </tr>
