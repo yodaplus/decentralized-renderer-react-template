@@ -363,7 +363,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCe
               }}
             >
               <p>{document.declarationByCouncil}</p>
-              <img css={signatureStyle} src={document?.exporterSignature} alt="Signature" />
+              <img css={signatureStyle} src={document?.councilSignature} alt="Signature" />
               {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
               <p>{document.countryOfOrigin}</p>
               <p>{`Date: ${document.date}`}</p>
