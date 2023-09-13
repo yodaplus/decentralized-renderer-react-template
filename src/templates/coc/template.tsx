@@ -4,11 +4,20 @@ import { css } from "@emotion/core";
 import { BLTemplateCertificate } from "../samples/customTemplate";
 import { documentTemplates } from "@govtechsg/decentralized-renderer-react-components/build/types/utils";
 
+const print = css`
+  @page {
+    size: A4; /* Set the paper size to A4 */
+    margin: 0; /* Remove default margins */
+  }
+`;
+
 const containerStyle = css`
   padding: 10px;
   margin: auto;
   width: 70%;
   font-family: "Open Sans", sans-serif;
+  overflow-wrap: anywhere;
+  white-space: break-spaces;
 `;
 
 const cellStyleFlex = css`
@@ -91,285 +100,287 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
   className = ""
 }) => {
   return (
-    <div css={containerStyle} className={className} id="custom-template">
-      <h1 css={titleStyle}>BILL OF LADING</h1>
-      <div css={innerContainer}>
-        <div css={rowStyle}>
-          <div css={cellStyle}>
-            <h4>Exporter</h4>
-            <p>{document.exporter.name}</p>
-            <p>{document.exporter.address}</p>
-            <p>{document.exporter.phoneNumber}</p>
-            <p>{document.exporter.email}</p>
+    <div css={print}>
+      <div css={containerStyle} className={className} id="custom-template">
+        <h1 css={titleStyle}>BILL OF LADING</h1>
+        <div css={innerContainer}>
+          <div css={rowStyle}>
+            <div css={cellStyle}>
+              <h4>Exporter</h4>
+              <p>{document.exporter.name}</p>
+              <p>{document.exporter.address}</p>
+              <p>{document.exporter.phoneNumber}</p>
+              <p>{document.exporter.email}</p>
+            </div>
+            <div css={rowStyle}>
+              <div css={cellStyle}>
+                <h4>Bill of Lading Number</h4>
+                <p>{document.blNumber}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Bill of Lading Date</h4>
+                <p>{document.blDateofIssue}</p>
+              </div>
+
+              <div css={cellStyle}>
+                <h4>Seal Number</h4>
+                <p>{document.sealNumber}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Product Number</h4>
+                <p>{document.productNo}</p>
+              </div>
+            </div>
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>Bill of Lading Number</h4>
-              <p>{document.blNumber}</p>
+              <h4>Importer</h4>
+              <p>{document.importer.name}</p>
+              <p>{document.importer.address}</p>
+              <p>{document.importer.phoneNumber}</p>
+              <p>{document.importer.email}</p>
             </div>
-            <div css={cellStyle}>
-              <h4>Bill of Lading Date</h4>
-              <p>{document.blDateofIssue}</p>
+            <div css={rowStyle}>
+              <div css={cellStyle}>
+                <h4>Carrier Booking Ref. No.</h4>
+                <p>{document.carrierBookingRefNo}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Shipping Ref. No.</h4>
+                <p>{document.shippingRefNo}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Carrier Identification No.</h4>
+                <p>{document.shippingRefNo}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Standard Carrier Alpha Code (SCAC)</h4>
+                <p>{document.standardCarrierAlphaCode}</p>
+              </div>
             </div>
-
-            <div css={cellStyle}>
-              <h4>Seal Number</h4>
-              <p>{document.sealNumber}</p>
-            </div>
-            <div css={cellStyle}>
-              <h4>Product Number</h4>
-              <p>{document.productNo}</p>
-            </div>
-          </div>
-        </div>
-        <div css={rowStyle}>
-          <div css={cellStyle}>
-            <h4>Importer</h4>
-            <p>{document.importer.name}</p>
-            <p>{document.importer.address}</p>
-            <p>{document.importer.phoneNumber}</p>
-            <p>{document.importer.email}</p>
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>Carrier Booking Ref. No.</h4>
-              <p>{document.carrierBookingRefNo}</p>
+              <h4>Consignee</h4>
+              <p>{document.consignee.name}</p>
+              <p>{document.consignee.address}</p>
+              <p>{document.consignee.phoneNumber}</p>
+              <p>{document.consignee.email}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Shipping Ref. No.</h4>
-              <p>{document.shippingRefNo}</p>
+              <h4>Carrier</h4>
+              <p>{document.carrier.name}</p>
+              <p>{document.carrier.address}</p>
+              <p>{document.carrier.phoneNumber}</p>
+              <p>{document.carrier.email}</p>
             </div>
-            <div css={cellStyle}>
-              <h4>Carrier Identification No.</h4>
-              <p>{document.shippingRefNo}</p>
-            </div>
-            <div css={cellStyle}>
-              <h4>Standard Carrier Alpha Code (SCAC)</h4>
-              <p>{document.standardCarrierAlphaCode}</p>
-            </div>
-          </div>
-        </div>
-        <div css={rowStyle}>
-          <div css={cellStyle}>
-            <h4>Consignee</h4>
-            <p>{document.consignee.name}</p>
-            <p>{document.consignee.address}</p>
-            <p>{document.consignee.phoneNumber}</p>
-            <p>{document.consignee.email}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Carrier</h4>
-            <p>{document.carrier.name}</p>
-            <p>{document.carrier.address}</p>
-            <p>{document.carrier.phoneNumber}</p>
-            <p>{document.carrier.email}</p>
-          </div>
-        </div>
-        <div css={rowStyle}>
-          <div css={cellStyle}>
-            <h4>Notifying Party</h4>
-            <p>{document.notifyingParty.name}</p>
-            <p>{document.notifyingParty.address}</p>
-            <p>{document.notifyingParty.phoneNumber}</p>
-            <p>{document.notifyingParty.email}</p>
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>Exporter LEI</h4>
-              <p>{document.exporterLEI}</p>
+              <h4>Notifying Party</h4>
+              <p>{document.notifyingParty.name}</p>
+              <p>{document.notifyingParty.address}</p>
+              <p>{document.notifyingParty.phoneNumber}</p>
+              <p>{document.notifyingParty.email}</p>
+            </div>
+            <div css={rowStyle}>
+              <div css={cellStyle}>
+                <h4>Exporter LEI</h4>
+                <p>{document.exporterLEI}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>LC Reference No.</h4>
+                <p>{document.lcRefNumber}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Cargo Movement Type Origin Code</h4>
+                <p>{document.cargoMovTypeOriginCode}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Cargo Movement Type Destination Code</h4>
+                <p>{document.cargoMovTypeDestinationCode}</p>
+              </div>
+            </div>
+          </div>
+          <div css={fourColumnsRowStyle}>
+            <div css={cellStyle}>
+              <h4>Proper Shipping Name</h4>
+              <p>{document.properShippingName}</p>
             </div>
             <div css={cellStyle}>
-              <h4>LC Reference No.</h4>
-              <p>{document.lcRefNumber}</p>
+              <h4>Method of Dispatch</h4>
+              <p>{document.modeOfDispatch}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Cargo Movement Type Origin Code</h4>
-              <p>{document.cargoMovTypeOriginCode}</p>
+              <h4>Freight</h4>
+              <p>{document.freight}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Cargo Movement Type Destination Code</h4>
-              <p>{document.cargoMovTypeDestinationCode}</p>
+              <h4>Shipped on Board</h4>
+              <p>{document.shippedOnBoardDate}</p>
             </div>
           </div>
-        </div>
-        <div css={fourColumnsRowStyle}>
-          <div css={cellStyle}>
-            <h4>Proper Shipping Name</h4>
-            <p>{document.properShippingName}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Method of Dispatch</h4>
-            <p>{document.modeOfDispatch}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Freight</h4>
-            <p>{document.freight}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Shipped on Board</h4>
-            <p>{document.shippedOnBoardDate}</p>
-          </div>
-        </div>
-        <div css={rowStyle}>
           <div css={rowStyle}>
-            <div css={cellStyle}>
-              <h4>Vessel Name</h4>
-              <p>{document.vesselName}</p>
+            <div css={rowStyle}>
+              <div css={cellStyle}>
+                <h4>Vessel Name</h4>
+                <p>{document.vesselName}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Voyage Number</h4>
+                <p>{document.voyageNumber}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Port of Loading</h4>
+                <p>{document.portOfLoading}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Port of Discharge</h4>
+                <p>{document.portOfDischarge}</p>
+              </div>
             </div>
             <div css={cellStyle}>
-              <h4>Voyage Number</h4>
-              <p>{document.voyageNumber}</p>
+              <h4>Payment Terms / Method of Payment</h4>
+              <p>{document.paymentTerms} Days</p>
+              <p>{document.paymentMethod}</p>
+            </div>
+          </div>
+
+          <div css={fourColumnsRowStyle}>
+            <div css={cellStyle}>
+              <h4>City & Country of Origin</h4>
+              <p>
+                {document.cityOfOrigin}, {document.countryOfOrigin}
+              </p>
             </div>
             <div css={cellStyle}>
-              <h4>Port of Loading</h4>
-              <p>{document.portOfLoading}</p>
+              <h4>City & Country of Destination</h4>
+              <p>
+                {document.cityOfDestination}, {document.countryOfDestination}
+              </p>
             </div>
             <div css={cellStyle}>
-              <h4>Port of Discharge</h4>
-              <p>{document.portOfDischarge}</p>
+              <h4>Incoterms</h4>
+              <p>{document.incoterms}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Buyer Contract</h4>
+              <p>{document.buyerContract}</p>
             </div>
           </div>
-          <div css={cellStyle}>
-            <h4>Payment Terms / Method of Payment</h4>
-            <p>{document.paymentTerms} Days</p>
-            <p>{document.paymentMethod}</p>
-          </div>
-        </div>
+          <div css={fourColumnsRowStyle}>
+            <div css={cellStyle}>
+              <h4>Place of Delivery</h4>
+              <p>{document.placeOfDelivery}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Final Destination</h4>
+              <p>{document.finalDestination}</p>
+            </div>
 
-        <div css={fourColumnsRowStyle}>
-          <div css={cellStyle}>
-            <h4>City & Country of Origin</h4>
-            <p>
-              {document.cityOfOrigin}, {document.countryOfOrigin}
-            </p>
-          </div>
-          <div css={cellStyle}>
-            <h4>City & Country of Destination</h4>
-            <p>
-              {document.cityOfDestination}, {document.countryOfDestination}
-            </p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Incoterms</h4>
-            <p>{document.incoterms}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Buyer Contract</h4>
-            <p>{document.buyerContract}</p>
-          </div>
-        </div>
-        <div css={fourColumnsRowStyle}>
-          <div css={cellStyle}>
-            <h4>Place of Delivery</h4>
-            <p>{document.placeOfDelivery}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Final Destination</h4>
-            <p>{document.finalDestination}</p>
+            <div css={cellStyle}>
+              <h4>Danger Level</h4>
+              <p>{document.dangerLevel}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>UNDG Code</h4>
+              <p>{document.UNDGCode}</p>
+            </div>
           </div>
 
-          <div css={cellStyle}>
-            <h4>Danger Level</h4>
-            <p>{document.dangerLevel}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>UNDG Code</h4>
-            <p>{document.UNDGCode}</p>
-          </div>
-        </div>
+          <div css={singleRowStyle}>
+            <table css={[cellStyle, tableStyle]}>
+              <tr>
+                <td css={tableHeaderCellStyle}>Marks & Numbers</td>
+                <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
+                <td css={tableHeaderCellStyle}>Commodity Description</td>
 
-        <div css={singleRowStyle}>
-          <table css={[cellStyle, tableStyle]}>
-            <tr>
-              <td css={tableHeaderCellStyle}>Marks & Numbers</td>
-              <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
-              <td css={tableHeaderCellStyle}>Commodity Description</td>
-
-              <td css={tableHeaderCellStyle}>Temperature </td>
-              <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
-                Gross weight (KG)
-              </td>
-              <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
-                Measurements (Volume)
-              </td>
-            </tr>
-            {document.packages.map((singlePackage, index) => (
-              <tr key={index}>
-                <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
-                <td css={tableCellStyle}>
-                  {singlePackage.type} X {singlePackage.noOfPackage}
+                <td css={tableHeaderCellStyle}>Temperature </td>
+                <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                  Gross weight (KG)
                 </td>
-                <td css={tableCellStyle}>{singlePackage.description}</td>
-                <td css={tableCellStyle}>
-                  {singlePackage.temp} {singlePackage.tempUnit}
+                <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                  Measurements (Volume)
                 </td>
-                <td css={tableCellStyle}>{singlePackage.grossWeight}</td>
-                <td css={tableCellStyle}>{singlePackage.volume}</td>
               </tr>
-            ))}
-          </table>
-        </div>
+              {document.packages.map((singlePackage, index) => (
+                <tr key={index}>
+                  <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
+                  <td css={tableCellStyle}>
+                    {singlePackage.type} X {singlePackage.noOfPackage}
+                  </td>
+                  <td css={tableCellStyle}>{singlePackage.description}</td>
+                  <td css={tableCellStyle}>
+                    {singlePackage.temp} {singlePackage.tempUnit}
+                  </td>
+                  <td css={tableCellStyle}>{singlePackage.grossWeight}</td>
+                  <td css={tableCellStyle}>{singlePackage.volume}</td>
+                </tr>
+              ))}
+            </table>
+          </div>
 
-        <div css={rowStyle}>
           <div css={rowStyle}>
-            <div css={cellStyle}>
-              <h4>Container Number</h4>
-              <p>{document.containerNo}</p>
+            <div css={rowStyle}>
+              <div css={cellStyle}>
+                <h4>Container Number</h4>
+                <p>{document.containerNo}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Container Type</h4>
+                <p>{document.containerType}</p>
+              </div>
             </div>
-            <div css={cellStyle}>
-              <h4>Container Type</h4>
-              <p>{document.containerType}</p>
-            </div>
+            <table css={[cellStyle, tableStyle]}>
+              <tr>
+                <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
+                  Total Consignment Value
+                </td>
+                <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                  {document.packages.reduce((acc, singlePackage) => acc + singlePackage.grossWeight, 0)}
+                </td>
+                <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                  {document.packages.reduce((acc, singlePackage) => acc + singlePackage.volume, 0)}
+                </td>
+              </tr>
+            </table>
           </div>
-          <table css={[cellStyle, tableStyle]}>
-            <tr>
-              <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
-                Total Consignment Value
-              </td>
-              <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
-                {document.packages.reduce((acc, singlePackage) => acc + singlePackage.grossWeight, 0)}
-              </td>
-              <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
-                {document.packages.reduce((acc, singlePackage) => acc + singlePackage.volume, 0)}
-              </td>
-            </tr>
-          </table>
-        </div>
 
-        <div css={fourColumnsRowStyle}>
-          <div css={cellStyle}>
-            <h4>Total Number of Containers</h4>
-            <p>{document.totalNoOfConatiners}</p>
+          <div css={fourColumnsRowStyle}>
+            <div css={cellStyle}>
+              <h4>Total Number of Containers</h4>
+              <p>{document.totalNoOfConatiners}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Temperature setting for Reefer Containers</h4>
+              <p>{document.tempSettingForReferContainer}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Agent Ref. No.</h4>
+              <p>{document.ffREfnum}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Transport Document Type</h4>
+              <p>{document.transportDocType}</p>
+            </div>
           </div>
-          <div css={cellStyle}>
-            <h4>Temperature setting for Reefer Containers</h4>
-            <p>{document.tempSettingForReferContainer}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Agent Ref. No.</h4>
-            <p>{document.ffREfnum}</p>
-          </div>
-          <div css={cellStyle}>
-            <h4>Transport Document Type</h4>
-            <p>{document.transportDocType}</p>
-          </div>
-        </div>
-        <div css={rowStyle}>
           <div css={rowStyle}>
-            <div css={cellStyle}>
-              <h4>Terms and Condition of Carriage</h4>
-              <p>{document.termsAndConditionOfCarraige}</p>
+            <div css={rowStyle}>
+              <div css={cellStyle}>
+                <h4>Terms and Condition of Carriage</h4>
+                <p>{document.termsAndConditionOfCarraige}</p>
+              </div>
+              <div css={cellStyle}>
+                <h4>Disclaimer</h4>
+                <p>{document.disclaimer}</p>
+              </div>
             </div>
             <div css={cellStyle}>
-              <h4>Disclaimer</h4>
-              <p>{document.disclaimer}</p>
+              <img css={signatureStyle} src={document?.signature} alt="Signature" />
+              <p>Name of Authorised Signatory: {document.exporter.name}</p>
+              <p>Place of Issue: {document.placeOfBlIssue}</p>
+              <p>{`Date: ${document.blDateofIssue}`}</p>
             </div>
-          </div>
-          <div css={cellStyle}>
-            <img css={signatureStyle} src={document?.signature} alt="Signature" />
-            <p>Name of Authorised Signatory: {document.exporter.name}</p>
-            <p>Place of Issue: {document.placeOfBlIssue}</p>
-            <p>{`Date: ${document.blDateofIssue}`}</p>
           </div>
         </div>
       </div>
