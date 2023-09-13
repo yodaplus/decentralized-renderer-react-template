@@ -12,12 +12,15 @@ const print = css`
 `;
 
 const containerStyle = css`
-  padding: 10px;
+  padding: 10pt;
   margin: auto;
-  width: 70%;
+  width: 95%;
   font-family: "Open Sans", sans-serif;
   overflow-wrap: anywhere;
   white-space: break-spaces;
+  td {
+    font-size: 8pt;
+  }
 `;
 
 const cellStyleFlex = css`
@@ -31,7 +34,7 @@ const rowStyle = css`
 `;
 
 const innerContainer = css`
-  border: 1px solid #000;
+  border: 0.5pt solid #000;
 `;
 
 const fourColumnsRowStyle = css`
@@ -45,17 +48,17 @@ const singleRowStyle = css`
 `;
 
 const cellStyle = css`
-  border: 1px solid #000;
-  padding: 8px;
-
-  padding: 10px;
+  border: 0.5pt solid #000;
+  padding: 3.5pt;
   p {
     margin: 0;
     font-weight: bold;
+    font-size: 8pt;
   }
   h4 {
     margin: 0;
     font-weight: normal;
+    font-size: 8pt;
   }
 `;
 
@@ -64,34 +67,34 @@ const titleStyle = css`
 `;
 
 const signatureStyle = css`
-  width: 100px;
+  width: 50pt;
   height: auto;
   display: block;
-  margin: 10px 0;
+  margin: 2pt 0;
 `;
 
 const tableCellStyle = css`
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
-  padding: 8px;
+  border-left: 0.5pt solid #000;
+  border-right: 0.5pt solid #000;
+  padding: 4pt;
   text-align: left;
 `;
 
 const tableHeaderCellStyle = css`
-  border: 1px solid #000;
-  padding: 8px;
+  border: 0.5pt solid #000;
+  padding: 4pt;
   text-align: left;
-  font-weight: 600;
+  font-weight: 400;
 `;
 
 const tableStyle = css`
   width: 100%;
   border-collapse: collapse;
   & tr:first-child td {
-    border-top: 1px solid #000;
+    border-top: 0.5pt solid #000;
   }
   & tr:last-child td {
-    border-bottom: 2px solid #000;
+    border-bottom: 1pt solid #000;
   }
 `;
 
@@ -102,7 +105,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
   return (
     <div css={print}>
       <div css={containerStyle} className={className} id="custom-template">
-        <h1 css={titleStyle}>BILL OF LADING</h1>
+        <h5 css={titleStyle}>BILL OF LADING</h5>
         <div css={innerContainer}>
           <div css={rowStyle}>
             <div css={cellStyle}>
@@ -296,10 +299,10 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
                 <td css={tableHeaderCellStyle}>Commodity Description</td>
 
                 <td css={tableHeaderCellStyle}>Temperature </td>
-                <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                <td css={tableHeaderCellStyle} style={{ width: "120pt" }}>
                   Gross weight (KG)
                 </td>
-                <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                <td css={tableHeaderCellStyle} style={{ width: "120pt" }}>
                   Measurements (Volume)
                 </td>
               </tr>
@@ -333,13 +336,13 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
             </div>
             <table css={[cellStyle, tableStyle]}>
               <tr>
-                <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
+                <td css={tableHeaderCellStyle} style={{ textAlign: "right", width: "40pt" }}>
                   Total Consignment Value
                 </td>
-                <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                <td css={tableHeaderCellStyle} style={{ width: "40pt" }}>
                   {document.packages.reduce((acc, singlePackage) => acc + singlePackage.grossWeight, 0)}
                 </td>
-                <td css={tableHeaderCellStyle} style={{ width: "120px" }}>
+                <td css={tableHeaderCellStyle} style={{ width: "40pt" }}>
                   {document.packages.reduce((acc, singlePackage) => acc + singlePackage.volume, 0)}
                 </td>
               </tr>
