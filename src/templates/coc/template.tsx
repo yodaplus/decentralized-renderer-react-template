@@ -67,7 +67,7 @@ const titleStyle = css`
 `;
 
 const signatureStyle = css`
-  width: 50pt;
+  width: 75pt;
   height: auto;
   display: block;
   margin: 2pt 0;
