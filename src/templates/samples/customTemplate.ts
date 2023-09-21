@@ -17,6 +17,13 @@ interface Entity {
   phoneNumber: string;
   email: string;
 }
+
+interface ProcessedFilesV2 {
+  data: string;
+  filename: string;
+  type: string;
+}
+
 export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   exporter: Entity;
 
@@ -77,6 +84,7 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   disclaimer: string;
   placeOfBlIssue: string;
   signature: string;
+  attachements: ProcessedFilesV2[];
 }
 
 export const bltemplateCertificate: BLTemplateCertificate = {
@@ -189,5 +197,12 @@ export const bltemplateCertificate: BLTemplateCertificate = {
   termsAndConditionOfCarraige: "Standard Terms Apply",
   disclaimer: "Standard Disclaimer",
   placeOfBlIssue: "Export Town Office",
+  attachements: [
+    {
+      data: "",
+      filename: "new.json",
+      type: "application/json"
+    }
+  ],
   signature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
 };
