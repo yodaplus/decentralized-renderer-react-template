@@ -133,7 +133,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCe
               <p>{document.exporter.address}</p>
             </div>
             <div css={cellStyle}>
-              <h4>Consignee</h4>
+              <h4>Importer</h4>
               <br />
               <p>{document.importer.name}</p>
               <p>{document.importer.address}</p>
