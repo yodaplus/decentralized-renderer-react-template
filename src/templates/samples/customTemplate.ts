@@ -22,7 +22,7 @@ export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocum
 
 export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = {
   $template: {
-    name: "BE",
+    name: "COC",
     type: v2.TemplateType.EmbeddedRenderer,
     url: "http://localhost:3000"
   },
