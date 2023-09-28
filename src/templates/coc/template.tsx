@@ -67,18 +67,24 @@ export const BETemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCer
             <h4>Reference No.</h4>
             <p>{document.referenceNo}</p>
           </div>
-          <div css={cellStyle}>
-            <h4>Amount in Figures</h4>
-            <p>{document.amountInFigures}</p>
+          <div css={rowStyle}>
+            <div css={cellStyle}>
+              <h4>Amount in Figures</h4>
+              <p>{document.amountInFigures}</p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Date of Issue</h4>
+              <p>{document.dateOfBoe}</p>
+            </div>
           </div>
         </div>
         <div css={fourColumnsRowStyle}>
           <div css={cellStyle}>
-            <h4>Bl date (if applicable)</h4>
+            <h4>Bill of Lading Date (if applicable)</h4>
             <p>{document.blDate}</p>
           </div>
           <div css={cellStyle}>
-            <h4>Invoice date (if applicable)</h4>
+            <h4>Invoice Date (if applicable)</h4>
             <p>{document.invoiceDate}</p>
           </div>
           <div css={cellStyle}>
@@ -86,7 +92,7 @@ export const BETemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCer
             <p>{document.placeOfIssue}</p>
           </div>
           <div css={cellStyle}>
-            <h4>Due date</h4>
+            <h4>Due Date</h4>
             <p>{document.dueDate}</p>
           </div>
         </div>
@@ -99,7 +105,9 @@ export const BETemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCer
         <div css={singleRowStyle}>
           <div css={cellStyle}>
             <h4>Amount In Words</h4>
-            <p>{document.amountInWords}</p>
+            <p>
+              {document.amountInWords} {document.currency}
+            </p>
           </div>
         </div>
         <div css={rowStyle}>

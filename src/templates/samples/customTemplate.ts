@@ -2,6 +2,7 @@ import { v2 } from "@govtechsg/open-attestation";
 
 export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocument {
   referenceNo: string;
+  currency: string;
   amountInFigures: string;
   amountInWords: string;
   blDate: string;
@@ -53,5 +54,6 @@ export const BETemplateCertificate: CertOfOriginTemplateCertificate = {
   drawerSign: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
   draweeSign: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
   dueDate: "2023-08-31",
-  placeOfIssue: "New York"
+  placeOfIssue: "New York",
+  currency: "US Dollar"
 };
