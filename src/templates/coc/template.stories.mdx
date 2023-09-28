@@ -1,23 +1,23 @@
 import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
 import { object } from "@storybook/addon-knobs";
-import { CocTemplate } from "./template";
-import { certOfOriginTemplateCertificate } from "../samples/customTemplate";
+import { BETemplate } from "./template";
+import { BETemplateCertificate } from "../samples/customTemplate";
 
 
-<Meta title="MDX|CocTemplate" component={CocTemplate} />
+<Meta title="MDX|BETemplate" component={BETemplate} />
 
-# CocTemplate component
+# BETemplate component
 
-<Description of={CocTemplate} />
+<Description of={BETemplate} />
 
 # Props
 
-<Props of={CocTemplate} />
+<Props of={BETemplate} />
 
 # Usage
 
 <Preview>
   <Story name="basic sample">
-    <CocTemplate document={object("document", certOfOriginTemplateCertificate)} />
+    <BETemplate document={object("document", BETemplateCertificate)} />
   </Story>
 </Preview>

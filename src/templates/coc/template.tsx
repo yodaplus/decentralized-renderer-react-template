@@ -55,7 +55,7 @@ const signatureStyle = css`
   margin: 2pt 0;
 `;
 
-export const CocTemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCertificate> & {
+export const BETemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCertificate> & {
   className?: string;
 }> = ({ document, className = "" }) => {
   return (

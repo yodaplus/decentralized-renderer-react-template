@@ -1,9 +1,9 @@
-import { CocTemplate } from "./template";
+import { BETemplate } from "./template";
 
 export const templates = [
   {
     id: "certificate",
     label: "Certificate",
-    template: CocTemplate
+    template: BETemplate
   }
 ];
