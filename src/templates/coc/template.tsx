@@ -115,11 +115,11 @@ export const BETemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCer
         <div css={rowStyle}>
           <div css={cellStyle}>
             <h4>LC Reference</h4>
-            <p>{document.referenceNo}</p>
+            <p>{document.lcRef}</p>
           </div>
           <div css={cellStyle}>
             <h4>LC Date</h4>
-            <p>{document.amountInFigures}</p>
+            <p>{document.lcDate}</p>
           </div>
         </div>
         <div css={rowStyle}>
