@@ -70,7 +70,9 @@ export const BETemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCer
           <div css={rowStyle}>
             <div css={cellStyle}>
               <h4>Amount in Figures</h4>
-              <p>{document.amountInFigures}</p>
+              <p>
+                {document.amountInFigures} {document.currencyCode}
+              </p>
             </div>
             <div css={cellStyle}>
               <h4>Date of Issue</h4>
