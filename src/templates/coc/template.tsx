@@ -105,6 +105,7 @@ const tableStyle = css`
 
 export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertificate> & { className?: string }> = ({
   document,
+  handleObfuscation,
   className = ""
 }) => {
   const [editable, setEditable] = React.useState(false);
@@ -122,7 +123,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
                   <RedactableValue
                     editable={editable}
                     value={document.exporter.name}
-                    // onRedactionRequested={() => handleObfuscation(`billFrom.name`)}
+                    onRedactionRequested={() => handleObfuscation(`document.exporter.name`)}
                     iconRedact={<IconRedact />}
                   />
                 </p>
