@@ -3,6 +3,7 @@ import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-rendere
 import { css } from "@emotion/core";
 import { InvoiceTemplateCertificate } from "../samples/customTemplate";
 import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
+import { saveAs } from "file-saver";
 
 const pageStyle = css`
   @page {
@@ -109,13 +110,14 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
   className = ""
 }) => {
   const [editable, setEditable] = React.useState(false);
+  // console.log(document)
   const onDownload = () => {
-    console.log("documenttttt")
-    const blob = new Blob([JSON.stringify(document, null, 2)], {
-      type: 'text/json;charset=utf-8'
-    });
-    saveAs(blob, `BILL_OF_LADING.tt`);
-  };
+    console.log("documenttttt", document);
+    const blob = new Blob([JSON.stringify(document, null, 2)], {
+      type: "application/json;charset=utf-8"
+    });
+    saveAs(blob, `BILL_OF_LADING.tt`);
+  };
   return (
     <>
       <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
