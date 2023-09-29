@@ -109,9 +109,17 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
   className = ""
 }) => {
   const [editable, setEditable] = React.useState(false);
+  const onDownload = () => {
+    console.log("documenttttt")
+    const blob = new Blob([JSON.stringify(document, null, 2)], {
+      type: 'text/json;charset=utf-8'
+    });
+    saveAs(blob, `BILL_OF_LADING.tt`);
+  };
   return (
     <>
       <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
+      <button onClick={onDownload}> Download </button>
       <div css={pageStyle}>
         <div css={containerStyle} className={className} id="custom-template">
           <h5 css={titleStyle}>COMMERCIAL INVOICE</h5>

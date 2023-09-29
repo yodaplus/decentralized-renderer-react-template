@@ -27,6 +27,7 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
           <div className="grow mb-4 md:mb-0 mr-0 md:mr-4">
             <h3 className="font-normal">The document allows fields to be selectively disclosed.</h3>
             <p>{description}</p>
+            
           </div>
           <button onClick={onToggleEditable} className="bg-white text-cerulean hover:bg-gray-50 whitespace-nowrap">
             {editable ? "Done" : buttonText}
