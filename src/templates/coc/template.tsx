@@ -108,7 +108,7 @@ export const BETemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCer
           <div css={cellStyle}>
             <h4>Amount In Words</h4>
             <p>
-              {document.amountInWords} {document.currency}
+              {document.amountInWords} {document.currency} Only
             </p>
           </div>
         </div>
