@@ -125,7 +125,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
                   <RedactableValue
                     editable={editable}
                     value={document.exporter.name}
-                    onRedactionRequested={() => handleObfuscation(`document.exporter.name`)}
+                    onRedactionRequested={() => handleObfuscation(`exporter.name`)}
                     iconRedact={<IconRedact />}
                   />
                 </p>
