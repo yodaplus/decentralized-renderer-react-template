@@ -255,7 +255,14 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
                     <td css={tableCellStyle}>{commodity.description}</td>
                     <td css={tableCellStyle}>{commodity.grossWeight}</td>
                     <td css={tableCellStyle}>{commodity.moistureContent}</td>
-                    <td css={tableCellStyle}>{commodity.qty}</td>
+                    <td css={tableCellStyle}>
+                      <RedactableValue
+                        editable={editable}
+                        value={commodity.qty}
+                        onRedactionRequested={() => handleObfuscation(`commodity[${index}].qty`)}
+                        iconRedact={<IconRedact />}
+                      />
+                    </td>
                     <td css={tableCellStyle}>{commodity.unitPrice}</td>
                     <td css={tableCellStyle}>{commodity.unitPrice * commodity.qty}</td>
                   </tr>
