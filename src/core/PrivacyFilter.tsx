@@ -14,22 +14,25 @@ interface PrivacyFilterProps {
 
 export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable, onToggleEditable, options }) => {
   const defaultOptions = {
-    className: "print:hidden bg-cover bg-cerulean text-white rounded-lg p-4 mb-8",
+    className: "bg-cover bg-cerulean text-white rounded-lg p-4 mb-8",
     description: `Remove sensitive information on this document by clicking on the edit button. Downloaded document remains valid.`,
     buttonText: "Edit Document"
   };
   const { className, description, buttonText } = options ?? defaultOptions;
 
   return (
-    <div className={className}>
+    <div className={className} style={{backgroundColor: ""}}>
       <div className="container">
         <div className="md:flex items-center">
           <div className="grow mb-4 md:mb-0 mr-0 md:mr-4">
             <h3 className="font-normal">The document allows fields to be selectively disclosed.</h3>
             <p>{description}</p>
-            
           </div>
-          <button onClick={onToggleEditable} className="bg-white text-cerulean hover:bg-gray-50 whitespace-nowrap">
+          <button
+            onClick={onToggleEditable}
+            className="mx-2 text-cerulean hover:bg-gray-50 whitespace-nowrap"
+            style={{ backgroundColor:"#007854" , color:"white" , padding:"7px" , borderRadius:"8px"}}
+          >
             {editable ? "Done" : buttonText}
           </button>
         </div>
@@ -40,9 +43,9 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
 
 export const IconRedact: FunctionComponent = () => {
   return (
-    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm inline-block" 
-      style={{ backgroundColor: "red", borderRadius:"50%", paddingLeft:"4px",  paddingRight:"4px", paddingBottom:"1px" }}>
-      -
+    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-200 font-normal text-sm inline-block" 
+      style={{color:"red", fontWeight:200}}>
+      [Remove]
     </span>
   );
 };
