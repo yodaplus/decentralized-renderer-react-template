@@ -121,14 +121,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
             <div css={rowStyle}>
               <div css={cellStyle}>
                 <h4>Exporter</h4>
-                <p>
-                  <RedactableValue
-                    editable={editable}
-                    value={document.exporter.name}
-                    onRedactionRequested={() => handleObfuscation(`exporter.name`)}
-                    iconRedact={<IconRedact />}
-                  />
-                </p>
+                <p>{document.exporter.name}</p>
                 {/* <p>{document.exporter.name}</p> */}
                 <p>{document.exporter.address}</p>
                 <p>{document.exporter.phoneNumber}</p>
@@ -146,9 +139,30 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
               <div css={cellStyle}>
                 <h4>Importer</h4>
                 <p>{document.importer.name}</p>
-                <p>{document.importer.address}</p>
-                <p>{document.importer.phoneNumber}</p>
-                <p>{document.importer.email}</p>
+                <p>
+                  <RedactableValue
+                    editable={editable}
+                    value={document.importer.address}
+                    onRedactionRequested={() => handleObfuscation(`importer.address`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
+                <p>
+                  <RedactableValue
+                    editable={editable}
+                    value={document.importer.phoneNumber}
+                    onRedactionRequested={() => handleObfuscation(`importer.phoneNumber`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
+                <p>
+                  <RedactableValue
+                    editable={editable}
+                    value={document.importer.email}
+                    onRedactionRequested={() => handleObfuscation(`importer.email`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
               </div>
               <div css={rowStyle}>
                 <div css={cellStyle}>
