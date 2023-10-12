@@ -208,7 +208,14 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
               <div css={cellStyle}>
                 <h4>Terms / Method of Payment</h4>
                 <p>{document.paymentTerms}</p>
-                <p>{document.paymentMethod}</p>
+                <p>
+                  <RedactableValue
+                    editable={editable}
+                    value={document.paymentMethod}
+                    onRedactionRequested={() => handleObfuscation(`paymentMethod`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
               </div>
             </div>
 

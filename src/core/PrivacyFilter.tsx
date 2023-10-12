@@ -21,7 +21,7 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
   const { className, description, buttonText } = options ?? defaultOptions;
 
   return (
-    <div className={className} style={{backgroundColor: ""}}>
+    <div className={className} style={{ fontFamily :"sans-serif"}}>
       <div className="container">
         <div className="md:flex items-center">
           <div className="grow mb-4 md:mb-0 mr-0 md:mr-4">
