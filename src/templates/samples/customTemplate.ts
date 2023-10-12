@@ -69,6 +69,11 @@ export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
   bankAccountNumber: string;
   bankName: string;
   swiftCode: string;
+  links: {
+    self: {
+      href: string;
+    };
+  };
 }
 
 export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
@@ -82,11 +87,17 @@ export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
       name: "My name",
       documentStore: "0xBBb55Bd1D709955241CAaCb327A765e2b6D69c8b",
       identityProof: {
-        location: "https://invoice-doc-renderer.netlify.app",
+        location: "https://cozy-concha-0b923b.netlify.app",
         type: v2.IdentityProofType.DNSTxt
       }
     }
   ],
+
+  links: {
+    self: {
+      href: ""
+    }
+  },
 
   exporter: {
     name: "Exporter 1",
