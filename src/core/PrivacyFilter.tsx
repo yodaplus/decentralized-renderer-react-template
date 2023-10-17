@@ -13,7 +13,7 @@ interface PrivacyFilterProps {
 
 export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable, onToggleEditable, options }) => {
   const defaultOptions = {
-    className: "bg-cover bg-cerulean text-white rounded-lg p-4 mb-8",
+    className: "no-print bg-cover bg-cerulean text-white rounded-lg p-4 mb-8",
     description: `Remove sensitive information on this document by clicking on the edit button. Downloaded document remains valid.`,
     buttonText: "Edit Document"
   };
