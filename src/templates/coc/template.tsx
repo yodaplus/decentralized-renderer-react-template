@@ -3,7 +3,6 @@ import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-rendere
 import { css } from "@emotion/core";
 import { InvoiceTemplateCertificate } from "../samples/customTemplate";
 import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
-import { saveAs } from "file-saver";
 
 const pageStyle = css`
   @page {
@@ -104,6 +103,12 @@ const tableStyle = css`
   }
 `;
 
+const hideOnPrint = css`
+  @media print {
+    display: none !important;
+  }
+`;
+
 export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertificate> & { className?: string }> = ({
   document,
   handleObfuscation,
@@ -113,7 +118,10 @@ export const CocTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCertifi
 
   return (
     <>
-      <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
+      <div css={hideOnPrint}>
+        <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
+      </div>
+
       <div css={pageStyle}>
         <div css={containerStyle} className={className} id="custom-template">
           <h5 css={titleStyle}>COMMERCIAL INVOICE</h5>

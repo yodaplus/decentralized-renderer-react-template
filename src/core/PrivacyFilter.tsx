@@ -1,6 +1,22 @@
 // import { Button } from "@govtechsg/tradetrust-ui-components";
 import React, { FunctionComponent } from "react";
 import patternWaves from "/static/images/pattern-waves.png";
+import { css } from "@emotion/core";
+
+const customRemoveButton = css`
+  transition: colors 0.2s ease-out;
+  color: red;
+  font-weight: 600;
+  font-size: 0.75rem; /* equivalent to text-sm in Tailwind */
+  display: inline-block;
+
+  &:hover {
+    color: #ffadad; /* approximate color for text-red-200 in Tailwind */
+  }
+  @media print {
+    display: none !important;
+  }
+`;
 
 interface PrivacyFilterProps {
   editable: boolean;
@@ -21,7 +37,7 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
   const { className, description, buttonText } = options ?? defaultOptions;
 
   return (
-    <div className={className} style={{ fontFamily :"sans-serif"}}>
+    <div className={className} style={{ fontFamily: "sans-serif" }}>
       <div className="container">
         <div className="md:flex items-center">
           <div className="grow mb-4 md:mb-0 mr-0 md:mr-4">
@@ -31,9 +47,9 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
           <button
             onClick={onToggleEditable}
             className="mx-2 text-cerulean hover:bg-gray-50 whitespace-nowrap"
-            style={{ backgroundColor:"#007854" , color:"white" , padding:"7px" , borderRadius:"8px"}}
+            style={{ backgroundColor: "#007854", color: "white", padding: "7px", borderRadius: "8px" }}
           >
-            {editable ? "Done" : buttonText}
+            {editable ? "View Doc" : buttonText}
           </button>
         </div>
       </div>
@@ -42,10 +58,5 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
 };
 
 export const IconRedact: FunctionComponent = () => {
-  return (
-    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-200 font-normal text-sm inline-block" 
-      style={{color:"red", fontWeight:200}}>
-      [Remove]
-    </span>
-  );
+  return <span css={customRemoveButton}>[Remove]</span>;
 };
