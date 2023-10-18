@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { TemplateProps ,RedactableValue} from "@govtechsg/decentralized-renderer-react-components";
+import { TemplateProps, RedactableValue } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
 import { CertOfOriginTemplateCertificate } from "../samples/customTemplate";
 import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
@@ -117,14 +117,21 @@ const signatureStyle = css`
 //   }
 // `;
 
+const hideOnPrint = css`
+  @media print {
+    display: none !important;
+  }
+`;
+
 export const CocTemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCertificate> & {
   className?: string;
 }> = ({ document, handleObfuscation, className = "" }) => {
-  console.log(document);
   const [editable, setEditable] = React.useState(false);
   return (
     <>
-      <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
+      <div css={hideOnPrint}>
+        <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
+      </div>
       <div css={containerStyle} className={className} id="custom-template">
         <h5 css={titleStyle}>CERTIFICATE OF ORIGIN</h5>
         <div css={innerContainer}>
