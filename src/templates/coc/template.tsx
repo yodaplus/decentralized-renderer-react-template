@@ -294,6 +294,9 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
           <div css={singleRowStyle}>
             <table css={[cellStyle, tableStyle]}>
               <tr>
+                <td css={tableHeaderCellStyle} style={{ width: "45pt" }}>
+                  HS Code
+                </td>
                 <td css={tableHeaderCellStyle}>Marks & Numbers</td>
                 <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
                 <td css={tableHeaderCellStyle}>Commodity Description</td>
@@ -310,6 +313,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
               </tr>
               {document.packages.map((singlePackage, index) => (
                 <tr key={index}>
+                  <td css={tableCellStyle}>{singlePackage.hsCode}</td>
                   <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
                   <td css={tableCellStyle}>
                     {singlePackage.type} X {singlePackage.noOfPackage}
