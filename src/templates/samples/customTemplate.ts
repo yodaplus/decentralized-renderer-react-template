@@ -1,5 +1,10 @@
 import { v2 } from "@govtechsg/open-attestation";
 
+interface ProcessedFilesV2 {
+  data: string;
+  filename: string;
+  type: string;
+}
 export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocument {
   exporter: {
     name: string;
@@ -33,6 +38,7 @@ export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocum
   certifyingBody: string;
   particularsOfTransportDetails: string;
   date: string;
+  attachements: ProcessedFilesV2[];
 }
 
 export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = {
@@ -86,5 +92,12 @@ export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = 
 
   councilSignature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
   exporterSignature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
-  date: "2023-08-01"
+  date: "2023-08-01",
+  attachements: [
+    {
+      data: "",
+      filename: "new.json",
+      type: "application/json"
+    }
+  ]
 };
