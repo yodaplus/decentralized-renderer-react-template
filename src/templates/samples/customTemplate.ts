@@ -9,6 +9,11 @@ interface ComodityInterface {
   qty: number;
   unitPrice: number;
 }
+interface ProcessedFilesV2 {
+  data: string;
+  filename: string;
+  type: string;
+}
 export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
   exporter: {
     name: string;
@@ -69,6 +74,7 @@ export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
   bankAccountNumber: string;
   bankName: string;
   swiftCode: string;
+  attachements: ProcessedFilesV2[];
 }
 
 export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
@@ -170,5 +176,12 @@ export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
   swiftCode: "SAMPLESWIFT",
 
   signature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
-  placeOfIssue: "Sample Place"
+  placeOfIssue: "Sample Place",
+  attachements: [
+    {
+      data: "",
+      filename: "new.json",
+      type: "application/json"
+    }
+  ]
 };
