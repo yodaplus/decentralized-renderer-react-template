@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { CertificateOfOriginTemplate } from "./CertificateOfOriginTemplate";
+import { certOfOriginTemplateCertificate } from "../samples/certificateOfOriginTemplateSample";
+
+
+<Meta title="MDX|CertificateOfOriginTemplate" component={CertificateOfOriginTemplate} />
+
+# CertificateOfOriginTemplate component
+
+<Description of={CertificateOfOriginTemplate} />
+
+# Props
+
+<Props of={CertificateOfOriginTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <CertificateOfOriginTemplate document={object("document", certOfOriginTemplateCertificate)} />
+  </Story>
+</Preview>

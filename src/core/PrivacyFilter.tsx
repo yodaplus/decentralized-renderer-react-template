@@ -30,7 +30,8 @@ interface PrivacyFilterProps {
 
 export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable, onToggleEditable, options }) => {
   const defaultOptions = {
-    className: "bg-cover bg-cerulean text-white rounded-lg p-4 mb-8",
+    // className: "bg-cover bg-cerulean text-white rounded-lg p-4 mb-8",
+    className: "no-print bg-cover bg-cerulean text-white rounded-lg p-4 mb-8",
     description: `Remove sensitive information on this document by clicking on the edit button. Downloaded document remains valid.`,
     buttonText: "Edit Document"
   };
@@ -47,7 +48,13 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
           <button
             onClick={onToggleEditable}
             className="mx-2 text-cerulean hover:bg-gray-50 whitespace-nowrap"
-            style={{ backgroundColor: "#007854", color: "white", padding: "7px", borderRadius: "8px" }}
+            style={{
+              fontFamily: "sans-serif",
+              backgroundColor: "#007854",
+              color: "white",
+              padding: "7px",
+              borderRadius: "8px"
+            }}
           >
             {editable ? "View Doc" : buttonText}
           </button>
