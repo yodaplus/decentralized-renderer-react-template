@@ -2,6 +2,7 @@ import { v2 } from "@govtechsg/open-attestation";
 
 interface PackageInterface {
   hsCode: string;
+  name: string;
   marksAndNo: string;
   description: string;
   type: string;
@@ -178,6 +179,7 @@ export const bltemplateCertificate: BLTemplateCertificate = {
   packages: [
     {
       hsCode: "HS123456",
+      name: "Commodity 1",
       marksAndNo: "Mark123",
       description: "Electronics",
       type: "Box",

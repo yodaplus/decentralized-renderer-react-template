@@ -297,6 +297,9 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                 <td css={tableHeaderCellStyle} style={{ width: "45pt" }}>
                   HS Code
                 </td>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
+                  Commodity Name
+                </td>
                 <td css={tableHeaderCellStyle}>Marks & Numbers</td>
                 <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
                 <td css={tableHeaderCellStyle}>Commodity Description</td>
@@ -314,6 +317,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
               {document.packages.map((singlePackage, index) => (
                 <tr key={index}>
                   <td css={tableCellStyle}>{singlePackage.hsCode}</td>
+                  <td css={tableCellStyle}>{singlePackage.name}</td>
                   <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
                   <td css={tableCellStyle}>
                     {singlePackage.type} X {singlePackage.noOfPackage}
