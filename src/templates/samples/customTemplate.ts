@@ -5,16 +5,16 @@ interface ProcessedFilesV2 {
   filename: string;
   type: string;
 }
-export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocument {
-  exporter: {
-    name: string;
-    address: string;
-  };
 
-  importer?: {
-    name?: string;
-    address?: string;
-  };
+interface TraderDetails {
+  name: string;
+  address: string;
+}
+
+export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocument {
+  exporter: TraderDetails;
+
+  importer?: TraderDetails;
 
   invoiceNumber: string;
   invoiceCreationDate: string;
