@@ -146,15 +146,15 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCer
             <div css={rowStyle}>
               <div css={cellStyle}>
                 <h4>Importer</h4>
-                <p>{document.importer.name}</p>
                 <p>
                   <RedactableValue
                     editable={editable}
-                    value={document.importer.address}
-                    onRedactionRequested={() => handleObfuscation(`importer.address`)}
+                    value={document.importer.name}
+                    onRedactionRequested={() => handleObfuscation(`importer.name`)}
                     iconRedact={<IconRedact />}
                   />
                 </p>
+                <p>{document.importer.address}</p>
                 <p>
                   <RedactableValue
                     editable={editable}

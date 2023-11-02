@@ -162,14 +162,7 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
                       iconRedact={<IconRedact />}
                     />
                   </p>
-                  <p>
-                    <RedactableValue
-                      editable={editable}
-                      value={document.importer.address}
-                      onRedactionRequested={() => handleObfuscation(`importer.address`)}
-                      iconRedact={<IconRedact />}
-                    />
-                  </p>
+                  <p>{document.importer.address}</p>
                 </div>
               </div>
               <div css={cellStyle}>
