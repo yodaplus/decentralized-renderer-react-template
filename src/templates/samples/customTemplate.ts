@@ -12,8 +12,8 @@ export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocum
   };
 
   importer: {
-    name: string;
-    address: string;
+    name?: string;
+    address?: string;
   };
 
   invoiceNumber: string;

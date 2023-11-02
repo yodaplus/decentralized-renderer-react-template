@@ -149,7 +149,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCe
                 <p>
                   <RedactableValue
                     editable={editable}
-                    value={document.importer.name}
+                    value={document?.importer?.name}
                     onRedactionRequested={() => handleObfuscation(`importer.name`)}
                     iconRedact={<IconRedact />}
                   />
@@ -157,7 +157,7 @@ export const CocTemplate: FunctionComponent<TemplateProps<CertOfOriginTemplateCe
                 <p>
                   <RedactableValue
                     editable={editable}
-                    value={document.importer.address}
+                    value={document?.importer?.address}
                     onRedactionRequested={() => handleObfuscation(`importer.address`)}
                     iconRedact={<IconRedact />}
                   />
