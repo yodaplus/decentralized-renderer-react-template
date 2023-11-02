@@ -4,6 +4,13 @@ import { css } from "@emotion/core";
 import { CertOfOriginTemplateCertificate } from "../samples/certificateOfOriginTemplateSample";
 import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
 
+const pageStyle = css`
+  @page {
+    size: A4; /* Set the paper size to A4 */
+    margin: 0; /* Remove default margins */
+  }
+`;
+
 const containerStyle = css`
   padding: 10pt;
   margin: auto;
@@ -132,78 +139,79 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
       <div css={hideOnPrint}>
         <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
       </div>
-      <div css={containerStyle} className={className} id="custom-template">
-        <h5 css={titleStyle}>CERTIFICATE OF ORIGIN</h5>
-        <div css={innerContainer}>
-          <div css={rowStyle}>
-            <div css={oneColumnRowStyle}>
-              <div css={cellStyle}>
-                <h4>Exporter</h4>
-                <br />
-                <p>{document.exporter.name}</p>
-                <p>{document.exporter.address}</p>
+      <div css={pageStyle}>
+        <div css={containerStyle} className={className} id="custom-template">
+          <h5 css={titleStyle}>CERTIFICATE OF ORIGIN</h5>
+          <div css={innerContainer}>
+            <div css={rowStyle}>
+              <div css={oneColumnRowStyle}>
+                <div css={cellStyle}>
+                  <h4>Exporter</h4>
+                  <br />
+                  <p>{document.exporter.name}</p>
+                  <p>{document.exporter.address}</p>
+                </div>
+                <div css={cellStyle}>
+                  <h4>Importer</h4>
+                  <br />
+                  <p>
+                    <RedactableValue
+                      editable={editable}
+                      value={document.importer.name}
+                      onRedactionRequested={() => handleObfuscation(`importer.name`)}
+                      iconRedact={<IconRedact />}
+                    />
+                  </p>
+                  <p>
+                    <RedactableValue
+                      editable={editable}
+                      value={document.importer.address}
+                      onRedactionRequested={() => handleObfuscation(`importer.address`)}
+                      iconRedact={<IconRedact />}
+                    />
+                  </p>
+                </div>
               </div>
               <div css={cellStyle}>
-                <h4>Importer</h4>
-                <br />
-                <p>
-                  <RedactableValue
-                    editable={editable}
-                    value={document.importer.name}
-                    onRedactionRequested={() => handleObfuscation(`importer.name`)}
-                    iconRedact={<IconRedact />}
-                  />
+                <h4>Certificate No.</h4>
+                <div
+                  style={{
+                    textAlign: "center"
+                  }}
+                >
+                  <p>{document.cooCertificateNumber}</p>
+                  <br />
+                  <p>CERTIFICATE OF ORIGIN</p>
+                  <p>OF</p>
+                  <p>THE PEOPLE'S REPUBLIC OF {document.countryOfOrigin}</p>
+                </div>
+              </div>
+            </div>
+            <div css={rowStyle}>
+              <div css={oneColumnRowStyle}>
+                <div css={cellStyle}>
+                  <h4>Means Of transport and route</h4>
+                  <br />
+                  <p>{document.particularsOfTransportDetails}</p>
+                </div>
+                <div css={cellStyle}>
+                  <h4>Country / region of destination</h4>
+                  <br />
+                  <p>{document.countryOfDestination}</p>
+                </div>
+              </div>
+              <div css={cellStyle}>
+                <h4>For certifying authority use only</h4>
+                <p
+                  style={{
+                    textAlign: "center"
+                  }}
+                >
+                  {document.certifyingBody}
                 </p>
-                <p>
-                  <RedactableValue
-                    editable={editable}
-                    value={document.importer.address}
-                    onRedactionRequested={() => handleObfuscation(`importer.address`)}
-                    iconRedact={<IconRedact />}
-                  />
-                </p>
               </div>
             </div>
-            <div css={cellStyle}>
-              <h4>Certificate No.</h4>
-              <div
-                style={{
-                  textAlign: "center"
-                }}
-              >
-                <p>{document.cooCertificateNumber}</p>
-                <br />
-                <p>CERTIFICATE OF ORIGIN</p>
-                <p>OF</p>
-                <p>THE PEOPLE'S REPUBLIC OF {document.countryOfOrigin}</p>
-              </div>
-            </div>
-          </div>
-          <div css={rowStyle}>
-            <div css={oneColumnRowStyle}>
-              <div css={cellStyle}>
-                <h4>Means Of transport and route</h4>
-                <br />
-                <p>{document.particularsOfTransportDetails}</p>
-              </div>
-              <div css={cellStyle}>
-                <h4>Country / region of destination</h4>
-                <br />
-                <p>{document.countryOfDestination}</p>
-              </div>
-            </div>
-            <div css={cellStyle}>
-              <h4>For certifying authority use only</h4>
-              <p
-                style={{
-                  textAlign: "center"
-                }}
-              >
-                {document.certifyingBody}
-              </p>
-            </div>
-          </div>
-          {/* <div css={rowStyle}>
+            {/* <div css={rowStyle}>
             <div css={rowStyle}>
               <div css={cellStyle}>
                 <h4>Method of Dispatch</h4>
@@ -232,39 +240,39 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
             </div>
           </div> */}
 
-          <div css={fiveColumnsRowStyle}>
-            <div css={cellForMidColStyle}>
-              <h4>Marks & Numbers</h4>
-              <br />
-              <p>{document.identificationMarks}</p>
+            <div css={fiveColumnsRowStyle}>
+              <div css={cellForMidColStyle}>
+                <h4>Marks & Numbers</h4>
+                <br />
+                <p>{document.identificationMarks}</p>
+              </div>
+              <div css={cellForMidColStyle}>
+                <h4>Numbers and kinds of packages: description of goods</h4>
+                <br />
+                <p>{document.descOfGoods}</p>
+                <br />
+                ******************************
+                <br />
+                <p>{document.additionalNumbers}</p>
+              </div>
+              <div css={cellForMidColStyle}>
+                <h4>H.S.Code</h4>
+                <br />
+                <p>{document.hsCode}</p>
+              </div>
+              <div css={cellForMidColStyle}>
+                <h4>Quantity</h4>
+                <br />
+                <p>{document.quantity}</p>
+              </div>
+              <div css={cellForMidColStyle}>
+                <h4>Number and date of invoices</h4>
+                <br />
+                <p>{document.invoiceNumber}</p>
+                <p>{document.invoiceCreationDate}</p>
+              </div>
             </div>
-            <div css={cellForMidColStyle}>
-              <h4>Numbers and kinds of packages: description of goods</h4>
-              <br />
-              <p>{document.descOfGoods}</p>
-              <br />
-              ******************************
-              <br />
-              <p>{document.additionalNumbers}</p>
-            </div>
-            <div css={cellForMidColStyle}>
-              <h4>H.S.Code</h4>
-              <br />
-              <p>{document.hsCode}</p>
-            </div>
-            <div css={cellForMidColStyle}>
-              <h4>Quantity</h4>
-              <br />
-              <p>{document.quantity}</p>
-            </div>
-            <div css={cellForMidColStyle}>
-              <h4>Number and date of invoices</h4>
-              <br />
-              <p>{document.invoiceNumber}</p>
-              <p>{document.invoiceCreationDate}</p>
-            </div>
-          </div>
-          {/* <div css={singleRowStyle}>
+            {/* <div css={singleRowStyle}>
             <table css={[cellStyle, tableStyle]}>
               <tr>
                 <td css={tableHeaderCellStyle}>HS Code</td>
@@ -293,7 +301,7 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
             </table>
           </div> */}
 
-          {/* <div css={tableRowStyle}>
+            {/* <div css={tableRowStyle}>
             <div css={cellStyle}>
               <h4>Additional Information</h4>
               <p>{document.additionalNumbers}</p>
@@ -354,44 +362,45 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
               </tr>
             </table>
           </div> */}
-          <div css={rowStyle}>
-            <div css={cellStyle}>
-              <p>Declaration By Exporter</p>
-              <br />
-              <div
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  display: "flex",
-                  flexDirection: "column"
-                }}
-              >
-                <p>{document.declarationByExporter}</p>
-                <img css={signatureStyle} src={document?.exporterSignature} alt="Signature" />
-                {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
-                <p>{document.countryOfOrigin}</p>
-                <p>{`Date: ${document.date}`}</p>
+            <div css={rowStyle}>
+              <div css={cellStyle}>
+                <p>Declaration By Exporter</p>
+                <br />
+                <div
+                  style={{
+                    textAlign: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    display: "flex",
+                    flexDirection: "column"
+                  }}
+                >
+                  <p>{document.declarationByExporter}</p>
+                  <img css={signatureStyle} src={document?.exporterSignature} alt="Signature" />
+                  {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
+                  <p>{document.countryOfOrigin}</p>
+                  <p>{`Date: ${document.date}`}</p>
+                </div>
               </div>
-            </div>
-            <div css={cellStyle}>
-              <p>Certification</p>
-              <br />
+              <div css={cellStyle}>
+                <p>Certification</p>
+                <br />
 
-              <div
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  display: "flex",
-                  flexDirection: "column"
-                }}
-              >
-                <p>{document.declarationByCouncil}</p>
-                <img css={signatureStyle} src={document?.councilSignature} alt="Signature" />
-                {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
-                <p>{document.countryOfOrigin}</p>
-                <p>{`Date: ${document.date}`}</p>
+                <div
+                  style={{
+                    textAlign: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    display: "flex",
+                    flexDirection: "column"
+                  }}
+                >
+                  <p>{document.declarationByCouncil}</p>
+                  <img css={signatureStyle} src={document?.councilSignature} alt="Signature" />
+                  {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
+                  <p>{document.countryOfOrigin}</p>
+                  <p>{`Date: ${document.date}`}</p>
+                </div>
               </div>
             </div>
           </div>
