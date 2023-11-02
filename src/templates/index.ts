@@ -3,10 +3,12 @@ import { templates } from "./coc";
 import { billOfLadingTemplate } from "./billOfLading";
 import { invoiceTemplate } from "./invoice";
 import { certificateOfOrigintemplate } from "./certificateOfOrigin";
+import { BillOfExchangeTemplates } from "./billOfExchange";
 
 export const registry: TemplateRegistry<any> = {
   COC: templates,
   BillOfLading: billOfLadingTemplate,
   Invoice: invoiceTemplate,
-  CertificateOfOrigin: certificateOfOrigintemplate
+  CertificateOfOrigin: certificateOfOrigintemplate,
+  BillOfExchange: BillOfExchangeTemplates
 };
