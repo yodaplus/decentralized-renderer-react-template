@@ -85,7 +85,7 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   termsAndConditionOfCarraige: string;
   disclaimer: string;
   placeOfBlIssue: string;
-  signature: string;
+  signature?: string;
   attachements: ProcessedFilesV2[];
 }
 

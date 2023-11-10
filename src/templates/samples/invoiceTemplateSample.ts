@@ -68,7 +68,7 @@ export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
   currency: string;
   paymentDueDate: string;
 
-  signature: string;
+  signature?: string;
   placeOfIssue: string;
 
   bankAccountNumber: string;

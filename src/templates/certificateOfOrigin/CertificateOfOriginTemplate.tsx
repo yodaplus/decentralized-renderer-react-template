@@ -23,6 +23,11 @@ const rowStyle = css`
   grid-template-columns: repeat(2, 1fr);
 `;
 
+const rowSignatureStyle = css`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+`;
+
 const oneColumnRowStyle = css`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -299,7 +304,6 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
               <h4>Additional Information</h4>
               <p>{document.additionalNumbers}</p>
             </div>
-            
             <table css={[cellStyle, tableStyle]}>
               <tr>
                 <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
@@ -355,47 +359,95 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
               </tr>
             </table>
           </div> */}
-            <div css={rowStyle}>
-              <div css={cellStyle}>
-                <p>Declaration By Exporter</p>
-                <br />
-                <div
-                  style={{
-                    textAlign: "center",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                    flexDirection: "column"
-                  }}
-                >
-                  <p>{document.declarationByExporter}</p>
-                  <img css={signatureStyle} src={document?.exporterSignature} alt="Signature" />
-                  {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
-                  <p>{document.countryOfOrigin}</p>
-                  <p>{`Date: ${document.date}`}</p>
+            {document.exporterSignature && document.councilSignature ? (
+              <div css={rowStyle}>
+                <div css={cellStyle}>
+                  <p>Declaration By Exporter</p>
+                  <br />
+                  <div
+                    style={{
+                      textAlign: "center",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      display: "flex",
+                      flexDirection: "column"
+                    }}
+                  >
+                    <p>{document.declarationByExporter}</p>
+                    <img css={signatureStyle} src={document?.exporterSignature} alt="Signature" />
+                    {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
+                    <p>{document.countryOfOrigin}</p>
+                    <p>{`Date: ${document.date}`}</p>
+                  </div>
                 </div>
-              </div>
-              <div css={cellStyle}>
-                <p>Certification</p>
-                <br />
+                <div css={cellStyle}>
+                  <p>Certification</p>
+                  <br />
 
-                <div
-                  style={{
-                    textAlign: "center",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                    flexDirection: "column"
-                  }}
-                >
-                  <p>{document.declarationByCouncil}</p>
-                  <img css={signatureStyle} src={document?.councilSignature} alt="Signature" />
-                  {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
-                  <p>{document.countryOfOrigin}</p>
-                  <p>{`Date: ${document.date}`}</p>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      display: "flex",
+                      flexDirection: "column"
+                    }}
+                  >
+                    <p>{document.declarationByCouncil}</p>
+                    <img css={signatureStyle} src={document?.councilSignature} alt="Signature" />
+                    {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
+                    <p>{document.countryOfOrigin}</p>
+                    <p>{`Date: ${document.date}`}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : document.exporterSignature ? (
+              <div css={rowSignatureStyle}>
+                <div css={cellStyle}>
+                  <p>Declaration By Exporter</p>
+                  <br />
+                  <div
+                    style={{
+                      padding: "10px"
+                      // textAlign: "center",
+                      // justifyContent: "center",
+                      // alignItems: "center",
+                      // display: "flex",
+                      // flexDirection: "column"
+                    }}
+                  >
+                    <p>{document.declarationByExporter}</p>
+                    <img css={signatureStyle} src={document?.exporterSignature} alt="Signature" />
+                    {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
+                    <p>{document.countryOfOrigin}</p>
+                    <p>{`Date: ${document.date}`}</p>
+                  </div>
+                </div>
+              </div>
+            ) : document.councilSignature ? (
+              <div css={rowSignatureStyle}>
+                <div css={cellStyle}>
+                  <p>Certification</p>
+                  <br />
+                  <div
+                    style={{
+                      padding: "10px"
+                      // textAlign: "center",
+                      // justifyContent: "center",
+                      // alignItems: "center",
+                      // display: "flex",
+                      // flexDirection: "column"
+                    }}
+                  >
+                    <p>{document.declarationByCouncil}</p>
+                    <img css={signatureStyle} src={document?.councilSignature} alt="Signature" />
+                    {/* <p>Name of Authorised Signatory: {document.exporter.name}</p> */}
+                    <p>{document.countryOfOrigin}</p>
+                    <p>{`Date: ${document.date}`}</p>
+                  </div>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

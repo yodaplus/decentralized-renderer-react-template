@@ -28,6 +28,11 @@ const rowStyle = css`
   grid-template-columns: repeat(2, 1fr);
 `;
 
+const rowSignatureStyle = css`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+`;
+
 const cellStyleFlex = css`
   display: flex;
   justify-content: space-between;
@@ -345,22 +350,34 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCer
                 </tr>
               </table>
             </div>
-            <div css={rowStyle}>
-              <div css={cellStyle}>
-                <h4>Bank Details</h4>
-                <p>{`Benefiaciary's Bank Name: ${document.bankName}`}</p>
-                <p>{`Benefiaciary's Name: ${document.importer.name}`}</p>
-                <p>Bank Account Number: {document.bankAccountNumber}</p>
-                <p>Swift Code: {document.swiftCode}</p>
+            {document.signature ? (
+              <div css={rowStyle}>
+                <div css={cellStyle}>
+                  <h4>Bank Details</h4>
+                  <p>{`Benefiaciary's Bank Name: ${document.bankName}`}</p>
+                  <p>{`Benefiaciary's Name: ${document.importer.name}`}</p>
+                  <p>Bank Account Number: {document.bankAccountNumber}</p>
+                  <p>Swift Code: {document.swiftCode}</p>
+                </div>
+                <div css={cellStyle}>
+                  <h4>I certify that state export prices and description of goods are true and correct</h4>
+                  <img css={signatureStyle} src={document?.signature} alt="Signature" />
+                  <p>Name of Authorised Signatory: {document.exporter.name}</p>
+                  <p>Place of Issue: {document.placeOfIssue}</p>
+                  <p>{`Date: ${document.invoiceCreationDate}`}</p>
+                </div>
               </div>
-              <div css={cellStyle}>
-                <h4>I certify that state export prices and description of goods are true and correct</h4>
-                <img css={signatureStyle} src={document?.signature} alt="Signature" />
-                <p>Name of Authorised Signatory: {document.exporter.name}</p>
-                <p>Place of Issue: {document.placeOfIssue}</p>
-                <p>{`Date: ${document.invoiceCreationDate}`}</p>
+            ) : (
+              <div css={rowSignatureStyle}>
+                <div css={cellStyle}>
+                  <h4>Bank Details</h4>
+                  <p>{`Benefiaciary's Bank Name: ${document.bankName}`}</p>
+                  <p>{`Benefiaciary's Name: ${document.importer.name}`}</p>
+                  <p>Bank Account Number: {document.bankAccountNumber}</p>
+                  <p>Swift Code: {document.swiftCode}</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

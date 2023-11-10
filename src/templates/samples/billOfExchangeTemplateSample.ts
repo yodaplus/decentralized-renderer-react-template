@@ -16,8 +16,8 @@ export interface BillOfExchangeTemplateCertificate extends v2.OpenAttestationDoc
   drawerName: string;
   draweeName: string;
   dateOfBoe: string;
-  drawerSign: string;
-  draweeSign: string;
+  drawerSign?: string;
+  draweeSign?: string;
   dueDate: string;
   placeOfIssue: string;
 }

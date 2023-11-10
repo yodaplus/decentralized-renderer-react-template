@@ -21,8 +21,8 @@ export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocum
   quantity: number;
   declarationByCouncil: string;
   declarationByExporter: string;
-  exporterSignature: string;
-  councilSignature: string;
+  exporterSignature?: string;
+  councilSignature?: string;
 
   hsCode: string;
 

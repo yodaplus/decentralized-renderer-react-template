@@ -22,6 +22,11 @@ const rowStyle = css`
   grid-template-columns: repeat(2, 1fr);
 `;
 
+const rowSignatureStyle = css`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+`;
+
 const innerContainer = css`
   border: 0.5pt solid #000;
 `;
@@ -150,16 +155,32 @@ export const BillOfExchangeTemplate: FunctionComponent<TemplateProps<BillOfExcha
               <p>{document.draweeName}</p>
             </div>
           </div>
-          <div css={rowStyle}>
-            <div css={cellStyle}>
-              <h4>Signature of Drawer</h4>
-              <img css={signatureStyle} src={document?.drawerSign} alt="drawerSignature" />
+          {document.drawerSign && document.draweeSign ? (
+            <div css={rowStyle}>
+              <div css={cellStyle}>
+                <h4>Signature of Drawer</h4>
+                <img css={signatureStyle} src={document?.drawerSign} alt="drawerSignature" />
+              </div>
+              <div css={cellStyle}>
+                <h4>Signature of Drawee</h4>
+                <img css={signatureStyle} src={document?.draweeSign} alt="draweeSignature" />
+              </div>
             </div>
-            <div css={cellStyle}>
-              <h4>Signature of Drawee</h4>
-              <img css={signatureStyle} src={document?.draweeSign} alt="draweeSignature" />
+          ) : document.drawerSign ? (
+            <div css={rowSignatureStyle}>
+              <div css={cellStyle}>
+                <h4>Signature of Drawer</h4>
+                <img css={signatureStyle} src={document?.drawerSign} alt="drawerSignature" />
+              </div>
             </div>
-          </div>
+          ) : document.draweeSign ? (
+            <div css={rowSignatureStyle}>
+              <div css={cellStyle}>
+                <h4>Signature of Drawee</h4>
+                <img css={signatureStyle} src={document?.draweeSign} alt="draweeSignature" />
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

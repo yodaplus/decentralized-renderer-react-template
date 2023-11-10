@@ -377,7 +377,26 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
               <p>{document.transportDocType}</p>
             </div>
           </div>
-          <div css={rowStyle}>
+          {document.signature ? (
+            <div css={rowStyle}>
+              <div css={rowStyle}>
+                <div css={cellStyle}>
+                  <h4>Terms and Condition of Carriage</h4>
+                  <p>{document.termsAndConditionOfCarraige}</p>
+                </div>
+                <div css={cellStyle}>
+                  <h4>Disclaimer</h4>
+                  <p>{document.disclaimer}</p>
+                </div>
+              </div>
+              <div css={cellStyle}>
+                <img css={signatureStyle} src={document?.signature} alt="Signature" />
+                <p>Name of Authorised Signatory: {document.exporter.name}</p>
+                <p>Place of Issue: {document.placeOfBlIssue}</p>
+                <p>{`Date: ${document.blDateofIssue}`}</p>
+              </div>
+            </div>
+          ) : (
             <div css={rowStyle}>
               <div css={cellStyle}>
                 <h4>Terms and Condition of Carriage</h4>
@@ -388,13 +407,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                 <p>{document.disclaimer}</p>
               </div>
             </div>
-            <div css={cellStyle}>
-              <img css={signatureStyle} src={document?.signature} alt="Signature" />
-              <p>Name of Authorised Signatory: {document.exporter.name}</p>
-              <p>Place of Issue: {document.placeOfBlIssue}</p>
-              <p>{`Date: ${document.blDateofIssue}`}</p>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
