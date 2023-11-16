@@ -73,7 +73,7 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   dangerLevel: string;
   UNDGCode: string;
 
-  packages: PackageInterface[];
+  packages: PackageInterface;
 
   containerNo: string;
   containerType: string;
@@ -176,21 +176,18 @@ export const bltemplateCertificate: BLTemplateCertificate = {
   dangerLevel: "Low",
   UNDGCode: "UNDG12345",
 
-  packages: [
-    {
-      hsCode: "HS123456",
-      name: "Commodity 1",
-      marksAndNo: "Mark123",
-      description: "Electronics",
-      type: "Box",
-      noOfPackage: "100",
-      grossWeight: 2000,
-      volume: 1000,
-      temp: 20,
-      tempUnit: "Celsius"
-    }
-  ],
-
+  packages: {
+    hsCode: "HS123456",
+    name: "Commodity 1",
+    marksAndNo: "Mark123",
+    description: "Electronics",
+    type: "Box",
+    noOfPackage: "100",
+    grossWeight: 2000,
+    volume: 1000,
+    temp: 20,
+    tempUnit: "Celsius"
+  },
   containerNo: "CONT1234567",
   containerType: "40ft",
   totalNoOfConatiners: "10",

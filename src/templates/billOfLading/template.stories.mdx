@@ -18,6 +18,6 @@ import { bltemplateCertificate } from "../samples/BillOfLadingTemplateSample";
 
 <Preview>
   <Story name="basic sample">
-    <BillOfLadingTemplate document={object("document", bltemplateCertificate)} />
+    <BillOfLadingTemplate document={object("document", bltemplateCertificate)} handleObfuscation={(name)=>{console.log(name)}}/>
   </Story>
 </Preview>

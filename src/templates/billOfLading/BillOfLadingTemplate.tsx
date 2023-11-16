@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from "react";
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
 import { BLTemplateCertificate } from "../samples/BillOfLadingTemplateSample";
 import { documentTemplates } from "@govtechsg/decentralized-renderer-react-components/build/types/utils";
+import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
 
 const print = css`
   @page {
@@ -97,13 +98,23 @@ const tableStyle = css`
     border-bottom: 1pt solid #000;
   }
 `;
+const hideOnPrint = css`
+  @media print {
+    display: none !important;
+  }
+`;
 
 export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate> & { className?: string }> = ({
   document,
-  className = ""
+  className = "",
+  handleObfuscation
 }) => {
+  const [editable, setEditable] = React.useState(false);
   return (
     <div css={print}>
+      <div css={hideOnPrint}>
+        <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
+      </div>
       <div css={containerStyle} className={className} id="custom-template">
         <h5 css={titleStyle}>BILL OF LADING</h5>
         <div css={innerContainer}>
@@ -138,7 +149,16 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
           <div css={rowStyle}>
             <div css={cellStyle}>
               <h4>Importer</h4>
-              <p>{document.importer.name}</p>
+              {/* <p>{document.importer.name}</p> */}
+
+              <p>
+                <RedactableValue
+                  editable={editable}
+                  value={document.importer.name}
+                  onRedactionRequested={() => handleObfuscation(`importer.name`)}
+                  iconRedact={<IconRedact />}
+                />
+              </p>
               <p>{document.importer.address}</p>
               <p>{document.importer.phoneNumber}</p>
               <p>{document.importer.email}</p>
@@ -165,7 +185,16 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
           <div css={rowStyle}>
             <div css={cellStyle}>
               <h4>Consignee</h4>
-              <p>{document.consignee.name}</p>
+              {/* <p>{document.consignee.name}</p> */}
+
+              <p>
+                <RedactableValue
+                  editable={editable}
+                  value={document.consignee.name}
+                  onRedactionRequested={() => handleObfuscation(`consignee.name`)}
+                  iconRedact={<IconRedact />}
+                />
+              </p>
               <p>{document.consignee.address}</p>
               <p>{document.consignee.phoneNumber}</p>
               <p>{document.consignee.email}</p>
@@ -181,7 +210,16 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
           <div css={rowStyle}>
             <div css={cellStyle}>
               <h4>Notifying Party</h4>
-              <p>{document.notifyingParty.name}</p>
+              {/* <p>{document.notifyingParty.name}</p> */}
+
+              <p>
+                <RedactableValue
+                  editable={editable}
+                  value={document.notifyingParty.name}
+                  onRedactionRequested={() => handleObfuscation(`notifyingParty.name`)}
+                  iconRedact={<IconRedact />}
+                />
+              </p>
               <p>{document.notifyingParty.address}</p>
               <p>{document.notifyingParty.phoneNumber}</p>
               <p>{document.notifyingParty.email}</p>
@@ -243,8 +281,17 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
               </div>
             </div>
             <div css={cellStyle}>
-              <h4>Payment Terms / Method of Payment</h4>
-              <p>{document.paymentTerms} Days</p>
+              <h4>Payment Terms (Days)/ Method of Payment</h4>
+              {/* <p>{document.paymentTerms} Days</p> */}
+
+              <p>
+                <RedactableValue
+                  editable={editable}
+                  value={document.paymentTerms}
+                  onRedactionRequested={() => handleObfuscation(`paymentTerms`)}
+                  iconRedact={<IconRedact />}
+                />
+              </p>
               <p>{document.paymentMethod}</p>
             </div>
           </div>
@@ -314,22 +361,29 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                   Measurements (Volume)
                 </td>
               </tr>
-              {document.packages.map((singlePackage, index) => (
-                <tr key={index}>
-                  <td css={tableCellStyle}>{singlePackage.hsCode}</td>
-                  <td css={tableCellStyle}>{singlePackage.name}</td>
-                  <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
-                  <td css={tableCellStyle}>
-                    {singlePackage.type} X {singlePackage.noOfPackage}
-                  </td>
-                  <td css={tableCellStyle}>{singlePackage.description}</td>
-                  <td css={tableCellStyle}>
-                    {singlePackage.temp} {singlePackage.tempUnit}
-                  </td>
-                  <td css={tableCellStyle}>{singlePackage.grossWeight}</td>
-                  <td css={tableCellStyle}>{singlePackage.volume}</td>
-                </tr>
-              ))}
+
+              <tr>
+                <td css={tableCellStyle}>{document.packages.hsCode}</td>
+                {/* <td css={tableCellStyle}>{document.packages.name}</td> */}
+                <td css={tableCellStyle}>
+                  <RedactableValue
+                    editable={editable}
+                    value={document.packages.name}
+                    onRedactionRequested={() => handleObfuscation(`packages.name`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </td>
+                <td css={tableCellStyle}>{document.packages.marksAndNo}</td>
+                <td css={tableCellStyle}>
+                  {document.packages.type} X {document.packages.noOfPackage}
+                </td>
+                <td css={tableCellStyle}>{document.packages.description}</td>
+                <td css={tableCellStyle}>
+                  {document.packages.temp} {document.packages.tempUnit}
+                </td>
+                <td css={tableCellStyle}>{document.packages.grossWeight}</td>
+                <td css={tableCellStyle}>{document.packages.volume}</td>
+              </tr>
             </table>
           </div>
 
@@ -350,10 +404,10 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                   Total Consignment Value
                 </td>
                 <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
-                  {document.packages.reduce((acc, singlePackage) => acc + singlePackage.grossWeight, 0)}
+                  {document.packages.grossWeight}
                 </td>
                 <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
-                  {document.packages.reduce((acc, singlePackage) => acc + singlePackage.volume, 0)}
+                  {document.packages.volume}
                 </td>
               </tr>
             </table>
