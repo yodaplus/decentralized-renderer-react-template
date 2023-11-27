@@ -236,13 +236,15 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCer
               <div css={cellStyle}>
                 <h4>City & Country of Origin</h4>
                 <p>
-                  {document.cityOfOrigin},{document.countryOfOrigin}
+                  {document.cityOfOrigin && `${document.cityOfOrigin}, `}
+                  {document.countryOfOrigin}
                 </p>
               </div>
               <div css={cellStyle}>
                 <h4>City & Country of Destination</h4>
                 <p>
-                  {document.cityOfDestination}, {document.countryOfDestination}
+                  {document.cityOfDestination && `${document.cityOfDestination}, `}
+                  {document.countryOfDestination}
                 </p>
               </div>
               <div css={cellStyle}>

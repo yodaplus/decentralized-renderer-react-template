@@ -46,8 +46,8 @@ export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
   voyageNumber: string;
   portOfLoading: string;
   portOfDischarge: string;
-  cityOfOrigin: string;
-  cityOfDestination: string;
+  cityOfOrigin?: string;
+  cityOfDestination?: string;
   countryOfOrigin: string;
   countryOfDestination: string;
   placeOfDelivery: string;

@@ -25,6 +25,7 @@ export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocum
   councilSignature?: string;
 
   hsCode: string;
+  packageName: string;
 
   additionalNumbers: string;
 
@@ -75,6 +76,7 @@ export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = 
   countryOfDestination: "Country 2",
 
   hsCode: "HS123456",
+  packageName: "Package Name",
   descOfGoods: "Description of Goods",
   noOfPackages: 100,
   identificationMarks: "Identification Marks",

@@ -181,7 +181,7 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
                   <br />
                   <p>CERTIFICATE OF ORIGIN</p>
                   <p>OF</p>
-                  <p>THE PEOPLE'S REPUBLIC OF {document.countryOfOrigin}</p>
+                  <p>THE PEOPLE&apos;S REPUBLIC OF {document.countryOfOrigin}</p>
                 </div>
               </div>
             </div>
@@ -247,6 +247,8 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
               <div css={cellForMidColStyle}>
                 <h4>Numbers and kinds of packages: description of goods</h4>
                 <br />
+                <p>{document.noOfPackages}</p>
+                <br />
                 <p>{document.descOfGoods}</p>
                 <br />
                 ******************************
@@ -257,6 +259,8 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
                 <h4>H.S.Code</h4>
                 <br />
                 <p>{document.hsCode}</p>
+                <br />
+                <p>{document.packageName}</p>
               </div>
               <div css={cellForMidColStyle}>
                 <h4>Quantity</h4>
@@ -298,7 +302,6 @@ export const CertificateOfOriginTemplate: FunctionComponent<TemplateProps<CertOf
               ))}
             </table>
           </div> */}
-
             {/* <div css={tableRowStyle}>
             <div css={cellStyle}>
               <h4>Additional Information</h4>
