@@ -3,9 +3,9 @@ import { v2 } from "@govtechsg/open-attestation";
 interface PackageInterface {
   hsCode: string;
   name: string;
-  netWeight: sting;
+  
   description: string;
-  type: string;
+  
   noOfPackage: number;
   grossWeight: number;
   volume: number;
@@ -118,38 +118,33 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
     {
       hsCode: "HS123456",
       name: "Commodity 1",
-      netWeight: "3900",
+      
       description: "Alluminium Table",
       type: "PALLET",
       noOfPackage: 12,
       grossWeight: 4050,
       volume: 1450,
-      measurements: 18.0,
-      tempUnit: "Celsius"
+      measurements: 18.0
     },
     {
       hsCode: "HS123456",
       name: "Commodity 2",
-      netWeight: "600",
       description: "Alluminium Chair ",
       type: "PALLET",
       noOfPackage: 3,
       grossWeight: 720,
       volume: 400,
-      measurements: 4.9,
-      tempUnit: "Celsius"
+      measurements: 4.9
     },
     {
       hsCode: "HS123456",
       name: "Commodity 3",
-      netWeight: "20",
       description: "Alluminium Desk",
       type: "PALLET",
       noOfPackage: 1,
       grossWeight: 240,
       volume: 40,
-      measurements: 1.6,
-      tempUnit: "Celsius"
+      measurements: 1.6
     }
   ],
   attachements: [

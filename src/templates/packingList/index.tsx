@@ -1,9 +1,9 @@
 import { PackingListTemplate } from "./PackingListTemplate";
 
-export const insuranceCertificateTemplate = [
+export const PackingListTemplatee = [
   {
     id: "certificate",
     label: "Certificate",
-    template: InsuranceCertificateTemplate
+    template: PackingListTemplate
   }
 ];
