@@ -3,12 +3,9 @@ import { v2 } from "@govtechsg/open-attestation";
 interface PackageInterface {
   hsCode: string;
   name: string;
-  
   description: string;
-  
   noOfPackage: number;
   grossWeight: number;
-  volume: number;
   measurements: number;
 }
 
@@ -36,15 +33,9 @@ export interface PackingListTemplateCertificate extends v2.OpenAttestationDocume
   exporter: Entity;
   placeOfDelivery: string;
   standardCarrierAlphaCode?: string | null;
-  volume: number;
-  weight: number;
-  temperature?: number | null;
-  descriptionOfGoods: string;
-  noOfPackages: string;
-  hsCode?: string[] | null;
   packagingCode: string;
-  UNDGCode?: string[] | null;
-  UNDGName?: string[] | null;
+  UNDGCode?: string | null;
+  UNDGName?: string | null;
   vesselName: string;
   voyageNumber: string;
   placeOfIssue:string;
@@ -63,7 +54,7 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
   issuers: [
     {
       name: "My name",
-      tokenRegistry: "0xBBb55Bd1D709955241CAaCb327A765e2b6D69c8b",
+      documentStore: "0xBBb55Bd1D709955241CAaCb327A765e2b6D69c8b",
       identityProof: {
         location: "https://invoice-doc-renderer.netlify.app",
         type: v2.IdentityProofType.DNSTxt
@@ -101,12 +92,6 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
   },
   placeOfDelivery: "nashik",
   standardCarrierAlphaCode: "fedex",
-  volume: 10,
-  weight: 100,
-  temperature: 36,
-  descriptionOfGoods: "this Goods consist of things made out of alluminium might be heavy but all are in great shape",
-  noOfPackages: "3",
-  hsCode: ["0", "1", "2", "3", "4"],
   packagingCode: "15048",
   UNDGCode: ["0", "1", "2", "3", "4"],
   UNDGName: ["0", "1", "2", "3", "4"],
@@ -118,32 +103,25 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
     {
       hsCode: "HS123456",
       name: "Commodity 1",
-      
       description: "Alluminium Table",
-      type: "PALLET",
       noOfPackage: 12,
       grossWeight: 4050,
-      volume: 1450,
       measurements: 18.0
     },
     {
       hsCode: "HS123456",
       name: "Commodity 2",
       description: "Alluminium Chair ",
-      type: "PALLET",
       noOfPackage: 3,
       grossWeight: 720,
-      volume: 400,
       measurements: 4.9
     },
     {
       hsCode: "HS123456",
       name: "Commodity 3",
       description: "Alluminium Desk",
-      type: "PALLET",
       noOfPackage: 1,
       grossWeight: 240,
-      volume: 40,
       measurements: 1.6
     }
   ],

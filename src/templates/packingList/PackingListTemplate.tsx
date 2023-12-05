@@ -134,7 +134,7 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                   </div>
                   <div css={cellStyle}>
                     <h4>Invoice Number</h4>
-                     <p>{document.invoiceNumber}</p>
+                     <p>{document?.invoiceNumber}</p>
                   </div>
                   <div css={cellStyle}>
                     <h4>Issue Date </h4>
@@ -142,7 +142,7 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                   </div>
                   <div css={cellStyle}>
                     <h4>Standard Carrier Alpha Code (SCAC)</h4>
-                    <p>{document.standardCarrierAlphaCode}</p>
+                    <p>{document?.standardCarrierAlphaCode}</p>
                   </div>
                 </div>
             </div>
@@ -193,10 +193,10 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
               <div >
                 <div css={cellStyle}>
                   <h4>Carrier</h4>
-                  <p>{document.carrier.name}</p>
-                  <p>{document.carrier.address}</p>
-                  <p>{document.carrier.phoneNumber}</p>
-                  <p>{document.carrier.email}</p>
+                  <p>{document?.carrier?.name}</p>
+                  <p>{document?.carrier?.address}</p>
+                  <p>{document?.carrier?.phoneNumber}</p>
+                  <p>{document?.carrier?.email}</p>
                 </div>
                 
               </div>
@@ -264,7 +264,7 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                 <p>{document.additionInfo}</p>
               </div>
               <div css={cellStyle}>
-                <img css={signatureStyle} src={document.exporter.signature} alt="Signature" />
+                {document.exporter.signature && (<img css={signatureStyle} src={document.exporter.signature} alt="Signature" />)}
                 <p>Name of Authorised Signatory:{document.exporter.name} </p>
                 <p>Place of Issue:{document.placeOfIssue} </p>
                 <p>{`Date: ${document.issueDate}`}</p>
