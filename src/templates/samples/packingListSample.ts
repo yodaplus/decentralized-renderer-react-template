@@ -39,7 +39,7 @@ export interface PackingListTemplateCertificate extends v2.OpenAttestationDocume
   vesselName: string;
   voyageNumber: string;
   placeOfIssue:string;
-  additionInfo:string;
+  additionalInformation:string;
   packages: PackageInterface[];
   attachements: ProcessedFilesV2[];
 
@@ -93,11 +93,11 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
   placeOfDelivery: "nashik",
   standardCarrierAlphaCode: "fedex",
   packagingCode: "15048",
-  UNDGCode: ["0", "1", "2", "3", "4"],
-  UNDGName: ["0", "1", "2", "3", "4"],
+  UNDGCode: "13256",
+  UNDGName: "14323",
   vesselName: "vesselless",
   placeOfIssue:"exporters address",
-  additionInfo:"Additional Information on the Packing list",
+  additionalInformation:"Additional Information on the Packing list",
   voyageNumber: "15478",
   packages: [
     {

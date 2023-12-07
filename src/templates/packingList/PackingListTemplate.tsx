@@ -261,7 +261,7 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
             <div css={rowStyle}>
               <div css={cellStyle}>
                 <h4>Additional Information</h4>
-                <p>{document.additionInfo}</p>
+                <p>{document.additionalInformation}</p>
               </div>
               <div css={cellStyle}>
                 {document.exporter.signature && (<img css={signatureStyle} src={document.exporter.signature} alt="Signature" />)}
