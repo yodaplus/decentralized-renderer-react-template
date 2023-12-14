@@ -131,11 +131,18 @@ export const InsuranceCertificateTemplate: FunctionComponent<TemplateProps<Insur
     <>
       <div css={pageStyle}>
         <div css={containerStyle} className={className} id="custom-template">
-          <h1 css={titleStyle} className="m-0">
-            {document.insuranceCompanyName.toUpperCase()}
-          </h1>
-          <h5 css={subtitleStyle}>{document.insuranceCompanyAddress.toUpperCase()}</h5>
+          <h5 css={titleStyle} className="m-0">
+            Certificate of Insurance
+          </h5>
+
           <div css={innerContainer}>
+            <div css={cellStyle}>
+              <h1 css={titleStyle} className="m-0">
+                {document.insuranceCompanyName.toUpperCase()}
+              </h1>
+              <h5 css={subtitleStyle}>{document.insuranceCompanyAddress.toUpperCase()}</h5>
+            </div>
+
             <div css={rowStyle}>
               <div css={cellStyle}>
                 <h4>Insured Party Details</h4>
@@ -175,7 +182,7 @@ export const InsuranceCertificateTemplate: FunctionComponent<TemplateProps<Insur
             </div>
             <div css={fourColumnsRowStyle}>
               <div css={cellStyle}>
-                <h4>Place of Depature</h4>
+                <h4>Place of Departure</h4>
                 <p>{document.placeOfDepature}</p>
               </div>
               <div css={cellStyle}>
@@ -262,6 +269,12 @@ export const InsuranceCertificateTemplate: FunctionComponent<TemplateProps<Insur
                 <div style={{ display: "flex" }}>
                   <h3>Insurance Claim Adjuster :</h3>
                   <p>{document.insuranceClaimAdjuster}</p>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <h3>Insurance Value Amount :</h3>
+                  <p>
+                    {document.insuredValueAmt} {document.currencyCode}
+                  </p>
                 </div>
                 <div style={{ display: "flex" }}>
                   <h3>Insured Amount Premium :</h3>
