@@ -14,7 +14,7 @@ interface Entity {
   address: string;
   phoneNumber: string;
   email: string;
-  signature?: string|null;
+  signature?: string | null;
 }
 
 interface ProcessedFilesV2 {
@@ -38,11 +38,10 @@ export interface PackingListTemplateCertificate extends v2.OpenAttestationDocume
   UNDGName?: string | null;
   vesselName: string;
   voyageNumber: string;
-  placeOfIssue:string;
-  additionalInformation:string;
+  placeOfIssue: string;
+  additionalInformation: string;
   packages: PackageInterface[];
   attachements: ProcessedFilesV2[];
-
 }
 
 export const packingListTemplateCertificate: PackingListTemplateCertificate = {
@@ -83,12 +82,12 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
     phoneNumber: "+1-555-321-0987",
     email: "carrierghi@example.com"
   },
-  exporter:{
+  exporter: {
     name: "Exporter ABC",
     address: "123 Export St., Export Town, EX 12345",
     phoneNumber: "+1-555-123-4567",
     email: "exporterabc@example.com",
-    signature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
+    signature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
   },
   placeOfDelivery: "nashik",
   standardCarrierAlphaCode: "fedex",
@@ -96,8 +95,8 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
   UNDGCode: "13256",
   UNDGName: "14323",
   vesselName: "vesselless",
-  placeOfIssue:"exporters address",
-  additionalInformation:"Additional Information on the Packing list",
+  placeOfIssue: "exporters address",
+  additionalInformation: "Additional Information on the Packing list",
   voyageNumber: "15478",
   packages: [
     {
@@ -131,5 +130,5 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
       filename: "new.json",
       type: "application/json"
     }
-  ],
+  ]
 };

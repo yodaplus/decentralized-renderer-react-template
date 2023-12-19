@@ -126,25 +126,25 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                 <p>{document.exporter.address}</p>
                 <p>{document.exporter.phoneNumber}</p>
                 <p>{document.exporter.email}</p>
-              </div>              
-                <div css={rowStyle}>
-                  <div css={cellStyle}>
-                    <h4>Contract Reference Number</h4>
-                    <p>{document.contractRefNum}</p>
-                  </div>
-                  <div css={cellStyle}>
-                    <h4>Invoice Number</h4>
-                     <p>{document?.invoiceNumber}</p>
-                  </div>
-                  <div css={cellStyle}>
-                    <h4>Issue Date </h4>
-                    <p>{document.issueDate}</p>
-                  </div>
-                  <div css={cellStyle}>
-                    <h4>Standard Carrier Alpha Code (SCAC)</h4>
-                    <p>{document?.standardCarrierAlphaCode}</p>
-                  </div>
+              </div>
+              <div css={rowStyle}>
+                <div css={cellStyle}>
+                  <h4>Contract Reference Number</h4>
+                  <p>{document.contractRefNum}</p>
                 </div>
+                <div css={cellStyle}>
+                  <h4>Invoice Number</h4>
+                  <p>{document?.invoiceNumber}</p>
+                </div>
+                <div css={cellStyle}>
+                  <h4>Issue Date </h4>
+                  <p>{document.issueDate}</p>
+                </div>
+                <div css={cellStyle}>
+                  <h4>Standard Carrier Alpha Code (SCAC)</h4>
+                  <p>{document?.standardCarrierAlphaCode}</p>
+                </div>
+              </div>
             </div>
             <div css={rowStyle}>
               <div css={cellStyle}>
@@ -187,10 +187,9 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                   <h4>Place of Delivery</h4>
                   <p>{document.placeOfDelivery}</p>
                 </div>
-                  
               </div>
-              
-              <div >
+
+              <div>
                 <div css={cellStyle}>
                   <h4>Carrier</h4>
                   <p>{document?.carrier?.name}</p>
@@ -198,7 +197,6 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                   <p>{document?.carrier?.phoneNumber}</p>
                   <p>{document?.carrier?.email}</p>
                 </div>
-                
               </div>
             </div>
 
@@ -209,9 +207,7 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                     HS Code
                   </td>
                   <td css={tableHeaderCellStyle}>Commodity name </td>
-                  <td css={tableHeaderCellStyle} >
-                    Description of Goods
-                  </td>
+                  <td css={tableHeaderCellStyle}>Description of Goods</td>
                   <td css={tableHeaderCellStyle}>No of Packages</td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
                     Gross Weight of packages(KG)
@@ -240,7 +236,7 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                   {" "}
                   Total number of packages
                 </div>
-                <div css={tableHeaderCellStyle} style={{ fontSize: "8pt",fontWeight: "bold" }}>
+                <div css={tableHeaderCellStyle} style={{ fontSize: "8pt", fontWeight: "bold" }}>
                   {document.packages.reduce((acc, singlePackage) => acc + singlePackage.noOfPackage, 0)}
                 </div>
               </div>
@@ -264,7 +260,9 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                 <p>{document.additionalInformation}</p>
               </div>
               <div css={cellStyle}>
-                {document.exporter.signature && (<img css={signatureStyle} src={document.exporter.signature} alt="Signature" />)}
+                {document.exporter.signature && (
+                  <img css={signatureStyle} src={document.exporter.signature} alt="Signature" />
+                )}
                 <p>Name of Authorised Signatory:{document.exporter.name} </p>
                 <p>Place of Issue:{document.placeOfIssue} </p>
                 <p>{`Date: ${document.issueDate}`}</p>
