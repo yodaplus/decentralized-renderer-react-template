@@ -244,13 +244,13 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
             </div>
             <div css={cellStyle}>
               <h4>Payment Terms / Method of Payment</h4>
-              <p>{document.paymentTerms} Days</p>
+              {document.paymentTerms && <p>{document.paymentTerms} Days</p>}
               <p>{document.paymentMethod}</p>
             </div>
           </div>
 
           <div css={fourColumnsRowStyle}>
-            <div css={cellStyle}>
+            {/* <div css={cellStyle}>
               <h4>City & Country of Origin</h4>
               <p>
                 {document.cityOfOrigin && `${document.cityOfOrigin}, `}
@@ -263,7 +263,22 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                 {document.cityOfDestination && `${document.cityOfDestination}, `}
                 {document.countryOfDestination}
               </p>
+            </div> */}
+            <div css={cellStyle}>
+              <h4>City & Country of Origin</h4>
+              <p>
+                {document.cityOfOrigin ? `${document.cityOfOrigin}, ` : ""}
+                {document.countryOfOrigin}
+              </p>
             </div>
+            <div css={cellStyle}>
+              <h4>City & Country of Destination</h4>
+              <p>
+                {document.cityOfDestination ? `${document.cityOfDestination}, ` : ""}
+                {document.countryOfDestination}
+              </p>
+            </div>
+
             <div css={cellStyle}>
               <h4>Incoterms</h4>
               <p>{document.incoterms}</p>
@@ -322,7 +337,9 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                   <td css={tableCellStyle}>{singlePackage.name}</td>
                   <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
                   <td css={tableCellStyle}>
-                    {singlePackage.type} X {singlePackage.noOfPackage}
+                    {singlePackage.type || singlePackage.noOfPackage
+                      ? `${singlePackage.type} X ${singlePackage.noOfPackage}`
+                      : ""}
                   </td>
                   <td css={tableCellStyle}>{singlePackage.description}</td>
                   <td css={tableCellStyle}>

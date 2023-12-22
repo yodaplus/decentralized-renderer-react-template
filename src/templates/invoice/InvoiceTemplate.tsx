@@ -356,8 +356,8 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCer
               <div css={rowStyle}>
                 <div css={cellStyle}>
                   <h4>Bank Details</h4>
-                  <p>{`Benefiaciary's Bank Name: ${document.bankName}`}</p>
-                  <p>{`Benefiaciary's Name: ${document.importer.name}`}</p>
+                  <p>{`Beneficiary's Bank Name: ${document.bankName}`}</p>
+                  <p>{`Beneficiary's Name: ${document.importer?.name ?? ""}`}</p>
                   <p>Bank Account Number: {document.bankAccountNumber}</p>
                   <p>Swift Code: {document.swiftCode}</p>
                 </div>
@@ -373,8 +373,8 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCer
               <div css={rowSignatureStyle}>
                 <div css={cellStyle}>
                   <h4>Bank Details</h4>
-                  <p>{`Benefiaciary's Bank Name: ${document.bankName}`}</p>
-                  <p>{`Benefiaciary's Name: ${document.importer.name}`}</p>
+                  <p>{`Beneficiary's Bank Name: ${document.bankName}`}</p>
+                  <p>{`Beneficiary's Name: ${document.importer?.name ?? ""}`}</p>
                   <p>Bank Account Number: {document.bankAccountNumber}</p>
                   <p>Swift Code: {document.swiftCode}</p>
                 </div>

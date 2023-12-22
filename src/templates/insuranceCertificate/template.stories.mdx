@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { InsuranceCertificateTemplate } from "./InsuranceCertificateTemplate";
+import { insuranceCertificateTemplate } from "../samples/insuranceCertificateTemplateSample";
+
+
+<Meta title="MDX|InsuranceCertificateTemplate" component={InsuranceCertificateTemplate} />
+
+# InsuranceCertificateTemplate component
+
+<Description of={InsuranceCertificateTemplate} />
+
+# Props
+
+<Props of={InsuranceCertificateTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <InsuranceCertificateTemplate document={object("document", insuranceCertificateTemplate)} handleObfuscation={(name)=>{console.log(name)}} />
+  </Story>
+</Preview>
