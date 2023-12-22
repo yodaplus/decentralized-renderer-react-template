@@ -29,10 +29,10 @@ export interface InsuranceCetificateTemplate extends v2.OpenAttestationDocument 
   currency: string;
   currencyCode: string;
   insuranceClaimAdjuster: string;
-  insuredPremiumAmt: string;
-  taxAmt: string;
+  insuredPremiumAmt?: string;
+  taxAmt?: string;
   insuredValueAmt: string;
-  insuredPremiumAmtInWords: string;
+  insuredPremiumAmtInWords?: string;
   hsCode: string;
   name: string;
   description: string;

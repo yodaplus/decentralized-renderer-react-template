@@ -268,31 +268,38 @@ export const InsuranceCertificateTemplate: FunctionComponent<TemplateProps<Insur
               <div css={cellStyle}>
                 <div style={{ display: "flex" }}>
                   <h3>Insurance Claim Adjuster :</h3>
-                  <p>{document.insuranceClaimAdjuster}</p>
+                  <p>{document?.insuranceClaimAdjuster}</p>
                 </div>
                 <div style={{ display: "flex" }}>
                   <h3>Insurance Value Amount :</h3>
+
                   <p>
-                    {document.insuredValueAmt} {document.currencyCode}
+                    {document?.insuredValueAmt} {document?.currencyCode}
                   </p>
                 </div>
                 <div style={{ display: "flex" }}>
                   <h3>Insured Amount Premium :</h3>
-                  <p>
-                    {document.insuredPremiumAmt} {document.currencyCode}
-                  </p>
+                  {document?.insuredPremiumAmt && (
+                    <p>
+                      {document?.insuredPremiumAmt} {document?.currencyCode}
+                    </p>
+                  )}
                 </div>
                 <div style={{ display: "flex" }}>
                   <h3>Insured Amount Premium in Words :</h3>
-                  <p>
-                    {document.insuredPremiumAmtInWords} {document.currency}
-                  </p>
+                  {document?.insuredPremiumAmtInWords && (
+                    <p>
+                      {document?.insuredPremiumAmtInWords} {document?.currency}
+                    </p>
+                  )}
                 </div>
                 <div style={{ display: "flex" }}>
                   <h3>Tax Amount :</h3>
-                  <p>
-                    {document.taxAmt} {document.currencyCode}
-                  </p>
+                  {document?.taxAmt && (
+                    <p>
+                      {document?.taxAmt} {document?.currencyCode}
+                    </p>
+                  )}
                 </div>
                 <div style={{ display: "flex" }}>
                   <h3>Excess :</h3>
