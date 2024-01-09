@@ -175,9 +175,15 @@ export const InsuranceCertificateTemplate: FunctionComponent<TemplateProps<Insur
                   Period of Issuance: From {document.periodOfIsuranceFromDate} To {document.periodOfIsuranceToDate}
                 </p>
               </div>
-              <div css={cellStyle}>
-                <h4>Agent Details</h4>
-                <p>{document.agentDetails}</p>
+              <div css={rowStyle}>
+                <div css={cellStyle}>
+                  <h4>Agent Details</h4>
+                  <p>{document.agentDetails}</p>
+                </div>
+                <div css={cellStyle}>
+                  <h4>Vessel Name</h4>
+                  <p>{document?.vesselName}</p>
+                </div>
               </div>
             </div>
             <div css={fourColumnsRowStyle}>

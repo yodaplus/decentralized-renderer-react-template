@@ -37,6 +37,7 @@ export interface InsuranceCetificateTemplate extends v2.OpenAttestationDocument 
   name: string;
   description: string;
   noOfPackages: string;
+  vesselName: string;
   voyageNumber: string;
   vesselNumber: string;
   policyCover: string;
@@ -100,7 +101,7 @@ export const insuranceCertificateTemplate: InsuranceCetificateTemplate = {
   name: "Electric Generators",
   description: "Industrial-grade electric generators",
   noOfPackages: "40",
-
+  vesselName: "Vessel Voyager",
   voyageNumber: "VOY1234X",
   vesselNumber: "VESSEL9988",
 
