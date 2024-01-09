@@ -176,12 +176,18 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                   <p>{document.packagingCode}</p>
                 </div>
                 <div css={cellStyle}>
-                  <h4>Vessel Name</h4>
-                  <p>{document.vesselName}</p>
+                  <h4>IMO number</h4>
+                  <p>{document.IMO_number}</p>
                 </div>
                 <div css={cellStyle}>
-                  <h4>Voyage Number</h4>
-                  <p>{document.voyageNumber}</p>
+                  <h4>Vessel Name & Voyage Number</h4>
+                  <div css={cellStyleFlex}>
+                    <p>
+                      {document.vesselName}
+                      {" & "}
+                      {document.voyageNumber}
+                    </p>
+                  </div>
                 </div>
                 <div css={cellStyle}>
                   <h4>Place of Delivery</h4>
@@ -208,6 +214,9 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                   </td>
                   <td css={tableHeaderCellStyle}>Commodity name </td>
                   <td css={tableHeaderCellStyle}>Description of Goods</td>
+                  <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
+                    Temperature{" "}
+                  </td>
                   <td css={tableHeaderCellStyle}>No of Packages</td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
                     Gross Weight of packages(KG)
@@ -221,8 +230,11 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                     <td css={tableCellStyle}>{singlePackage.hsCode}</td>
                     <td css={tableCellStyle}>{singlePackage.name}</td>
                     <td css={tableCellStyle}>{singlePackage.description}</td>
+                    <td css={tableCellStyle}>
+                      {singlePackage.temp}
+                      &deg; {singlePackage.tempUnit}
+                    </td>
                     <td css={tableCellStyle}>{singlePackage.noOfPackage}</td>
-
                     <td css={tableCellStyle}>{singlePackage.grossWeight}</td>
                     <td css={tableCellStyle}>{singlePackage.measurements}</td>
                   </tr>

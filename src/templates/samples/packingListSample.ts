@@ -7,6 +7,10 @@ interface PackageInterface {
   noOfPackage: number;
   grossWeight: number;
   measurements: number;
+  volume: number;
+  temp: number;
+  tempUnit: string;
+
 }
 
 interface Entity {
@@ -41,6 +45,7 @@ export interface PackingListTemplateCertificate extends v2.OpenAttestationDocume
   placeOfIssue: string;
   additionalInformation: string;
   packages: PackageInterface[];
+  IMO_number:string;
   attachements: ProcessedFilesV2[];
 }
 
@@ -98,6 +103,7 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
   placeOfIssue: "exporters address",
   additionalInformation: "Additional Information on the Packing list",
   voyageNumber: "15478",
+  IMO_number:'f2233',
   packages: [
     {
       hsCode: "HS123456",
@@ -105,7 +111,10 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
       description: "Alluminium Table",
       noOfPackage: 12,
       grossWeight: 4050,
-      measurements: 18.0
+      measurements: 18.0,
+      volume: 20,
+      temp: 20,
+      tempUnit: "Celsius"
     },
     {
       hsCode: "HS123456",
@@ -113,7 +122,10 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
       description: "Alluminium Chair ",
       noOfPackage: 3,
       grossWeight: 720,
-      measurements: 4.9
+      measurements: 4.9,
+      volume: 54,
+      temp: 20,
+      tempUnit: "Celsius"
     },
     {
       hsCode: "HS123456",
@@ -121,7 +133,10 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
       description: "Alluminium Desk",
       noOfPackage: 1,
       grossWeight: 240,
-      measurements: 1.6
+      measurements: 1.6,
+      volume: 45,
+      temp: 20,
+      tempUnit: "Celsius"
     }
   ],
   attachements: [
