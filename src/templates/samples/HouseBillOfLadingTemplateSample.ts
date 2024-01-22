@@ -11,7 +11,6 @@ interface PackageInterface {
   volume: number;
   temp: number;
   tempUnit: string;
-  measurement: string;
 }
 
 interface Entity {
@@ -196,8 +195,7 @@ export const bltemplateCertificate: HouseBLTemplateCertificate = {
       grossWeight: 2000,
       volume: 1000,
       temp: 20,
-      tempUnit: "Celsius",
-      measurement: "12 x 12 x 12"
+      tempUnit: "Celsius"
     }
   ],
 
