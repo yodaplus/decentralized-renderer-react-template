@@ -46,7 +46,7 @@ const fiveColumnsRowStyle = css`
 const cellForMidColStyle = css`
   border: 0.5pt solid #000;
   padding: 3.5pt;
-  height: 350px;
+  height: 250pt;
   p {
     margin: 0;
     font-weight: bold;
@@ -69,6 +69,7 @@ const threeColumnsRowStyle = css`
 `;
 
 const singleRowStyle = css`
+  border: none;
   display: grid;
   grid-template-columns: 1fr;
 `;
@@ -222,53 +223,52 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
             <div css={cellStyle}>
               <h3>Freight Forwarder</h3>
               <div
-                style={{
-                  textAlign: "center"
-                }}
+              // style={{
+              //   textAlign: "center"
+              // }}
               >
-                <p>{document.importer.name}</p>
+                <p>{document.freightForwarder.name}</p>
                 <br />
-                <p>CERTIFICATE OF ORIGIN</p>
-                <p>OF</p>
-                <p>THE PEOPLE&apos;S REPUBLIC OF {document.blDateofIssue}</p>
+                <p>{document.freightForwarder.address}</p>
+                <p>{document.freightForwarder.phoneNumber}</p>
+                <p>{document.freightForwarder.email}</p>
               </div>
             </div>
           </div>
-          <div css={fiveColumnsRowStyle}>
-            <div css={cellForMidColStyle}>
-              <h4>Marks & Numbers</h4>
-              <br />
-              <p>{document.packages.marksAndNo}</p>
-            </div>
-            <div css={cellForMidColStyle}>
-              <h4>Numbers and kinds of packages</h4>
-              <br />
-              <p>
-                {document.packages.noOfPackage} - {document.packages.type}
-              </p>
-              {/* <br />
-              <p>{document.packages.description}</p>
-              <br />
-              ******************************
-              <br />
-              <p>{document.packages.grossWeight}</p> */}
-            </div>
-            <div css={cellForMidColStyle}>
-              <h4>Description of goods</h4>
-              <br />
-              <p>{document.packages.description}</p>
-            </div>
-            <div css={cellForMidColStyle}>
-              <h4>Gross weight</h4>
-              <br />
-              <p>{document.packages.grossWeight}</p>
-            </div>
-            <div css={cellForMidColStyle}>
-              <h4>Measurement</h4>
-              <br />
 
-              <p>{document.packages.measurement}</p>
-            </div>
+          <div css={singleRowStyle}>
+            <table css={[cellStyle, tableStyle]}>
+              <tr>
+                <td css={tableHeaderCellStyle} style={{ width: "45pt" }}>
+                  Marks & Numbers
+                </td>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
+                  Numbers and kinds of packages
+                </td>
+
+                <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
+                  Description of goods
+                </td>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
+                  Gross weight (KG)
+                </td>
+                <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
+                  Measurements (Volume)
+                </td>
+              </tr>
+
+              {document.packages.map(item => (
+                <tr>
+                  <td css={tableCellStyle}>{item.marksAndNo}</td>
+                  <td css={tableCellStyle}>
+                    {item.noOfPackage} - {item.type}
+                  </td>
+                  <td css={tableCellStyle}>{item.description}</td>
+                  <td css={tableCellStyle}>{item.grossWeight}</td>
+                  <td css={tableCellStyle}>{item.measurement}</td>
+                </tr>
+              ))}
+            </table>
           </div>
           {/* two blocks */}
 
