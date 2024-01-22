@@ -265,7 +265,7 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
                   </td>
                   <td css={tableCellStyle}>{item.description}</td>
                   <td css={tableCellStyle}>{item.grossWeight}</td>
-                  <td css={tableCellStyle}>{item.measurement}</td>
+                  <td css={tableCellStyle}>{item.volume}</td>
                 </tr>
               ))}
             </table>
