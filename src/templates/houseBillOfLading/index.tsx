@@ -1,6 +1,6 @@
 import { HouseBillOfLadingTemplate } from "./HouseBillOfLadingTemplate";
 
-export const billOfLadingTemplate = [
+export const houseBillOfLadingTemplate = [
   {
     id: "certificate",
     label: "Certificate",

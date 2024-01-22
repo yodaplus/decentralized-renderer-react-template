@@ -6,6 +6,7 @@ import { certificateOfOrigintemplate } from "./certificateOfOrigin";
 import { BillOfExchangeTemplates } from "./billOfExchange";
 import { insuranceCertificateTemplate } from "./insuranceCertificate";
 import { packingListTemplate } from "./packingList";
+import { houseBillOfLadingTemplate } from "./houseBillOfLading";
 
 export const registry: TemplateRegistry<any> = {
   COC: templates,
@@ -14,5 +15,6 @@ export const registry: TemplateRegistry<any> = {
   CertificateOfOrigin: certificateOfOrigintemplate,
   BillOfExchange: BillOfExchangeTemplates,
   InsuranceCertificate: insuranceCertificateTemplate,
-  PackingList: packingListTemplate
+  PackingList: packingListTemplate,
+  HouseBillOfLading: houseBillOfLadingTemplate
 };
