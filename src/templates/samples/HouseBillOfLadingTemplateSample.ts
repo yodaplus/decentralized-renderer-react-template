@@ -11,6 +11,7 @@ interface PackageInterface {
   volume: number;
   temp: number;
   tempUnit: string;
+  measurement: string;
 }
 
 interface Entity {
@@ -33,15 +34,15 @@ export interface HouseBLTemplateCertificate extends v2.OpenAttestationDocument {
   blDateofIssue: string;
   sealNumber: string;
   productNo: string;
-  buyerContract: string;
-  lcRefNumber: string;
+  // buyerContract: string;
+  // lcRefNumber: string;
   // exporterLEI: string;
 
   // carrierBookingRefNo: string;
   // shippingRefNo: string;
   // properShippingName: string;
   // carrierIdentificationfNo: string;
-  standardCarrierAlphaCode: string;
+  // standardCarrierAlphaCode: string;
 
   importer: Entity;
   consignee: Entity;
@@ -50,14 +51,14 @@ export interface HouseBLTemplateCertificate extends v2.OpenAttestationDocument {
 
   freight: string;
   freightForwarder: Entity;
-  shippedOnBoardDate: string;
+  // shippedOnBoardDate: string;
 
   // cargoMovTypeOriginCode: string;
   // cargoMovTypeDestinationCode: string;
 
   modeOfDispatch: string;
   vesselName: string;
-  voyageNumber: string;
+  // voyageNumber: string;
   portOfLoading: string;
   portOfDischarge: string;
   // cityOfOrigin?: string;
@@ -65,7 +66,7 @@ export interface HouseBLTemplateCertificate extends v2.OpenAttestationDocument {
   // countryOfOrigin: string;
   // countryOfDestination: string;
   placeOfDelivery: string;
-  finalDestination: string;
+  // finalDestination: string;
 
   // paymentMethod: string;
   // paymentTerms: string;
@@ -76,19 +77,19 @@ export interface HouseBLTemplateCertificate extends v2.OpenAttestationDocument {
 
   packages: PackageInterface;
 
-  containerNo: string;
-  containerType: string;
-  totalNoOfConatiners: string;
-  tempSettingForReferContainer: string;
+  // containerNo: string;
+  // containerType: string;
+  // totalNoOfConatiners: string;
+  // tempSettingForReferContainer: string;
   // ffREfnum: string;
-  hblNumberFBL: string;
+  // hblNumberFBL: string;
   // transportDocType: string;
 
-  // termsAndConditionOfCarraige: string;
+  termsAndCondition: string;
   // disclaimer: string;
   placeOfBlIssue: string;
   signature?: string;
-  attachments: ProcessedFilesV2[];
+  attachments?: ProcessedFilesV2[];
 }
 
 export const bltemplateCertificate: HouseBLTemplateCertificate = {
@@ -120,8 +121,8 @@ export const bltemplateCertificate: HouseBLTemplateCertificate = {
   blDateofIssue: "2023-08-01",
   sealNumber: "SN12345",
   productNo: "P123456789",
-  buyerContract: "Contract 42",
-  lcRefNumber: "LCREF654321",
+  // buyerContract: "Contract 42",
+  // lcRefNumber: "LCREF654321",
 
   importer: {
     name: "Importer XYZ",
@@ -155,7 +156,7 @@ export const bltemplateCertificate: HouseBLTemplateCertificate = {
     phoneNumber: "+1-555-987-6543",
     email: "fr@gmail.com"
   },
-  shippedOnBoardDate: "2023-07-15",
+  // shippedOnBoardDate: "2023-07-15",
 
   // cargoMovTypeOriginCode: "SEA",
   // cargoMovTypeDestinationCode: "AIR",
@@ -163,11 +164,11 @@ export const bltemplateCertificate: HouseBLTemplateCertificate = {
   // carrierIdentificationfNo: "CBR123456",
   // shippingRefNo: "SHIPREF654321",
   // properShippingName: "Electronics Equipment",
-  standardCarrierAlphaCode: "SCAC",
+  // standardCarrierAlphaCode: "SCAC",
 
   modeOfDispatch: "Sea",
   vesselName: "Vessel Voyager",
-  voyageNumber: "VS98765",
+  // voyageNumber: "VS98765",
   portOfLoading: "Port of Export Town",
   portOfDischarge: "Port of Import City",
   // cityOfOrigin: "Export Town",
@@ -175,7 +176,7 @@ export const bltemplateCertificate: HouseBLTemplateCertificate = {
   // countryOfOrigin: "Exportland",
   // countryOfDestination: "Importland",
   placeOfDelivery: "Delivery Point A",
-  finalDestination: "Final Destination B",
+  // finalDestination: "Final Destination B",
 
   // paymentMethod: "Credit Card",
   // paymentTerms: "30 Days",
@@ -194,17 +195,18 @@ export const bltemplateCertificate: HouseBLTemplateCertificate = {
     grossWeight: 2000,
     volume: 1000,
     temp: 20,
-    tempUnit: "Celsius"
+    tempUnit: "Celsius",
+    measurement: "12 x 12 x 12"
   },
 
-  containerNo: "CONT1234567",
-  containerType: "40ft",
-  totalNoOfConatiners: "10",
-  tempSettingForReferContainer: "Temperature Setting A",
-  hblNumberFBL: "HBL12345",
+  // containerNo: "CONT1234567",
+  // containerType: "40ft",
+  // totalNoOfConatiners: "10",
+  // tempSettingForReferContainer: "Temperature Setting A",
+  // hblNumberFBL: "HBL12345",
   // ffREfnum: "FF123456",
   // transportDocType: "Sea Waybill",
-  // termsAndConditionOfCarraige: "Standard Terms Apply",
+  termsAndCondition: "Standard Terms Apply",
   // disclaimer: "Standard Disclaimer",
   placeOfBlIssue: "Export Town Office",
   attachments: [

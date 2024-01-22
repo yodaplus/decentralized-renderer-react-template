@@ -169,7 +169,7 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
             <div css={cellStyle}>
               <h4>FBL</h4>
               <br />
-              <p>{document.hblNumberFBL}</p>
+              <p>{document.blNumber}</p>
               {/* <p>{document.consignee.address}</p>
               <p>{document.consignee.phoneNumber}</p>
               <p>{document.consignee.email}</p> */}
@@ -220,7 +220,7 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
               </div>
             </div>
             <div css={cellStyle}>
-              <h4>Certificate No.</h4>
+              <h3>Freight Forwarder</h3>
               <div
                 style={{
                   textAlign: "center"
@@ -243,7 +243,9 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
             <div css={cellForMidColStyle}>
               <h4>Numbers and kinds of packages</h4>
               <br />
-              <p>{document.packages.noOfPackage}</p>
+              <p>
+                {document.packages.noOfPackage} - {document.packages.type}
+              </p>
               {/* <br />
               <p>{document.packages.description}</p>
               <br />
@@ -265,13 +267,24 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
               <h4>Measurement</h4>
               <br />
 
-              <p>{document.packages.volume}</p>
+              <p>{document.packages.measurement}</p>
             </div>
           </div>
           {/* two blocks */}
-          <div css={rowStyleFullWidth}>
-            {/* <h4>Place of Issue</h4> */}
-            <p>{document.modeOfDispatch}</p>
+
+          <div css={rowStyle}>
+            <div css={cellStyle}>
+              <span style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                <h4>Incoterms : </h4>
+                <p>{document.incoterms}</p>{" "}
+              </span>
+            </div>
+            <div css={cellStyle}>
+              <span style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                <h4>Dispatch Mode : </h4>
+                <p>{document.modeOfDispatch}</p>
+              </span>
+            </div>
           </div>
           <div css={threeColumnsRowStyle}>
             <div css={cellStyle}>
@@ -298,14 +311,13 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
                     <p>{document?.blDateofIssue}</p>
                   </div>
                   <div css={cellStyle}>
-                    <h4>Number of Original FBL's</h4>
-                    <p>{document?.productNo}</p>
+                    <h4>Seal Number</h4>
+                    <p>{document?.sealNumber}</p>
                   </div>
                 </div>
                 <div css={cellStyle}>
                   <h4>For delivery of goods please apply to:</h4>
-                  <br />
-                  <p>{document.sealNumber}</p>
+                  <p>{document.termsAndCondition}</p>
                 </div>
               </div>
               <div css={cellStyle}>
@@ -322,14 +334,14 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
                     <p>{document?.blDateofIssue}</p>
                   </div>
                   <div css={cellStyle}>
-                    <h4>Number of Original FBL's</h4>
-                    <p>{document?.productNo}</p>
+                    <h4>Seal Number</h4>
+                    <p>{document?.sealNumber}</p>
                   </div>
                 </div>
                 <div css={cellStyle}>
                   <h4>For delivery of goods please apply to:</h4>
                   <br />
-                  <p>{document.sealNumber}</p>
+                  <p>{document.termsAndCondition}</p>
                   {/* <p>{document.importer.address}</p> */}
                 </div>
               </div>
