@@ -106,6 +106,7 @@ const signatureStyle = css`
 const tableCellStyle = css`
   border-left: 0.5pt solid #000;
   border-right: 0.5pt solid #000;
+  border-bottom: 0.5pt solid #000;
   padding: 4pt;
   text-align: left;
 `;
@@ -400,10 +401,10 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                     Total Consignment Value
                   </td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
-                    {document.packages.reduce((acc, singlePackage) => acc + singlePackage.grossWeight, 0)}
+                    {document.packages.reduce((acc, singlePackage) => acc + (singlePackage.grossWeight ?? 0), 0)}
                   </td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
-                    {document.packages.reduce((acc, singlePackage) => acc + singlePackage.volume, 0)}
+                    {document.packages.reduce((acc, singlePackage) => acc + (singlePackage.volume ?? 0), 0)}
                   </td>
                 </tr>
               </table>
@@ -429,15 +430,9 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
             </div>
             {document.signature ? (
               <div css={rowStyle}>
-                <div css={rowStyle}>
-                  <div css={cellStyle}>
-                    <h4>Terms and Condition of Carriage</h4>
-                    <p>{document.termsAndConditionOfCarraige}</p>
-                  </div>
-                  <div css={cellStyle}>
-                    <h4>Disclaimer</h4>
-                    <p>{document.disclaimer}</p>
-                  </div>
+                <div css={cellStyle}>
+                  <h4>Disclaimer</h4>
+                  <p>{document.disclaimer}</p>
                 </div>
                 <div css={cellStyle}>
                   <img css={signatureStyle} src={document?.signature} alt="Signature" />
@@ -448,10 +443,6 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
               </div>
             ) : (
               <div css={rowStyle}>
-                <div css={cellStyle}>
-                  <h4>Terms and Condition of Carriage</h4>
-                  <p>{document.termsAndConditionOfCarraige}</p>
-                </div>
                 <div css={cellStyle}>
                   <h4>Disclaimer</h4>
                   <p>{document.disclaimer}</p>

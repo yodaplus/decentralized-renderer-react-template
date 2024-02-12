@@ -43,6 +43,7 @@ const signatureStyle = css`
 const tableCellStyle = css`
   border-left: 0.5pt solid #000;
   border-right: 0.5pt solid #000;
+  border-bottom: 0.5pt solid #000;
   padding: 4pt;
   text-align: left;
 `;
@@ -258,10 +259,10 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
                     Total Consignment Value
                   </td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
-                    {document.packages.reduce((acc, singlePackage) => acc + singlePackage.grossWeight, 0)}
+                    {document.packages.reduce((acc, singlePackage) => acc + (singlePackage.grossWeight ?? 0), 0)}
                   </td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
-                    {document.packages.reduce((acc, singlePackage) => acc + singlePackage.measurements, 0)}
+                    {document.packages.reduce((acc, singlePackage) => acc + (singlePackage.measurements ?? 0), 0)}
                   </td>
                 </tr>
               </table>
