@@ -86,6 +86,7 @@ const signatureStyle = css`
 const tableCellStyle = css`
   border-left: 0.5pt solid #000;
   border-right: 0.5pt solid #000;
+  border-bottom: 0.5pt solid #000;
   padding: 4pt;
   text-align: left;
 `;
@@ -297,7 +298,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCer
                     Total Commercial Value
                   </td>
                   <td css={tableHeaderCellStyle}>
-                    {document.commodity.reduce((acc, commodity) => acc + commodity.unitPrice * commodity.qty, 0)}
+                    {document.commodity.reduce((acc, commodity) => acc + commodity.unitPrice * commodity.qty ?? 0, 0)}
                   </td>
                 </tr>
                 <tr>

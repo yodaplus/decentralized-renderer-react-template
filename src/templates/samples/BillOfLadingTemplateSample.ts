@@ -8,7 +8,7 @@ interface PackageInterface {
   type: string;
   noOfPackage: string;
   grossWeight: number;
-  volume: number;
+  volume?: number;
   temp: number;
   tempUnit: string;
 }
@@ -186,7 +186,28 @@ export const bltemplateCertificate: BLTemplateCertificate = {
       type: "Box",
       noOfPackage: "100",
       grossWeight: 2000,
-      volume: 1000,
+      temp: 20,
+      tempUnit: "Celsius"
+    },
+    {
+      hsCode: "HS123456",
+      name: "Commodity 1",
+      marksAndNo: "Mark123",
+      description: "Electronics",
+      type: "Box",
+      noOfPackage: "100",
+      grossWeight: 2000,
+      temp: 20,
+      tempUnit: "Celsius"
+    },
+    {
+      hsCode: "HS123456",
+      name: "Commodity 1",
+      marksAndNo: "Mark123",
+      description: "Electronics",
+      type: "Box",
+      noOfPackage: "100",
+      grossWeight: 2000,
       temp: 20,
       tempUnit: "Celsius"
     }
