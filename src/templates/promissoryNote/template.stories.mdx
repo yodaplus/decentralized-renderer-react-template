@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { PromissoryNoteTemplate } from "./PromissoryNoteTemplate";
+import { promissoryNoteTemplateCertificate } from "../samples/promissoryNoteTemplateSample";
+
+
+<Meta title="MDX|PromissoryNoteTemplate" component={PromissoryNoteTemplate} />
+
+# PromissoryNoteTemplate component
+
+<Description of={PromissoryNoteTemplate} />
+
+# Props
+
+<Props of={PromissoryNoteTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <PromissoryNoteTemplate document={object("document", promissoryNoteTemplateCertificate)} />
+  </Story>
+</Preview>
