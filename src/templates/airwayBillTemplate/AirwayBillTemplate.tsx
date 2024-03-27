@@ -342,7 +342,7 @@ export const AirwayBillTemplate: FunctionComponent<TemplateProps<AirwayBillTempl
                   <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
                     {document.commodity.reduce((acc, singlePackage) => acc + (singlePackage.grossWeight ?? 0), 0)}
                   </td>
-                  <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
+                  <td css={tableHeaderCellStyle} style={{ width: "75pt", fontWeight: "bold" }}>
                     {document.commodity.reduce((acc, singlePackage) => acc + (singlePackage.charges ?? 0), 0)}
                   </td>
                 </tr>
