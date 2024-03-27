@@ -305,7 +305,7 @@ export const AirwayBillTemplate: FunctionComponent<TemplateProps<AirwayBillTempl
                     Rate / Charge ({document.currency})
                   </td>
                 </tr>
-                {document.packages.map((singlePackage, index) => (
+                {document.commodity.map((singlePackage, index) => (
                   <tr key={index}>
                     <td css={tableCellStyle}>{singlePackage.hsCode}</td>
                     <td css={tableCellStyle}>{singlePackage.name}</td>
@@ -340,10 +340,10 @@ export const AirwayBillTemplate: FunctionComponent<TemplateProps<AirwayBillTempl
                     Total Consignment Value
                   </td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
-                    {document.packages.reduce((acc, singlePackage) => acc + (singlePackage.grossWeight ?? 0), 0)}
+                    {document.commodity.reduce((acc, singlePackage) => acc + (singlePackage.grossWeight ?? 0), 0)}
                   </td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
-                    {document.packages.reduce((acc, singlePackage) => acc + (singlePackage.charges ?? 0), 0)}
+                    {document.commodity.reduce((acc, singlePackage) => acc + (singlePackage.charges ?? 0), 0)}
                   </td>
                 </tr>
               </table>
