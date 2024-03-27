@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { AirwayBillTemplate } from "./AirwayBillTemplate";
+import { airwayBillTemplateCertificate } from "../samples/AirwayBillTemplateSample";
+
+
+<Meta title="MDX|AirwayBillTemplate" component={AirwayBillTemplate} />
+
+# AirwayBillTemplate component
+
+<Description of={AirwayBillTemplate} />
+
+# Props
+
+<Props of={AirwayBillTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <AirwayBillTemplate document={object("document", airwayBillTemplateCertificate)} />
+  </Story>
+</Preview>
