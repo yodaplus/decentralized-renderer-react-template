@@ -207,7 +207,7 @@ export const AirwayBillTemplate: FunctionComponent<TemplateProps<AirwayBillTempl
                   <p>{document.airportDeparture}</p>
                 </div>
                 <div css={cellStyle}>
-                  <h4>Airport Destation</h4>
+                  <h4>Airport Destination</h4>
                   <p>{document.airportDestation}</p>
                 </div>
               </div>
@@ -292,8 +292,8 @@ export const AirwayBillTemplate: FunctionComponent<TemplateProps<AirwayBillTempl
                     Commodity Name
                   </td>
                   <td css={tableHeaderCellStyle}>Commodity Number</td>
-                  <td css={tableHeaderCellStyle}>No. of Pieces</td>
                   <td css={tableHeaderCellStyle}>Description of Goods</td>
+                  <td css={tableHeaderCellStyle}>No. of Pieces</td>
 
                   {/* <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
                     Temperature{" "}
@@ -310,13 +310,13 @@ export const AirwayBillTemplate: FunctionComponent<TemplateProps<AirwayBillTempl
                     <td css={tableCellStyle}>{singlePackage.hsCode}</td>
                     <td css={tableCellStyle}>{singlePackage.name}</td>
                     <td css={tableCellStyle}>{singlePackage.marksAndNo}</td>
+                    <td css={tableCellStyle}>{singlePackage.description}</td>
                     <td css={tableCellStyle}>
                       {/* {singlePackage.type || singlePackage.noOfPackage
                         ? `${singlePackage.type} X ${singlePackage.noOfPackage}`
                         : ""} */}
                       {singlePackage.noOfPackage ? `${singlePackage.noOfPackage}` : ""}
                     </td>
-                    <td css={tableCellStyle}>{singlePackage.description}</td>
                     {/* <td css={tableCellStyle}>
                       {singlePackage.temp} {singlePackage.tempUnit}
                     </td> */}
