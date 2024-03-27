@@ -208,7 +208,7 @@ export const AirwayBillTemplate: FunctionComponent<TemplateProps<AirwayBillTempl
                 </div>
                 <div css={cellStyle}>
                   <h4>Airport Destination</h4>
-                  <p>{document.airportDestation}</p>
+                  <p>{document.airportDestination}</p>
                 </div>
               </div>
             </div>

@@ -41,7 +41,7 @@ export interface AirwayBillTemplateCertificate extends v2.OpenAttestationDocumen
   // carrierIdentificationfNo: string;
   // standardCarrierAlphaCode: string;
   airportDeparture: string;
-  airportDestation: string;
+  airportDestination: string;
 
   importer: Entity;
   consignee: Entity;
@@ -138,7 +138,7 @@ export const airwayBillTemplateCertificate: AirwayBillTemplateCertificate = {
   // shippingRefNo: "SHIPREF654321",
   // standardCarrierAlphaCode: "SCAC",
   airportDeparture: "Port of Export Town",
-  airportDestation: "Port of Import City",
+  airportDestination: "Port of Import City",
 
   // cityOfOrigin: "Export Town",
   // cityOfDestination: "Import City",
