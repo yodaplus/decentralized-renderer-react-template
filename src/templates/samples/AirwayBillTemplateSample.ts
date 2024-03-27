@@ -63,7 +63,7 @@ export interface AirwayBillTemplateCertificate extends v2.OpenAttestationDocumen
   incoterms: string;
   currency: string;
 
-  packages: PackageInterface[];
+  commodity: PackageInterface[];
 
   containerNo: string;
 
@@ -153,7 +153,7 @@ export const airwayBillTemplateCertificate: AirwayBillTemplateCertificate = {
 
   currency: "USD",
 
-  packages: [
+  commodity: [
     {
       hsCode: "HS123456",
       name: "Commodity 1",
