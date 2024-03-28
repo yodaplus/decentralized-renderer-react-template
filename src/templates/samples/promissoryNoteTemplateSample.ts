@@ -6,7 +6,7 @@ export interface PromissoryNoteTemplateCertificate extends v2.OpenAttestationDoc
   currencyCode: string;
   amountInFigures: string;
   amountInWords: string;
-  blDate: string;
+  blDate?: string;
   invoiceDate: string;
   payee?: string;
   tenorConditions: string;

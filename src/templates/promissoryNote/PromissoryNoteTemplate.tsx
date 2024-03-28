@@ -36,6 +36,11 @@ const singleRowStyle = css`
   grid-template-columns: 1fr;
 `;
 
+const threeColumnsRowStyle = css`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
 const fourColumnsRowStyle = css`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -93,11 +98,13 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
               </div>
             </div>
           </div>
-          <div css={fourColumnsRowStyle}>
-            <div css={cellStyle}>
-              <h4>Bill of Lading Date (if applicable)</h4>
-              <p>{document.blDate}</p>
-            </div>
+          <div css={document.blDate ? fourColumnsRowStyle : threeColumnsRowStyle}>
+            {document.blDate && (
+              <div css={cellStyle}>
+                <h4>Bill of Lading Date (if applicable)</h4>
+                <p>{document.blDate}</p>
+              </div>
+            )}
             <div css={cellStyle}>
               <h4>Invoice Date (if applicable)</h4>
               <p>{document.invoiceDate}</p>
