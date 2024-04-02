@@ -59,5 +59,5 @@ export const promissoryNoteTemplateCertificate: PromissoryNoteTemplateCertificat
   placeOfIssue: "New York",
   currency: "US Dollar",
   currencyCode: "USD",
-  jurisdiction: "Poland"
+  jurisdiction: ""
 };
