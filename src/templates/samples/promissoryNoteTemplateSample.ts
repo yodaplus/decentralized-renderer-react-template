@@ -15,7 +15,7 @@ export interface PromissoryNoteTemplateCertificate extends v2.OpenAttestationDoc
   lcDate: string;
   drawerName: string;
   draweeName: string;
-  dateOfBoe: string;
+  dateOfPromissoryNote: string;
   drawerSign?: string;
   draweeSign?: string;
   dueDate: string;
@@ -52,7 +52,7 @@ export const promissoryNoteTemplateCertificate: PromissoryNoteTemplateCertificat
   lcDate: "2023-07-01",
   drawerName: "Jane Smith",
   draweeName: "XYZ Corporation",
-  dateOfBoe: "2023-07-15",
+  dateOfPromissoryNote: "2023-07-15",
   drawerSign: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
   draweeSign: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
   dueDate: "2023-08-31",

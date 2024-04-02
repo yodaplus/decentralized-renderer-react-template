@@ -94,7 +94,7 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
               </div>
               <div css={cellStyle}>
                 <h4>Date of Issue</h4>
-                <p>{document.dateOfBoe}</p>
+                <p>{document.dateOfPromissoryNote}</p>
               </div>
             </div>
           </div>
