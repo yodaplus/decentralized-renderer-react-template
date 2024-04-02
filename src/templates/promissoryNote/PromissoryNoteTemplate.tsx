@@ -190,6 +190,17 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
               </div>
             </div>
           ) : null}
+          <div css={singleRowStyle}>
+            <div css={cellStyle}>
+              <h4>
+                Note:{" "}
+                <b>
+                  This Promissory Note will be construed in accordance with and governed by the laws of{" "}
+                  {document.jurisdiction}
+                </b>
+              </h4>
+            </div>
+          </div>
         </div>
       </div>
     </div>
