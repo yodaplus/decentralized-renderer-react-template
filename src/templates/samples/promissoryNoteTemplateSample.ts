@@ -20,6 +20,7 @@ export interface PromissoryNoteTemplateCertificate extends v2.OpenAttestationDoc
   draweeSign?: string;
   dueDate: string;
   placeOfIssue: string;
+  jurisdiction: string;
 }
 
 export const promissoryNoteTemplateCertificate: PromissoryNoteTemplateCertificate = {
@@ -57,5 +58,6 @@ export const promissoryNoteTemplateCertificate: PromissoryNoteTemplateCertificat
   dueDate: "2023-08-31",
   placeOfIssue: "New York",
   currency: "US Dollar",
-  currencyCode: "USD"
+  currencyCode: "USD",
+  jurisdiction: "Poland"
 };
