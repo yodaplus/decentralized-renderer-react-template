@@ -136,7 +136,7 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>Tenor</h4>
+              <h4>Tenor (Days)</h4>
               <p>{document.tenor}</p>
             </div>
             <div css={cellStyle}>
