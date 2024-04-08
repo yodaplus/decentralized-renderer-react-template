@@ -87,10 +87,8 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
             </div>
             <div css={rowStyle}>
               <div css={cellStyle}>
-                <h4>Amount in Figures</h4>
-                <p>
-                  {document.amountInFigures} {document.currencyCode}
-                </p>
+                <h4>Amount in Figures ({document.currencyCode})</h4>
+                <p>{document.amountInFigures}</p>
               </div>
               <div css={cellStyle}>
                 <h4>Date of Issue (YYYY-MM-DD)</h4>
@@ -128,10 +126,8 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
           )}
           <div css={singleRowStyle}>
             <div css={cellStyle}>
-              <h4>Amount In Words</h4>
-              <p>
-                {document.amountInWords} {document.currency} Only
-              </p>
+              <h4>Amount In Words ({document.currencyCode})</h4>
+              <p>{document.amountInWords} Only</p>
             </div>
           </div>
           <div css={rowStyle}>
