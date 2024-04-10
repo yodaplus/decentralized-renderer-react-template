@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { TradeSupportingDocumentsTemplate } from "./TradeSupportingDocumentsTemplate";
+import { tradeSupportingDocumentsTemplateCertificate } from "../samples/tradeSupportingDocumentsTemplateSample";
+
+
+<Meta title="MDX|TradeSupportingDocumentsTemplate" component={TradeSupportingDocumentsTemplate} />
+
+# TradeSupportingDocumentsTemplate component
+
+<Description of={TradeSupportingDocumentsTemplate} />
+
+# Props
+
+<Props of={TradeSupportingDocumentsTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <TradeSupportingDocumentsTemplate document={object("document", tradeSupportingDocumentsTemplateCertificate)} />
+  </Story>
+</Preview>

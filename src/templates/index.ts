@@ -9,6 +9,7 @@ import { packingListTemplate } from "./packingList";
 import { houseBillOfLadingTemplate } from "./houseBillOfLading";
 import { promissoryNoteTemplate } from "./promissoryNote";
 import { airwayBillTemplate } from "./airwayBillTemplate";
+import { tradeSupportingDocumentsTemplate } from "./tradeSupportingDocuments";
 
 export const registry: TemplateRegistry<any> = {
   COC: templates,
@@ -20,5 +21,6 @@ export const registry: TemplateRegistry<any> = {
   PackingList: packingListTemplate,
   HouseBillOfLading: houseBillOfLadingTemplate,
   PromissoryNote: promissoryNoteTemplate,
-  AirwayBill: airwayBillTemplate
+  AirwayBill: airwayBillTemplate,
+  TradeSupportingDocuments: tradeSupportingDocumentsTemplate
 };
