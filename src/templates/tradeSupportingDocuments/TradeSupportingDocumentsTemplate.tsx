@@ -154,7 +154,7 @@ export const TradeSupportingDocumentsTemplate: FunctionComponent<TemplateProps<
   return (
     <div css={pageStyle}>
       <div css={containerStyle} className={className} id="custom-template">
-        <h5 css={titleStyle}>Promissory Note</h5>
+        <h5 css={titleStyle}>Trade Supporting Documents</h5>
         <div css={innerContainer}>
           <div css={rowStyle}>
             <div css={cellStyle}>
