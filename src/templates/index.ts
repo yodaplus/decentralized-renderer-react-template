@@ -10,6 +10,9 @@ import { houseBillOfLadingTemplate } from "./houseBillOfLading";
 import { promissoryNoteTemplate } from "./promissoryNote";
 import { airwayBillTemplate } from "./airwayBillTemplate";
 import { tradeSupportingDocumentsTemplate } from "./tradeSupportingDocuments";
+import { invoiceAttachmentTemplate } from "./invoiceAttachment";
+import { proofOfPaymentTemplate } from "./proofOfPayment/";
+
 
 export const registry: TemplateRegistry<any> = {
   COC: templates,
@@ -18,6 +21,8 @@ export const registry: TemplateRegistry<any> = {
   CertificateOfOrigin: certificateOfOrigintemplate,
   BillOfExchange: BillOfExchangeTemplates,
   InsuranceCertificate: insuranceCertificateTemplate,
+  InvoiceAttachment:invoiceAttachmentTemplate,
+  ProofOfPayment:proofOfPaymentTemplate,
   PackingList: packingListTemplate,
   HouseBillOfLading: houseBillOfLadingTemplate,
   PromissoryNote: promissoryNoteTemplate,

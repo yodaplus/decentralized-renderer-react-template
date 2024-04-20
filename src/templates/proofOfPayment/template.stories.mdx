@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { ProofOfPaymentTemplate } from "./ProofOfPaymentTemplate";
+import { proofOfPaymentTemplateCertificate } from "../samples/ProofOfPaymentTemplateSample";
+
+
+<Meta title="MDX|ProofOfPaymentTemplate" component={ProofOfPaymentTemplate} />
+
+# ProofOfPaymentTemplate component
+
+<Description of={ProofOfPaymentTemplate} />
+
+# Props
+
+<Props of={ProofOfPaymentTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <ProofOfPaymentTemplate document={object("document", proofOfPaymentTemplateCertificate)} />
+  </Story>
+</Preview>
