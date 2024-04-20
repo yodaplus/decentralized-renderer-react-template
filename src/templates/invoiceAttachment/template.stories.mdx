@@ -1,0 +1,27 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { InvoiceAttachmentTemplate } from "./InvoiceAttachmentTemplate";
+import { InvoiceAttachmentTemplateCertificatee } from "../samples/InvoiceAttachment";
+
+<Meta title="MDX|InvoiceAttachmentTemplate" component={InvoiceAttachmentTemplate} />
+
+# InvoiceTemplate component
+
+<Description of={InvoiceAttachmentTemplate} />
+
+# Props
+
+<Props of={InvoiceAttachmentTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <InvoiceAttachmentTemplate
+      document={object("document", InvoiceAttachmentTemplateCertificatee)}
+      handleObfuscation={name => {
+        console.log(name);
+      }}
+    />
+  </Story>
+</Preview>
