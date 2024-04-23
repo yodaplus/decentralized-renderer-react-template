@@ -19,7 +19,8 @@ export interface ProofOfPaymentTemplateCertificate extends v2.OpenAttestationDoc
   invoiceNumber: string;
   invoiceDate: string;
   currency: string;
-  totalAmount: string;
+  totalAmount: number;
+  valueRecieved: number;
   attachments: Attachment[];
 
   attachmentsData: any;
@@ -53,7 +54,8 @@ export const proofOfPaymentTemplateCertificate: ProofOfPaymentTemplateCertificat
   invoiceNumber: "INV123456789",
     invoiceDate: "2023-08-01",
     currency: "SGD",
-    totalAmount: "1000",
+    totalAmount: 1000.548,
+    valueRecieved: 1000.22,
   attachments: [
     {
       data: "base64data",

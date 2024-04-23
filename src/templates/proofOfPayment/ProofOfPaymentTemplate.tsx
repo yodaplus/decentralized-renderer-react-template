@@ -156,14 +156,7 @@ export const ProofOfPaymentTemplate: FunctionComponent<TemplateProps<ProofOfPaym
   return (
     <div css={pageStyle}>
       <div css={containerStyle} className={className} id="custom-template">
-        {document?.attachments?.map((attachment, index) => {
-          const fileName = attachment.filename.split(".pdf")[0];
-          return (
-            <h5 css={titleStyle}>
-              {"Trade Support Document"} {"  "} {document.attachmentsData[`${fileName}`]}
-            </h5>
-          );
-        })}
+        <h5 css={titleStyle}>{"Proof Of Payment"}</h5>;
         <div css={innerContainer}>
           <div css={rowStyle}>
             <div css={cellStyle}>
@@ -179,7 +172,7 @@ export const ProofOfPaymentTemplate: FunctionComponent<TemplateProps<ProofOfPaym
               <p>{document?.importer?.address}</p>
             </div>
           </div>
-          <div css={rowStyle1}>
+          <div css={rowStyle}>
             <div css={cellStyle}>
               <h4>Invoice Number</h4>
               <br />
@@ -198,6 +191,15 @@ export const ProofOfPaymentTemplate: FunctionComponent<TemplateProps<ProofOfPaym
                 {document?.currency}
                 {"  "}
                 {document?.totalAmount}
+              </p>
+            </div>
+            <div css={cellStyle}>
+              <h4>Amount Recieved</h4>
+              <br />
+              <p>
+                {document?.currency}
+                {"  "}
+                {document?.valueRecieved}
               </p>
             </div>
           </div>
