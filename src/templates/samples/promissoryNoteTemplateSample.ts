@@ -6,13 +6,13 @@ export interface PromissoryNoteTemplateCertificate extends v2.OpenAttestationDoc
   currencyCode: string;
   amountInFigures: string;
   amountInWords: string;
-  blDate?: string;
+  // blDate: string;
   invoiceDate: string;
   payee?: string;
   tenorConditions: string;
   tenor: string;
-  lcRef: string;
-  lcDate: string;
+  documentRef: string;
+  documentDate: string;
   drawerName: string;
   draweeName: string;
   dateOfPromissoryNote: string;
@@ -43,13 +43,13 @@ export const promissoryNoteTemplateCertificate: PromissoryNoteTemplateCertificat
   referenceNo: "REF123456",
   amountInFigures: "10000",
   amountInWords: "Ten Thousand Dollars",
-  blDate: "2023-08-01",
+  //  blDate: "2023-08-01",
   invoiceDate: "2023-08-01",
   payee: "John Doe",
-  tenorConditions: "from BL date",
+  tenorConditions: "from Invoice date",
   tenor: "30",
-  lcRef: "LC987654",
-  lcDate: "2023-07-01",
+  documentRef: "LC987654",
+  documentDate: "2023-07-01",
   drawerName: "Jane Smith",
   draweeName: "XYZ Corporation",
   dateOfPromissoryNote: "2023-07-15",

@@ -96,13 +96,13 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
               </div>
             </div>
           </div>
-          <div css={document.blDate ? fourColumnsRowStyle : threeColumnsRowStyle}>
-            {document.blDate && (
+          <div css={threeColumnsRowStyle}>
+            {/* {document.blDate && (
               <div css={cellStyle}>
                 <h4>Bill of Lading Date (YYYY-MM-DD) (if applicable)</h4>
                 <p>{document.blDate}</p>
               </div>
-            )}
+            )} */}
             <div css={cellStyle}>
               <h4>Invoice Date (YYYY-MM-DD) (if applicable)</h4>
               <p>{document.invoiceDate}</p>
@@ -142,12 +142,12 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
           </div>
           <div css={rowStyle}>
             <div css={cellStyle}>
-              <h4>LC Reference</h4>
-              <p>{document.lcRef}</p>
+              <h4>Document Reference</h4>
+              <p>{document.documentRef}</p>
             </div>
             <div css={cellStyle}>
-              <h4>LC Date (YYYY-MM-DD)</h4>
-              <p>{document.lcDate}</p>
+              <h4>Document Date (YYYY-MM-DD)</h4>
+              <p>{document.documentDate}</p>
             </div>
           </div>
           <div css={rowStyle}>
