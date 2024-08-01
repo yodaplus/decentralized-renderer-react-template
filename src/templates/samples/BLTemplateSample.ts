@@ -1,16 +1,10 @@
 import { v2 } from "@govtechsg/open-attestation";
 
 interface PackageInterface {
-  hsCode: string;
-  name: string;
-  marksAndNo: string;
   description: string;
-  type: string;
   noOfPackage: string;
   grossWeight: number;
   volume?: number;
-  temp: number;
-  tempUnit: string;
 }
 
 interface Entity {
@@ -26,71 +20,33 @@ interface ProcessedFilesV2 {
   type: string;
 }
 
-export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
+export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   exporter: Entity;
-
-  blNumber: string;
-  blDateofIssue: string;
-  sealNumber: string;
-  productNo: string;
-  buyerContract: string;
-  lcRefNumber: string;
-  exporterLEI: string;
-
-  carrierBookingRefNo: string;
-  shippingRefNo: string;
-  properShippingName: string;
-  carrierIdentificationfNo: string;
-  standardCarrierAlphaCode: string;
-
-  importer: Entity;
+  freightDetails: Entity;
   consignee: Entity;
+  exporterLEI: string;
   carrier: Entity;
   notifyingParty: Entity;
-
-  freight: string;
+  blNumber: string;
+  imoNumber: string;
+  blDateofIssue: string;
+  buyerContract: string;
   shippedOnBoardDate: string;
-
-  cargoMovTypeOriginCode: string;
-  cargoMovTypeDestinationCode: string;
-
-  modeOfDispatch: string;
+  standardCarrierAlphaCode: string;
   vesselName: string;
   voyageNumber: string;
   portOfLoading: string;
   portOfDischarge: string;
-  cityOfOrigin?: string;
-  cityOfDestination?: string;
-  countryOfOrigin: string;
-  countryOfDestination: string;
-  placeOfDelivery: string;
-  finalDestination: string;
-
-  paymentMethod: string;
-  paymentTerms: string;
-
-  incoterms: string;
-  dangerLevel: string;
-  UNDGCode: string;
-
-  packages: PackageInterface[];
-
-  containerNo: string;
+  remarks: string;
   containerType: string;
-  totalNoOfConatiners: string;
-  tempSettingForReferContainer: string;
-  ffREfnum: string;
-  transportDocType: string;
-
-  termsAndConditionOfCarraige: string;
-  disclaimer: string;
-  placeOfBlIssue: string;
+  packages: PackageInterface[];
+  totalNoOfContainers: string;
   termsAndConditions: string | null;
   signature?: string;
   attachements: ProcessedFilesV2[];
 }
 
-export const bltemplateCertificate: BLTemplateCertificate = {
+export const blttemplateCertificate: BLTTemplateCertificate = {
   $template: {
     name: "BillOfLading",
     type: v2.TemplateType.EmbeddedRenderer,
@@ -117,12 +73,9 @@ export const bltemplateCertificate: BLTemplateCertificate = {
 
   blNumber: "BL987654321",
   blDateofIssue: "2023-08-01",
-  sealNumber: "SN12345",
-  productNo: "P123456789",
   buyerContract: "Contract 42",
-  lcRefNumber: "LCREF654321",
 
-  importer: {
+  freightDetails: {
     name: "Importer XYZ",
     address: "456 Import Ave., Import City, IM 67890",
     phoneNumber: "+1-555-987-6543",
@@ -147,82 +100,37 @@ export const bltemplateCertificate: BLTemplateCertificate = {
     email: "notifyingpartyjkl@example.com"
   },
 
-  freight: "Prepaid",
+  imoNumber: "655SDF",
   shippedOnBoardDate: "2023-07-15",
-
-  cargoMovTypeOriginCode: "SEA",
-  cargoMovTypeDestinationCode: "AIR",
-  carrierBookingRefNo: "CBR123456",
-  carrierIdentificationfNo: "CBR123456",
-  shippingRefNo: "SHIPREF654321",
-  properShippingName: "Electronics Equipment",
   standardCarrierAlphaCode: "SCAC",
 
-  modeOfDispatch: "Sea",
   vesselName: "Vessel Voyager",
   voyageNumber: "VS98765",
   portOfLoading: "Port of Export Town",
   portOfDischarge: "Port of Import City",
-  cityOfOrigin: "Export Town",
-  cityOfDestination: "Import City",
-  countryOfOrigin: "Exportland",
-  countryOfDestination: "Importland",
-  placeOfDelivery: "Delivery Point A",
-  finalDestination: "Final Destination B",
-
-  paymentMethod: "Credit Card",
-  paymentTerms: "30 Days",
-
-  incoterms: "FOB",
-  dangerLevel: "Low",
-  UNDGCode: "UNDG12345",
 
   packages: [
     {
-      hsCode: "HS123456",
-      name: "Commodity 1",
-      marksAndNo: "Mark123",
       description: "Electronics",
-      type: "Box",
+      volume: 45,
       noOfPackage: "100",
-      grossWeight: 2000,
-      temp: 20,
-      tempUnit: "Celsius"
+      grossWeight: 2000
     },
     {
-      hsCode: "HS123456",
-      name: "Commodity 1",
-      marksAndNo: "Mark123",
       description: "Electronics",
-      type: "Box",
       noOfPackage: "100",
-      grossWeight: 2000,
-      temp: 20,
-      tempUnit: "Celsius"
+      volume: 45,
+      grossWeight: 2000
     },
     {
-      hsCode: "HS123456",
-      name: "Commodity 1",
-      marksAndNo: "Mark123",
       description: "Electronics",
-      type: "Box",
       noOfPackage: "100",
-      grossWeight: 2000,
-      temp: 20,
-      tempUnit: "Celsius"
+      volume: 45,
+      grossWeight: 2000
     }
   ],
-
-  containerNo: "CONT1234567",
   containerType: "40ft",
-  totalNoOfConatiners: "10",
-  tempSettingForReferContainer: "Temperature Setting A",
-  ffREfnum: "FF123456",
-  transportDocType: "Sea Waybill",
-
-  termsAndConditionOfCarraige: "Standard Terms Apply",
-  disclaimer: "Standard Disclaimer",
-  placeOfBlIssue: "Export Town Office",
+  totalNoOfContainers: "10",
   attachements: [
     {
       data: "",
@@ -230,6 +138,8 @@ export const bltemplateCertificate: BLTemplateCertificate = {
       type: "application/json"
     }
   ],
+  remarks: "",
+
   termsAndConditions: `Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013
