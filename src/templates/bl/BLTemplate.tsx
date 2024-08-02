@@ -73,6 +73,7 @@ const cellStyle = css`
   p {
     margin: 0;
     font-size: 8pt;
+    padding: 1pt;
   }
   h4 {
     margin: 0;
@@ -122,6 +123,7 @@ const titleContainerStyle = css`
   background-color: black;
   color: white;
   text-align: center;
+  padding: 4pt;
   font-weight: bold;
   margin: 0;
   font-size: 8pt;
