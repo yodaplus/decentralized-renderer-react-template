@@ -3,11 +3,21 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import { css } from "@emotion/core";
 import { BLTemplateCertificate } from "../samples/customTemplate";
 import { documentTemplates } from "@govtechsg/decentralized-renderer-react-components/build/types/utils";
+import { watermarkStyle } from "../../css/main";
 
 const print = css`
   @page {
     size: A4; /* Set the paper size to A4 */
     margin: 0; /* Remove default margins */
+    @top-left {
+      content: "";
+    }
+  }
+
+  @media print {
+    .watermarkprint {
+      position: block !important; /* Make sure container is positioned relative for watermark */
+    }
   }
 `;
 
@@ -15,6 +25,7 @@ const containerStyle = css`
   padding: 10pt;
   margin: auto;
   width: 90%;
+  position: relative; /* Make container relative for watermark positioning */
   font-family: "Open Sans", sans-serif;
   overflow-wrap: anywhere;
   white-space: break-spaces;
@@ -105,6 +116,10 @@ export const CocTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate>
   return (
     <div css={print}>
       <div css={containerStyle} className={className} id="custom-template">
+        <div css={watermarkStyle}>
+          {/* You can replace this text with an image by using an <img> tag */}
+          {document?.watermarkText}
+        </div>
         <h5 css={titleStyle}>BILL OF LADING</h5>
         <div css={innerContainer}>
           <div css={rowStyle}>

@@ -21,7 +21,7 @@ export interface InvoiceAttachmentTemplateCertificate extends v2.OpenAttestation
   currency: string;
   totalAmount: string;
   attachments: Attachment[];
-
+  watermarkText: string;
   attachmentsData: any;
 }
 
@@ -50,18 +50,18 @@ export const InvoiceAttachmentTemplateCertificatee: InvoiceAttachmentTemplateCer
     name: "Importer 1",
     address: "Importer Address 1"
   },
+  watermarkText: "My watermark text",
   invoiceNumber: "INV123456789",
-    invoiceDate: "2023-08-01",
-    currency: "SGD",
-    totalAmount: "1000",
+  invoiceDate: "2023-08-01",
+  currency: "SGD",
+  totalAmount: "1000",
   attachments: [
     {
       data: "base64data",
       filename: "attachment1.pdf",
       documentName: "Document 1",
       type: "application/pdf"
-    },
-   
+    }
   ],
   attachmentsData: {
     "Document 1": "filename",

@@ -88,6 +88,7 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   termsAndConditions: string | null;
   signature?: string;
   attachements: ProcessedFilesV2[];
+  watermarkText: string;
 }
 
 export const bltemplateCertificate: BLTemplateCertificate = {
@@ -230,6 +231,7 @@ export const bltemplateCertificate: BLTemplateCertificate = {
       type: "application/json"
     }
   ],
+  watermarkText: "Watermark Test",
   termsAndConditions: `Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013

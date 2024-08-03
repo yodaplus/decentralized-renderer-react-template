@@ -72,6 +72,8 @@ export interface AirwayBillTemplateCertificate extends v2.OpenAttestationDocumen
   carrierSignature?: string;
   agentSignature?: string;
   attachements: ProcessedFilesV2[];
+
+  watermarkText: string;
 }
 
 export const airwayBillTemplateCertificate: AirwayBillTemplateCertificate = {
@@ -202,6 +204,7 @@ export const airwayBillTemplateCertificate: AirwayBillTemplateCertificate = {
       type: "application/json"
     }
   ],
+  watermarkText: "My WaterMark Text",
   termsAndConditions: `Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013

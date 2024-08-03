@@ -17,7 +17,7 @@ export interface TradeSupportingDocumentsTemplateCertificate extends v2.OpenAtte
     address: string;
   };
   attachments: Attachment[];
-
+  watermarkText: string;
   attachmentsData: any;
 }
 
@@ -46,6 +46,7 @@ export const tradeSupportingDocumentsTemplateCertificate: TradeSupportingDocumen
     name: "Importer 1",
     address: "Importer Address 1"
   },
+  watermarkText: "My watermark text",
   attachments: [
     {
       data: "base64data",

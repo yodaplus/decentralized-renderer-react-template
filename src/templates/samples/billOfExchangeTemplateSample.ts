@@ -20,6 +20,7 @@ export interface BillOfExchangeTemplateCertificate extends v2.OpenAttestationDoc
   draweeSign?: string;
   dueDate: string;
   placeOfIssue: string;
+  watermarkText: string;
 }
 
 export const billOfExchangeTemplateCertificate: BillOfExchangeTemplateCertificate = {
@@ -57,5 +58,6 @@ export const billOfExchangeTemplateCertificate: BillOfExchangeTemplateCertificat
   dueDate: "2023-08-31",
   placeOfIssue: "New York",
   currency: "US Dollar",
-  currencyCode: "USD"
+  currencyCode: "USD",
+  watermarkText: "Watermark Text"
 };

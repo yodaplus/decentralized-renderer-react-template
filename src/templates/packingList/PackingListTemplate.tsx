@@ -3,11 +3,21 @@ import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-rendere
 import { css } from "@emotion/core";
 import { PackingListTemplateCertificate } from "../samples/packingListSample";
 import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
+import { watermarkStyle } from "../../css/main";
 
 const pageStyle = css`
   @page {
     size: A4;
     margin: 0;
+    @top-left {
+      content: "";
+    }
+  }
+
+  @media print {
+    .watermarkprint {
+      position: block !important; /* Make sure container is positioned relative for watermark */
+    }
   }
 `;
 
@@ -15,6 +25,7 @@ const containerStyle = css`
   padding: 10pt;
   margin: auto;
   width: 90%;
+  position: relative; /* Make container relative for watermark positioning */
   font-family: "Open Sans", sans-serif;
   overflow-wrap: anywhere;
   white-space: break-spaces;
@@ -117,6 +128,10 @@ export const PackingListTemplate: FunctionComponent<TemplateProps<PackingListTem
 
       <div css={pageStyle}>
         <div css={containerStyle} className={className} id="custom-template">
+          <div css={watermarkStyle}>
+            {/* You can replace this text with an image by using an <img> tag */}
+            {document?.watermarkText}
+          </div>
           {/* Content for Packing List */}
           <h5 css={titleStyle}>PACKING LIST</h5>
           <div css={innerContainer}>
