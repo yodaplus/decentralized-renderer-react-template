@@ -10,7 +10,6 @@ interface PackageInterface {
   volume: number;
   temp: number;
   tempUnit: string;
-
 }
 
 interface Entity {
@@ -45,7 +44,8 @@ export interface PackingListTemplateCertificate extends v2.OpenAttestationDocume
   placeOfIssue: string;
   additionalInformation: string;
   packages: PackageInterface[];
-  IMO_number:string;
+  IMO_number: string;
+  watermarkText: string;
   attachements: ProcessedFilesV2[];
 }
 
@@ -103,7 +103,8 @@ export const packingListTemplateCertificate: PackingListTemplateCertificate = {
   placeOfIssue: "exporters address",
   additionalInformation: "Additional Information on the Packing list",
   voyageNumber: "15478",
-  IMO_number:'f2233',
+  IMO_number: "f2233",
+  watermarkText: "watermark",
   packages: [
     {
       hsCode: "HS123456",

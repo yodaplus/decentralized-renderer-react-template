@@ -3,17 +3,27 @@ import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-rendere
 import { css } from "@emotion/core";
 import { InvoiceTemplateCertificate } from "../samples/invoiceTemplateSample";
 import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
+import { watermarkStyle } from "../../css/main";
 
 const pageStyle = css`
   @page {
     size: A4; /* Set the paper size to A4 */
     margin: 0; /* Remove default margins */
+    @top-left {
+      content: "";
+    }
+  }
+  @media print {
+    .watermarkprint {
+      position: block !important; /* Make sure container is positioned relative for watermark */
+    }
   }
 `;
 
 const containerStyle = css`
   padding: 10pt;
   margin: auto;
+  position: relative; /* Make container relative for watermark positioning */
   width: 90%;
   font-family: "Open Sans", sans-serif;
   overflow-wrap: anywhere;
@@ -130,6 +140,10 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceTemplateCer
 
       <div css={pageStyle}>
         <div css={containerStyle} className={className} id="custom-template">
+          <div css={watermarkStyle}>
+            {/* You can replace this text with an image by using an <img> tag */}
+            {document?.watermarkText}
+          </div>
           <h5 css={titleStyle}>COMMERCIAL INVOICE</h5>
           <div css={innerContainer}>
             <div css={rowStyle}>

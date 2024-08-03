@@ -20,6 +20,7 @@ export interface PromissoryNoteTemplateCertificate extends v2.OpenAttestationDoc
   draweeSign?: string;
   dueDate: string;
   placeOfIssue: string;
+  watermarkText: string;
   jurisdiction: string;
 }
 
@@ -59,5 +60,6 @@ export const promissoryNoteTemplateCertificate: PromissoryNoteTemplateCertificat
   placeOfIssue: "New York",
   currency: "US Dollar",
   currencyCode: "USD",
-  jurisdiction: ""
+  jurisdiction: "",
+  watermarkText: "My watermark text"
 };

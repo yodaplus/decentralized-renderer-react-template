@@ -2,11 +2,21 @@ import React, { FunctionComponent } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
 import { BLTTemplateCertificate } from "../samples/BLTemplateSample";
+import { containerStyle, watermarkStyle } from "../../css/main";
 
 const print = css`
   @page {
     size: A4; /* Set the paper size to A4 */
     margin: 0; /* Remove default margins */
+    @top-left {
+      content: "";
+    }
+  }
+
+  @media print {
+    .watermarkprint {
+      position: block !important; /* Make sure container is positioned relative for watermark */
+    }
   }
 `;
 
@@ -32,20 +42,9 @@ const pageStyleTwo = css`
   @media print {
     padding-bottom: 20px;
     border: none !important;
-  }
-`;
-
-const containerStyle = css`
-  padding: 10pt;
-  margin: auto;
-  width: 90%;
-  font-family: "Open Sans", sans-serif;
-  overflow-wrap: anywhere;
-  white-space: break-spaces;
-  page-break-after: always;
-
-  td {
-    font-size: 8pt;
+    .watermarkprint {
+      display: block !important; /* Ensure watermark is displayed when printing */
+    }
   }
 `;
 
@@ -138,25 +137,18 @@ const boldTextStyle = css`
   font-weight: bold;
 `;
 
-// exporterLEI: string;
-// notifyingParty: Entity;
-// blDateofIssue: string;
-// shippedOnBoardDate: string;
-// portOfLoading: string;
-// portOfDischarge: string;
-// remarks: string;
-// containerType: string;
-// totalNoOfConatiners: string;
-// signature?: string;
-
 export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate> & { className?: string }> = ({
   document,
   className = ""
 }) => {
   return (
     <>
-      <div css={print}>
+      <div css={print} className="watermarkprint">
         <div css={containerStyle} className={className} id="custom-template">
+          <div css={watermarkStyle}>
+            {/* You can replace this text with an image by using an <img> tag */}
+            {document?.watermarkText}
+          </div>
           <h5 css={titleStyle}>BL</h5>
           <div css={innerContainer}>
             <div css={rowStyle}>

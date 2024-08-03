@@ -2,12 +2,21 @@ import React, { FunctionComponent } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
 import { AirwayBillTemplateCertificate } from "../samples/AirwayBillTemplateSample";
-import { documentTemplates } from "@govtechsg/decentralized-renderer-react-components/build/types/utils";
+import { watermarkStyle } from "../../css/main";
 
 const print = css`
   @page {
     size: A4; /* Set the paper size to A4 */
     margin: 0; /* Remove default margins */
+    @top-left {
+      content: "";
+    }
+  }
+
+  @media print {
+    .watermarkprint {
+      position: block !important; /* Make sure container is positioned relative for watermark */
+    }
   }
 `;
 
@@ -43,11 +52,11 @@ const containerStyle = css`
   padding: 10pt;
   margin: auto;
   width: 90%;
+  position: relative; /* Make container relative for watermark positioning */
   font-family: "Open Sans", sans-serif;
   overflow-wrap: anywhere;
   white-space: break-spaces;
   page-break-after: always;
-
   td {
     font-size: 8pt;
   }
@@ -140,6 +149,10 @@ export const AirwayBillTemplate: FunctionComponent<TemplateProps<AirwayBillTempl
     <>
       <div css={print}>
         <div css={containerStyle} className={className} id="custom-template">
+          <div css={watermarkStyle}>
+            {/* You can replace this text with an image by using an <img> tag */}
+            {document?.watermarkText}
+          </div>
           <h5 css={titleStyle}>AIRWAY BILL</h5>
           <div css={innerContainer}>
             <div css={rowStyle}>

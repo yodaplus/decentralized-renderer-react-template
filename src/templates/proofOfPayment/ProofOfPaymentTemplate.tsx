@@ -1,24 +1,24 @@
 import React, { FunctionComponent, useState } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
-import {
-  Attachment,
-  TradeSupportingDocumentsTemplateCertificate
-} from "../samples/tradeSupportingDocumentsTemplateSample";
+import { Attachment } from "../samples/tradeSupportingDocumentsTemplateSample";
 import { ProofOfPaymentTemplateCertificate } from "../samples/ProofOfPaymentTemplateSample";
+import { containerStyle, watermarkStyle } from "../../css/main";
 
 const pageStyle = css`
   @page {
     size: A4; /* Set the paper size to A4 */
     margin: 0; /* Remove default margins */
+    @top-left {
+      content: "";
+    }
   }
-`;
 
-const containerStyle = css`
-  padding: 10pt;
-  margin: auto;
-  width: 90%;
-  font-family: "Open Sans", sans-serif;
+  @media print {
+    .watermarkprint {
+      position: block !important; /* Make sure container is positioned relative for watermark */
+    }
+  }
 `;
 
 const rowStyle = css`
@@ -156,6 +156,10 @@ export const ProofOfPaymentTemplate: FunctionComponent<TemplateProps<ProofOfPaym
   return (
     <div css={pageStyle}>
       <div css={containerStyle} className={className} id="custom-template">
+        <div css={watermarkStyle}>
+          {/* You can replace this text with an image by using an <img> tag */}
+          {document?.watermarkText}
+        </div>
         <h5 css={titleStyle}>{"Proof Of Payment"}</h5>;
         <div css={innerContainer}>
           <div css={rowStyle}>

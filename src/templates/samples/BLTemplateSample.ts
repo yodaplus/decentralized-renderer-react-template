@@ -44,6 +44,7 @@ export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   termsAndConditions: string | null;
   signature?: string;
   attachements: ProcessedFilesV2[];
+  watermarkText: string;
 }
 
 export const blttemplateCertificate: BLTTemplateCertificate = {
@@ -139,7 +140,7 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
     }
   ],
   remarks: "",
-
+  watermarkText: "Watermark",
   termsAndConditions: `Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013
