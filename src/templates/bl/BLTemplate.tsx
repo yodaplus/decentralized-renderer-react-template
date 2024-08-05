@@ -6,8 +6,8 @@ import { containerStyle, watermarkStyle } from "../../css/main";
 
 const print = css`
   @page {
-    size: A4; /* Set the paper size to A4 */
-    margin: 0; /* Remove default margins */
+    size: A4;
+    margin: 0;
     @top-left {
       content: "";
     }
@@ -15,7 +15,7 @@ const print = css`
 
   @media print {
     .watermarkprint {
-      position: block !important; /* Make sure container is positioned relative for watermark */
+      position: block !important;
     }
   }
 `;
@@ -41,6 +41,7 @@ const pageStyleTwo = css`
 
   @media print {
     padding-bottom: 20px;
+    page-break-after: always;
     border: none !important;
     .watermarkprint {
       display: block !important; /* Ensure watermark is displayed when printing */
@@ -328,12 +329,17 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
         </div>
       </div>
       {document?.termsAndConditions && (
-        <div css={pageStyleTwo}>
-          <div>
-            <h5 css={titleStyle}>Terms And Conditions</h5>
-
-            <div className="termsAndContions">
-              <p>{document?.termsAndConditions}</p>
+        <div css={pageStyleTwo} className="watermarkprint">
+          <div css={containerStyle}>
+            <div css={watermarkStyle}>
+              {/* You can replace this text with an image by using an <img> tag */}
+              {document?.watermarkText}
+            </div>
+            <div>
+              <h5 css={titleStyle}>Terms And Conditions</h5>
+              <div className="termsAndConditions">
+                <p>{document?.termsAndConditions}</p>
+              </div>
             </div>
           </div>
         </div>
