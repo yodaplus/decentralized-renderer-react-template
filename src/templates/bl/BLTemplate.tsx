@@ -8,14 +8,14 @@ const print = css`
   @page {
     size: A4;
     margin: 0;
-    @top-left {
-      content: "";
-    }
   }
 
   @media print {
     .watermarkprint {
-      position: block !important;
+      display: block !important;
+    }
+    .page-break {
+      page-break-before: always;
     }
   }
 `;
@@ -31,20 +31,16 @@ const pageStyleTwo = css`
     font-weight: bold;
     font-size: 8pt;
   }
-  @page {
-    size: A4;
-    margin-bottom: 20pt;
-  }
   .termsAndConditions {
     padding: 15pt;
   }
 
   @media print {
-    padding-bottom: 20px;
-    page-break-after: always;
-    border: none !important;
+    .termsAndConditions {
+      padding-bottom: 20px;
+    }
     .watermarkprint {
-      display: block !important; /* Ensure watermark is displayed when printing */
+      display: block !important;
     }
   }
 `;
@@ -329,12 +325,9 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
         </div>
       </div>
       {document?.termsAndConditions && (
-        <div css={pageStyleTwo} className="watermarkprint">
+        <div css={[print, pageStyleTwo, { pageBreakBefore: "always" }]} className="watermarkprint">
           <div css={containerStyle}>
-            <div css={watermarkStyle}>
-              {/* You can replace this text with an image by using an <img> tag */}
-              {document?.watermarkText}
-            </div>
+            <div css={watermarkStyle}>{document?.watermarkText}</div>
             <div>
               <h5 css={titleStyle}>Terms And Conditions</h5>
               <div className="termsAndConditions">
