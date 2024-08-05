@@ -15,13 +15,21 @@ const print = css`
       display: block !important;
     }
     .page-break {
-      page-break-before: always;
+      margin-top: 1rem;
+      display: block;
+      page-break-after: always;
+    }
+    html,
+    body {
+      height: initial !important;
+      overflow: initial !important;
+      -webkit-print-color-adjust: exact;
     }
   }
 `;
 
 const pageStyleTwo = css`
-  padding: 3.5pt;
+  margin: 3.5pt;
   font-family: "Open Sans", sans-serif;
   white-space: break-spaces;
   overflow-wrap: break-word;
@@ -41,6 +49,17 @@ const pageStyleTwo = css`
     }
     .watermarkprint {
       display: block !important;
+    }
+    .page-break {
+      margin-top: 1rem;
+      display: block;
+      page-break-after: always;
+    }
+    html,
+    body {
+      height: initial !important;
+      overflow: initial !important;
+      -webkit-print-color-adjust: exact;
     }
   }
 `;
@@ -325,7 +344,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
         </div>
       </div>
       {document?.termsAndConditions && (
-        <div css={[print, pageStyleTwo, { pageBreakBefore: "always" }]} className="watermarkprint">
+        <div css={[print, pageStyleTwo, { pageBreakBefore: "always" }]} className="watermarkprint page-break">
           <div css={containerStyle}>
             <div css={watermarkStyle}>{document?.watermarkText}</div>
             <div>
