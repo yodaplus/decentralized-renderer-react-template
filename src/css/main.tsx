@@ -5,7 +5,7 @@ export const containerStyle = css`
   margin: auto;
   width: 90%;
   font-family: "Open Sans", sans-serif;
-  position: relative; /* Make container relative for watermark positioning */
+  position: relative;
 `;
 
 export const watermarkStyle = css`

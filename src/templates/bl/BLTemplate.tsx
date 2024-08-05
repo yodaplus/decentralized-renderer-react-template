@@ -6,22 +6,30 @@ import { containerStyle, watermarkStyle } from "../../css/main";
 
 const print = css`
   @page {
-    size: A4; /* Set the paper size to A4 */
-    margin: 0; /* Remove default margins */
-    @top-left {
-      content: "";
-    }
+    size: A4;
+    margin: 0;
   }
 
   @media print {
     .watermarkprint {
-      position: block !important; /* Make sure container is positioned relative for watermark */
+      display: block !important;
+    }
+    .page-break {
+      margin-top: 1rem;
+      display: block;
+      page-break-after: always;
+    }
+    html,
+    body {
+      height: initial !important;
+      overflow: initial !important;
+      -webkit-print-color-adjust: exact;
     }
   }
 `;
 
 const pageStyleTwo = css`
-  padding: 3.5pt;
+  margin: 3.5pt;
   font-family: "Open Sans", sans-serif;
   white-space: break-spaces;
   overflow-wrap: break-word;
@@ -31,19 +39,27 @@ const pageStyleTwo = css`
     font-weight: bold;
     font-size: 8pt;
   }
-  @page {
-    size: A4;
-    margin-bottom: 20pt;
-  }
   .termsAndConditions {
     padding: 15pt;
   }
 
   @media print {
-    padding-bottom: 20px;
-    border: none !important;
+    .termsAndConditions {
+      padding-bottom: 20px;
+    }
     .watermarkprint {
-      display: block !important; /* Ensure watermark is displayed when printing */
+      display: block !important;
+    }
+    .page-break {
+      margin-top: 1rem;
+      display: block;
+      page-break-after: always;
+    }
+    html,
+    body {
+      height: initial !important;
+      overflow: initial !important;
+      -webkit-print-color-adjust: exact;
     }
   }
 `;
@@ -328,12 +344,14 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
         </div>
       </div>
       {document?.termsAndConditions && (
-        <div css={pageStyleTwo}>
-          <div>
-            <h5 css={titleStyle}>Terms And Conditions</h5>
-
-            <div className="termsAndContions">
-              <p>{document?.termsAndConditions}</p>
+        <div css={[print, pageStyleTwo, { pageBreakBefore: "always" }]} className="watermarkprint page-break">
+          <div css={containerStyle}>
+            <div css={watermarkStyle}>{document?.watermarkText}</div>
+            <div>
+              <h5 css={titleStyle}>Terms And Conditions</h5>
+              <div className="termsAndConditions">
+                <p>{document?.termsAndConditions}</p>
+              </div>
             </div>
           </div>
         </div>
