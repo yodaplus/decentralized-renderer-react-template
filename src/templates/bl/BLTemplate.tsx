@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect, useMemo, useState } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
 import { BLTTemplateCertificate } from "../samples/BLTemplateSample";
@@ -6,30 +6,14 @@ import { containerStyle, watermarkStyle } from "../../css/main";
 
 const print = css`
   @page {
-    size: A4;
-    margin: 0;
-  }
-
-  @media print {
-    .watermarkprint {
-      display: block !important;
-    }
-    .page-break {
-      margin-top: 1rem;
-      display: block;
-      page-break-after: always;
-    }
-    html,
-    body {
-      height: initial !important;
-      overflow: initial !important;
-      -webkit-print-color-adjust: exact;
-    }
+    size: A4; /* Set the paper size to A4 */
+    margin: 0; /* Remove default margins */
+    page-break-after: auto; /* Automatically add page breaks */
   }
 `;
 
 const pageStyleTwo = css`
-  margin: 3.5pt;
+  padding: 3.5pt;
   font-family: "Open Sans", sans-serif;
   white-space: break-spaces;
   overflow-wrap: break-word;
@@ -39,28 +23,17 @@ const pageStyleTwo = css`
     font-weight: bold;
     font-size: 8pt;
   }
+  @page {
+    size: A4;
+    margin-bottom: 20pt;
+  }
   .termsAndConditions {
     padding: 15pt;
   }
 
   @media print {
-    .termsAndConditions {
-      padding-bottom: 20px;
-    }
-    .watermarkprint {
-      display: block !important;
-    }
-    .page-break {
-      margin-top: 1rem;
-      display: block;
-      page-break-after: always;
-    }
-    html,
-    body {
-      height: initial !important;
-      overflow: initial !important;
-      -webkit-print-color-adjust: exact;
-    }
+    padding-bottom: 20px;
+    border: none !important;
   }
 `;
 
@@ -114,6 +87,7 @@ const tableCellStyle = css`
   border-bottom: 0.5pt solid #000;
   padding: 4pt;
   text-align: left;
+  font-size: 8pt;
 `;
 
 const tableHeaderCellStyle = css`
@@ -121,6 +95,7 @@ const tableHeaderCellStyle = css`
   padding: 4pt;
   text-align: left;
   font-weight: bold;
+  font-size: 8pt;
 `;
 
 const tableStyle = css`
@@ -153,10 +128,99 @@ const boldTextStyle = css`
   font-weight: bold;
 `;
 
+const termsPageStyle = css`
+  height: 1123px; // A4 height in pixels at 96 DPI
+  width: 794px; // A4 width in pixels at 96 DPI
+  align-items: center;
+  justify-content: center;
+  padding: 3.5pt;
+  font-family: "Open Sans", sans-serif;
+  white-space: break-spaces;
+  overflow-wrap: break-word;
+
+  p {
+    margin: 8pt;
+    font-weight: bold;
+    font-size: 8pt;
+  }
+  page-break-before: always;
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+`;
+
+const termsWatermarkStyle = css`
+  ${watermarkStyle}
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: -1;
+`;
+
+const footerStyle = css`
+  text-align: left;
+  padding: 8pt;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const signatureHeaderStyle = css`
+  font-weight: bold;
+  font-size: 8pt;
+  margin-bottom: 4pt;
+  width: 100%;
+  text-align: left;
+  color: red;
+`;
+
+const signatureInfoStyle = css`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const signatureTitleStyle = css`
+  font-size: 8pt;
+  font-weight: bold;
+  color: red;
+`;
+
+const signatureValueStyle = css`
+  font-size: 8pt;
+  font-weight: bold;
+  color: black;
+`;
+
+const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
+  const pages: string[] = [];
+  let currentPage = "";
+  const words = text.split(" ");
+
+  for (const word of words) {
+    if ((currentPage + word).length > charsPerPage) {
+      pages.push(currentPage.trim());
+      currentPage = "";
+    }
+    currentPage += word + " ";
+  }
+
+  if (currentPage) {
+    pages.push(currentPage.trim());
+  }
+
+  return pages;
+};
+
 export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate> & { className?: string }> = ({
   document,
   className = ""
 }) => {
+  const termsPages = useMemo(() => {
+    return document?.termsAndConditions ? splitIntoPages(document.termsAndConditions) : [];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [document?.termsAndConditions]);
   return (
     <>
       <div css={print} className="watermarkprint">
@@ -257,7 +321,6 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               </div>
             </div>
             <div css={singleRowStyle}>
-              <p css={titleContainerStyle}>CUSTOM ORDER INFORMATION</p>
               <table css={[cellStyle, tableStyle]}>
                 <tr>
                   <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
@@ -341,21 +404,34 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               </div>
             )}
           </div>
+          <footer css={footerStyle}>
+            <div css={signatureHeaderStyle}>Digitally Signed By:</div>
+            <div css={signatureInfoStyle}>
+              <div>
+                <span css={signatureTitleStyle}>Name: </span>
+                <span css={signatureValueStyle}>{document?.signatureName}</span>
+              </div>
+              <div>
+                <span css={signatureTitleStyle}>Time Stamp: </span>
+                <span css={signatureValueStyle}>{document?.signatureTimeStamp}</span>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
-      {document?.termsAndConditions && (
-        <div css={[print, pageStyleTwo, { pageBreakBefore: "always" }]} className="watermarkprint page-break">
+      {termsPages.map((pageContent, index) => (
+        <div key={index} css={[print, termsPageStyle]} className="watermarkprint page-break">
+          <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
           <div css={containerStyle}>
-            <div css={watermarkStyle}>{document?.watermarkText}</div>
-            <div>
-              <h5 css={titleStyle}>Terms And Conditions</h5>
-              <div className="termsAndConditions">
-                <p>{document?.termsAndConditions}</p>
-              </div>
+            <h5 css={titleStyle}>Terms And Conditions - Page {index + 1}</h5>
+            <div className="termsAndConditions">
+              {pageContent.split("\n").map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
             </div>
           </div>
         </div>
-      )}
+      ))}
     </>
   );
 };

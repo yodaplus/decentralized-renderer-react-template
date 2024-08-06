@@ -33,6 +33,8 @@ export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   buyerContract: string;
   shippedOnBoardDate: string;
   standardCarrierAlphaCode: string;
+  signatureName: string;
+  signatureTimeStamp: string;
   vesselName: string;
   voyageNumber: string;
   portOfLoading: string;
@@ -139,7 +141,9 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
       type: "application/json"
     }
   ],
-  remarks: "",
+  remarks: "54555555ASDFGGGHH",
+  signatureTimeStamp: "03/07/2024 07:11 PM IST",
+  signatureName: "John Doe",
   watermarkText: "Watermark",
   termsAndConditions: `Terms and Conditions
 General Site Usage
