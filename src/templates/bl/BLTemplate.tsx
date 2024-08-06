@@ -412,7 +412,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 <span css={signatureValueStyle}>{document?.signatureName}</span>
               </div>
               <div>
-                <span css={signatureTitleStyle}>Timestamp: </span>
+                <span css={signatureTitleStyle}>Time Stamp: </span>
                 <span css={signatureValueStyle}>{document?.signatureTimeStamp}</span>
               </div>
             </div>
