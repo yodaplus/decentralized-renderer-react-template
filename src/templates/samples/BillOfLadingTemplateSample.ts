@@ -68,7 +68,8 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
 
   paymentMethod: string;
   paymentTerms: string;
-
+  signatureTimeStamp: string;
+  signatureName: string;
   incoterms: string;
   dangerLevel: string;
   UNDGCode: string;
@@ -213,7 +214,8 @@ export const bltemplateCertificate: BLTemplateCertificate = {
       tempUnit: "Celsius"
     }
   ],
-
+  signatureTimeStamp: "03/07/2024 07:11 PM IST",
+  signatureName: "John Doe",
   containerNo: "CONT1234567",
   containerType: "40ft",
   totalNoOfConatiners: "10",

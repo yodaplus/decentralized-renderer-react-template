@@ -140,6 +140,41 @@ const tableStyle = css`
   }
 `;
 
+const footerStyle = css`
+  text-align: left;
+  padding: 8pt;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const signatureHeaderStyle = css`
+  font-weight: bold;
+  font-size: 8pt;
+  margin-bottom: 4pt;
+  width: 100%;
+  text-align: left;
+  color: red;
+`;
+
+const signatureInfoStyle = css`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const signatureTitleStyle = css`
+  font-size: 8pt;
+  font-weight: bold;
+  color: red;
+`;
+
+const signatureValueStyle = css`
+  font-size: 8pt;
+  font-weight: bold;
+  color: black;
+`;
+
 export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate> & { className?: string }> = ({
   document,
   className = ""
@@ -465,6 +500,19 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
               </div>
             )}
           </div>
+          <footer css={footerStyle}>
+            <div css={signatureHeaderStyle}>Digitally Signed By:</div>
+            <div css={signatureInfoStyle}>
+              <div>
+                <span css={signatureTitleStyle}>Name: </span>
+                <span css={signatureValueStyle}>{document?.signatureName}</span>
+              </div>
+              <div>
+                <span css={signatureTitleStyle}>Timestamp: </span>
+                <span css={signatureValueStyle}>{document?.signatureTimeStamp}</span>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
       {document.termsAndConditions && (

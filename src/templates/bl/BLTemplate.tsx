@@ -87,6 +87,7 @@ const tableCellStyle = css`
   border-bottom: 0.5pt solid #000;
   padding: 4pt;
   text-align: left;
+  font-size: 8pt;
 `;
 
 const tableHeaderCellStyle = css`
@@ -94,6 +95,7 @@ const tableHeaderCellStyle = css`
   padding: 4pt;
   text-align: left;
   font-weight: bold;
+  font-size: 8pt;
 `;
 
 const tableStyle = css`
@@ -156,6 +158,41 @@ const termsWatermarkStyle = css`
   z-index: -1;
 `;
 
+const footerStyle = css`
+  text-align: left;
+  padding: 8pt;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const signatureHeaderStyle = css`
+  font-weight: bold;
+  font-size: 8pt;
+  margin-bottom: 4pt;
+  width: 100%;
+  text-align: left;
+  color: red;
+`;
+
+const signatureInfoStyle = css`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const signatureTitleStyle = css`
+  font-size: 8pt;
+  font-weight: bold;
+  color: red;
+`;
+
+const signatureValueStyle = css`
+  font-size: 8pt;
+  font-weight: bold;
+  color: black;
+`;
+
 const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
   const pages: string[] = [];
   let currentPage = "";
@@ -182,6 +219,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
 }) => {
   const termsPages = useMemo(() => {
     return document?.termsAndConditions ? splitIntoPages(document.termsAndConditions) : [];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [document?.termsAndConditions]);
   return (
     <>
@@ -283,7 +321,6 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               </div>
             </div>
             <div css={singleRowStyle}>
-              <p css={titleContainerStyle}>CUSTOM ORDER INFORMATION</p>
               <table css={[cellStyle, tableStyle]}>
                 <tr>
                   <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
@@ -367,6 +404,19 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               </div>
             )}
           </div>
+          <footer css={footerStyle}>
+            <div css={signatureHeaderStyle}>Digitally Signed By:</div>
+            <div css={signatureInfoStyle}>
+              <div>
+                <span css={signatureTitleStyle}>Name: </span>
+                <span css={signatureValueStyle}>{document?.signatureName}</span>
+              </div>
+              <div>
+                <span css={signatureTitleStyle}>Timestamp: </span>
+                <span css={signatureValueStyle}>{document?.signatureTimeStamp}</span>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
       {termsPages.map((pageContent, index) => (
