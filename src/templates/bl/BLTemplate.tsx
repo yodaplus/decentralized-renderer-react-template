@@ -129,7 +129,18 @@ const boldTextStyle = css`
 const termsPageStyle = css`
   height: 1123px; // A4 height in pixels at 96 DPI
   width: 794px; // A4 width in pixels at 96 DPI
-  padding: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5pt;
+  font-family: "Open Sans", sans-serif;
+  white-space: break-spaces;
+  overflow-wrap: break-word;
+
+  p {
+    margin: 8pt;
+    font-weight: bold;
+    font-size: 8pt;
+  }
   page-break-before: always;
   page-break-after: always;
   position: relative;
@@ -145,7 +156,7 @@ const termsWatermarkStyle = css`
   z-index: -1;
 `;
 
-const splitIntoPages = (text: string, charsPerPage = 3000): string[] => {
+const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
   const pages: string[] = [];
   let currentPage = "";
   const words = text.split(" ");
