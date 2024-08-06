@@ -9,23 +9,35 @@ const print = css`
     size: A4;
     margin: 0;
   }
-
   @media print {
     .watermarkprint {
       display: block !important;
     }
-    .page-break {
-      margin-top: 1rem;
-      display: block;
-      page-break-after: always;
+    @page {
+      size: A4;
+      margin: 1cm;
     }
-    html,
-    body {
-      height: initial !important;
-      overflow: initial !important;
-      -webkit-print-color-adjust: exact;
+    .print-container {
+      page-break-inside: avoid;
+    }
+    .page-break {
+      display: block;
+      page-break-before: always;
     }
   }
+  // @media print {
+  //   .page-break {
+  //     margin-top: 1rem;
+  //     display: block;
+  //     page-break-after: always;
+  //   }
+  //   html,
+  //   body {
+  //     height: initial !important;
+  //     overflow: initial !important;
+  //     -webkit-print-color-adjust: exact;
+  //   }
+  // }
 `;
 
 const pageStyleTwo = css`
@@ -41,6 +53,7 @@ const pageStyleTwo = css`
   }
   .termsAndConditions {
     padding: 15pt;
+    page-break-before: always; /* Add page break before */
   }
 
   @media print {
@@ -343,19 +356,22 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
           </div>
         </div>
       </div>
-      {document?.termsAndConditions && (
-        <div css={[print, pageStyleTwo, { pageBreakBefore: "always" }]} className="watermarkprint page-break">
-          <div css={containerStyle}>
-            <div css={watermarkStyle}>{document?.watermarkText}</div>
-            <div>
-              <h5 css={titleStyle}>Terms And Conditions</h5>
-              <div className="termsAndConditions">
-                <p>{document?.termsAndConditions}</p>
+      <div css={print} className="watermarkprint">
+        <div className="page-break" />
+        <div css={pageStyleTwo}>
+          {document?.termsAndConditions && (
+            <div css={containerStyle}>
+              <div css={watermarkStyle}>{document?.watermarkText}</div>
+              <div>
+                <h5 css={titleStyle}>Terms And Conditions</h5>
+                <div className="termsAndConditions">
+                  <p>{document?.termsAndConditions}</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 };
