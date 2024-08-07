@@ -14,7 +14,7 @@ export const watermarkStyle = css`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg); /* Rotate the watermark */
-  opacity: 0.1; /* Adjust opacity for watermark visibility */
+  opacity: 0.2; /* Adjust opacity for watermark visibility */
   font-size: 80pt; /* Adjust size for text watermark */
   color: #000; /* Adjust color for text watermark */
   z-index: -1; /* Ensure watermark is behind content */
