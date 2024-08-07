@@ -128,6 +128,19 @@ const boldTextStyle = css`
   font-weight: bold;
 `;
 
+const termsPageContainer = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  page-break-before: always;
+  page-break-after: always;
+  @media print {
+    /* Remove flex styles during print */
+    display: block;
+  }
+`;
+
 const termsPageStyle = css`
   height: 1123px; // A4 height in pixels at 96 DPI
   width: 794px; // A4 width in pixels at 96 DPI
@@ -420,14 +433,16 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
         </div>
       </div>
       {termsPages.map((pageContent, index) => (
-        <div key={index} css={[print, termsPageStyle]} className="watermarkprint page-break">
-          <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
-          <div css={containerStyle}>
-            <h5 css={titleStyle}>Terms And Conditions - Page {index + 1}</h5>
-            <div className="termsAndConditions">
-              {pageContent.split("\n").map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
+        <div key={index} css={termsPageContainer}>
+          <div css={[print, termsPageStyle]} className="watermarkprint page-break">
+            <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
+            <div css={containerStyle}>
+              <h5 css={titleStyle}>Terms And Conditions - Page {index + 1}</h5>
+              <div className="termsAndConditions">
+                {pageContent.split("\n").map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
