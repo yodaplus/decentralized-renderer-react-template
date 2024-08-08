@@ -1,6 +1,8 @@
 import { v2 } from "@govtechsg/open-attestation";
 
 interface PackageInterface {
+  hsCode: string;
+  name: string;
   description: string;
   noOfPackage: string;
   grossWeight: number;
@@ -115,18 +117,24 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
 
   packages: [
     {
+      hsCode: "8455666",
+      name: "Commodity 1",
       description: "Electronics",
       volume: 45,
       noOfPackage: "100",
       grossWeight: 2000
     },
     {
+      hsCode: "8455666",
+      name: "Commodity 1",
       description: "Electronics",
       noOfPackage: "100",
       volume: 45,
       grossWeight: 2000
     },
     {
+      hsCode: "8455666",
+      name: "Commodity 1",
       description: "Electronics",
       noOfPackage: "100",
       volume: 45,
