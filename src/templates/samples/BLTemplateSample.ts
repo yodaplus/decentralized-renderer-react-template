@@ -1,6 +1,8 @@
 import { v2 } from "@govtechsg/open-attestation";
 
 interface PackageInterface {
+  hsCode: string;
+  name: string;
   description: string;
   noOfPackage: string;
   grossWeight: number;
@@ -47,6 +49,7 @@ export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   signature?: string;
   attachements: ProcessedFilesV2[];
   watermarkText: string;
+  forReleaseOfShipment: string;
 }
 
 export const blttemplateCertificate: BLTTemplateCertificate = {
@@ -114,18 +117,24 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
 
   packages: [
     {
+      hsCode: "8455666",
+      name: "Commodity 1",
       description: "Electronics",
       volume: 45,
       noOfPackage: "100",
       grossWeight: 2000
     },
     {
+      hsCode: "8455666",
+      name: "Commodity 1",
       description: "Electronics",
       noOfPackage: "100",
       volume: 45,
       grossWeight: 2000
     },
     {
+      hsCode: "8455666",
+      name: "Commodity 1",
       description: "Electronics",
       noOfPackage: "100",
       volume: 45,
@@ -145,6 +154,8 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
   signatureTimeStamp: "03/07/2024 07:11 PM IST",
   signatureName: "John Doe",
   watermarkText: "Watermark",
+  forReleaseOfShipment:
+    "Notifying Party JKL654 Notify St., Notify Town, NO 77889+1-555-654-3210  notifyingpartyjkl@example.com",
   termsAndConditions: `Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013

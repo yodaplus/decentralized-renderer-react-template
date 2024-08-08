@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useMemo, useState } from "react";
+import React, { FunctionComponent, useMemo } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { css } from "@emotion/core";
 import { BLTTemplateCertificate } from "../samples/BLTemplateSample";
@@ -9,6 +9,11 @@ const print = css`
     size: A4; /* Set the paper size to A4 */
     margin: 0; /* Remove default margins */
     page-break-after: auto; /* Automatically add page breaks */
+  }
+
+  @media print {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important; /* Apply exact color printing to the entire document */
   }
 `;
 
@@ -181,7 +186,7 @@ const footerStyle = css`
 
 const signatureHeaderStyle = css`
   font-weight: bold;
-  font-size: 8pt;
+  font-size: 10pt;
   margin-bottom: 4pt;
   width: 100%;
   text-align: left;
@@ -195,13 +200,13 @@ const signatureInfoStyle = css`
 `;
 
 const signatureTitleStyle = css`
-  font-size: 8pt;
+  font-size: 10pt;
   font-weight: bold;
   color: red;
 `;
 
 const signatureValueStyle = css`
-  font-size: 8pt;
+  font-size: 10pt;
   font-weight: bold;
   color: black;
 `;
@@ -246,7 +251,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
           <div css={innerContainer}>
             <div css={rowStyle}>
               <div css={cellStyle}>
-                <p css={titleContainerStyle}>SHIP FROM</p>
+                <p css={titleContainerStyle}>SHIPPER</p>
                 <div css={subContainerStyle}>
                   <p>{document?.exporter?.name}</p>
                   <p>{document?.exporter?.address}</p>
@@ -255,14 +260,26 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 </div>
               </div>
               <div css={cellStyle}>
-                <div css={subContainerStyle}>
-                  <p css={boldTextStyle}>Bill Of Lading Number: {document?.blNumber}</p>
+                <div
+                  css={subContainerStyle}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                  }}
+                >
+                  <p>
+                    Bill Of Lading Number: <span css={boldTextStyle}> {document?.blNumber}</span>
+                  </p>
+                  <p>
+                    Date Of Issue: <span css={boldTextStyle}>{document?.blDateofIssue}</span>
+                  </p>
                 </div>
               </div>
             </div>
             <div css={rowStyle}>
               <div css={cellStyle}>
-                <p css={titleContainerStyle}>SHIP TO</p>
+                <p css={titleContainerStyle}>CONSIGNEE</p>
                 <div css={subContainerStyle}>
                   <p>{document?.consignee?.name}</p>
                   <p>{document?.consignee?.address}</p>
@@ -271,7 +288,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 </div>
               </div>
               <div css={cellStyle}>
-                <p css={titleContainerStyle}>CARRIER NAME</p>
+                <p css={titleContainerStyle}>CARRIER</p>
                 <div css={subContainerStyle}>
                   <p>{document?.carrier?.name}</p>
                   <p>{document?.carrier?.address}</p>
@@ -290,9 +307,11 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                   <p>{document?.freightDetails?.email}</p>
                 </div>
               </div>
-              <div css={cellStyle}>
-                <div css={subContainerStyle}>
-                  <p css={boldTextStyle}>SCAC: {document?.standardCarrierAlphaCode}</p>
+              <div css={singleRowStyle}>
+                <div css={cellStyle}>
+                  <div css={subContainerStyle}>
+                    <p css={boldTextStyle}>SCAC: {document?.standardCarrierAlphaCode}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -306,23 +325,19 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                   <p>{document?.notifyingParty?.email}</p>
                 </div>
               </div>
-              <div css={rowStyle}>
-                <div css={cellStyle}>
-                  <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>Vessel Name</p>
-                    <p>{document.vesselName}</p>
-                  </div>
+              <div css={cellStyle}>
+                <p css={boldTextStyle}>For Release of Shipment Please contact</p>
+                <div css={subContainerStyle}>
+                  <p>{document?.forReleaseOfShipment}</p>
                 </div>
+              </div>
+            </div>
+            <div css={rowStyle}>
+              <div css={singleRowStyle}>
                 <div css={cellStyle}>
                   <div css={subContainerStyle}>
                     <p css={boldTextStyle}>IMO Number</p>
                     <p>{document.imoNumber}</p>
-                  </div>
-                </div>
-                <div css={cellStyle}>
-                  <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>Voyage Number</p>
-                    <p>{document.voyageNumber}</p>
                   </div>
                 </div>
                 <div css={cellStyle}>
@@ -332,10 +347,30 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                   </div>
                 </div>
               </div>
+              <div css={singleRowStyle}>
+                <div css={cellStyle}>
+                  <div css={subContainerStyle}>
+                    <p css={boldTextStyle}>Vessel Name</p>
+                    <p>{document.vesselName}</p>
+                  </div>
+                </div>
+                <div css={cellStyle}>
+                  <div css={subContainerStyle}>
+                    <p css={boldTextStyle}>Voyage Number</p>
+                    <p>{document.voyageNumber}</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div css={singleRowStyle}>
               <table css={[cellStyle, tableStyle]}>
                 <tr>
+                  <td css={tableHeaderCellStyle} style={{ width: "45pt" }}>
+                    HS Code
+                  </td>
+                  <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
+                    Commodity Name
+                  </td>
                   <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
                   <td css={tableHeaderCellStyle}>Commodity Description</td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
@@ -347,6 +382,8 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 </tr>
                 {document.packages.map((singlePackage, index) => (
                   <tr key={index}>
+                    <td css={tableCellStyle}>{singlePackage?.hsCode}</td>
+                    <td css={tableCellStyle}>{singlePackage.name}</td>
                     <td css={tableCellStyle}>{singlePackage?.noOfPackage ? `${singlePackage?.noOfPackage}` : ""}</td>
                     <td css={tableCellStyle}>{singlePackage?.description}</td>
                     <td css={tableCellStyle}>{singlePackage?.grossWeight}</td>
@@ -389,18 +426,29 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                   <p>{document.totalNoOfContainers}</p>
                 </div>
               </div>
-              <div css={cellStyle}>
-                <div css={subContainerStyle}>
-                  <p css={boldTextStyle}>Container Type</p>
-                  <p>{document.containerType}</p>
+              <div css={rowStyle}>
+                <div css={cellStyle}>
+                  <div css={subContainerStyle}>
+                    <p css={boldTextStyle}>Container Type</p>
+                    <p>{document.containerType}</p>
+                  </div>
+                </div>
+                <div css={cellStyle}>
+                  <div css={subContainerStyle}>
+                    <p>
+                      Shipped on Board: <span css={boldTextStyle}>{document?.shippedOnBoardDate}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
             {document.signature ? (
               <div css={rowStyle}>
                 <div css={cellStyle}>
-                  <h4>Remarks</h4>
-                  <p>{document?.remarks}</p>
+                  <div css={subContainerStyle}>
+                    <p css={boldTextStyle}>Carrier Remarks</p>
+                    <p>{document?.remarks}</p>
+                  </div>
                 </div>
                 <div css={cellStyle}>
                   <img css={signatureStyle} src={document?.signature} alt="Signature" />
@@ -411,8 +459,10 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
             ) : (
               <div css={rowStyle}>
                 <div css={cellStyle}>
-                  <h4>Remarks</h4>
-                  <p>{document?.remarks}</p>
+                  <div css={subContainerStyle}>
+                    <p css={boldTextStyle}>Carrier Remarks</p>
+                    <p>{document?.remarks}</p>
+                  </div>
                 </div>
               </div>
             )}
