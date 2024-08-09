@@ -236,7 +236,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
   className = ""
 }) => {
   const termsPages = useMemo(() => {
-    return document?.termsAndConditions ? splitIntoPages(document.termsAndConditions) : [];
+    return document?.termsAndConditions ? splitIntoPages(document?.termsAndConditions) : [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [document?.termsAndConditions]);
   return (
@@ -326,8 +326,8 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 </div>
               </div>
               <div css={cellStyle}>
-                <p css={boldTextStyle}>For Release of Shipment Please contact</p>
                 <div css={subContainerStyle}>
+                  <p css={boldTextStyle}>For Release of Shipment Please contact</p>
                   <p>{document?.forReleaseOfShipment}</p>
                 </div>
               </div>
@@ -368,9 +368,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                   <td css={tableHeaderCellStyle} style={{ width: "45pt" }}>
                     HS Code
                   </td>
-                  <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
-                    Commodity Name
-                  </td>
+                  <td css={tableHeaderCellStyle}>Commodity Name</td>
                   <td css={tableHeaderCellStyle}>Kind & No of Packages</td>
                   <td css={tableHeaderCellStyle}>Commodity Description</td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt" }}>
@@ -394,7 +392,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               <table css={[cellStyle, tableStyle]}>
                 <tr>
                   <td css={tableHeaderCellStyle} style={{ textAlign: "right" }}>
-                    Total Consignment Value
+                    Total
                   </td>
                   <td css={tableHeaderCellStyle} style={{ width: "60pt", fontWeight: "bold" }}>
                     {document.packages.reduce((acc, singlePackage) => acc + (singlePackage.grossWeight ?? 0), 0)}
