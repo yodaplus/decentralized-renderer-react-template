@@ -52,7 +52,7 @@ export interface InvoiceTemplateCertificate extends v2.OpenAttestationDocument {
   countryOfDestination: string;
   placeOfDelivery: string;
   finalDestination: string;
-
+  watermarkText: string;
   paymentMethod: string;
   paymentTerms: string;
 
@@ -130,7 +130,7 @@ export const invoiceTemplateCertificate: InvoiceTemplateCertificate = {
   countryOfDestination: "Country 2",
   placeOfDelivery: "Delivery Point A",
   finalDestination: "Final Destination B",
-
+  watermarkText: "WATERMARK",
   paymentMethod: "Online",
   paymentTerms: "30 Days",
   incoterms: "Incoterm 1",

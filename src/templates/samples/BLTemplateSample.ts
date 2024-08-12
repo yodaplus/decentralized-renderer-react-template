@@ -3,14 +3,10 @@ import { v2 } from "@govtechsg/open-attestation";
 interface PackageInterface {
   hsCode: string;
   name: string;
-  marksAndNo: string;
   description: string;
-  type: string;
   noOfPackage: string;
   grossWeight: number;
-  charges: number;
-  temp?: number;
-  tempUnit?: string;
+  volume?: number;
 }
 
 interface Entity {
@@ -26,59 +22,39 @@ interface ProcessedFilesV2 {
   type: string;
 }
 
-export interface AirwayBillTemplateCertificate extends v2.OpenAttestationDocument {
+export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   exporter: Entity;
-
-  dateOfIssue: string;
-  flightNumber: string;
-  flightDate: string;
-  agentAccountNumber: string;
-  agentIataCode: string;
-  exporterLEI: string;
-
-  // carrierBookingRefNo: string;
-  // shippingRefNo: string;
-  // carrierIdentificationfNo: string;
-  // standardCarrierAlphaCode: string;
-  airportDeparture: string;
-  airportDestination: string;
-
-  importer: Entity;
+  freightDetails: Entity;
   consignee: Entity;
+  exporterLEI: string;
   carrier: Entity;
   notifyingParty: Entity;
-
-  agentName?: string;
-  freightForwarder: string;
-
-  // cityOfOrigin?: string;
-  // cityOfDestination?: string;
-  countryOfOrigin: string;
-  countryOfDestination: string;
-  placeOfDelivery: string;
-  finalDestination: string;
-  handlingCode: string;
-  handlingInformation: string;
-
-  incoterms: string;
-  currency: string;
-
-  commodity: PackageInterface[];
-
-  containerNo: string;
-
-  termsAndConditionOfCarriage: string;
+  blNumber: string;
+  imoNumber: string;
+  blDateofIssue: string;
+  buyerContract: string;
+  shippedOnBoardDate: string;
+  standardCarrierAlphaCode: string;
+  signatureName: string;
+  signatureTimeStamp: string;
+  vesselName: string;
+  voyageNumber: string;
+  portOfLoading: string;
+  portOfDischarge: string;
+  remarks: string;
+  containerType: string;
+  packages: PackageInterface[];
+  totalNoOfContainers: string;
   termsAndConditions: string | null;
-  carrierSignature?: string;
-  agentSignature?: string;
+  signature?: string;
   attachements: ProcessedFilesV2[];
-
   watermarkText: string;
+  forReleaseOfShipment: string;
 }
 
-export const airwayBillTemplateCertificate: AirwayBillTemplateCertificate = {
+export const blttemplateCertificate: BLTTemplateCertificate = {
   $template: {
-    name: "AirwayBill",
+    name: "BillOfLading",
     type: v2.TemplateType.EmbeddedRenderer,
     url: "http://localhost:3000"
   },
@@ -101,13 +77,11 @@ export const airwayBillTemplateCertificate: AirwayBillTemplateCertificate = {
   },
   exporterLEI: "LEI123456",
 
-  dateOfIssue: "2023-08-01",
-  flightNumber: "SN12345",
-  flightDate: "2024-03-26",
-  agentAccountNumber: "LCREF654321",
-  agentIataCode: "IATA123456",
+  blNumber: "BL987654321",
+  blDateofIssue: "2023-08-01",
+  buyerContract: "Contract 42",
 
-  importer: {
+  freightDetails: {
     name: "Importer XYZ",
     address: "456 Import Ave., Import City, IM 67890",
     phoneNumber: "+1-555-987-6543",
@@ -131,72 +105,44 @@ export const airwayBillTemplateCertificate: AirwayBillTemplateCertificate = {
     phoneNumber: "+1-555-654-3210",
     email: "notifyingpartyjkl@example.com"
   },
-  agentName: "Agent Name",
 
-  freightForwarder: "KMO Freight Forwarder",
+  imoNumber: "655SDF",
+  shippedOnBoardDate: "2023-07-15",
+  standardCarrierAlphaCode: "SCAC",
 
-  // carrierBookingRefNo: "CBR123456",
-  // carrierIdentificationfNo: "CBR123456",
-  // shippingRefNo: "SHIPREF654321",
-  // standardCarrierAlphaCode: "SCAC",
-  airportDeparture: "Port of Export Town",
-  airportDestination: "Port of Import City",
+  vesselName: "Vessel Voyager",
+  voyageNumber: "VS98765",
+  portOfLoading: "Port of Export Town",
+  portOfDischarge: "Port of Import City",
 
-  // cityOfOrigin: "Export Town",
-  // cityOfDestination: "Import City",
-  countryOfOrigin: "Exportland",
-  countryOfDestination: "Importland",
-  placeOfDelivery: "Delivery Point A",
-  finalDestination: "Final Destination B",
-  handlingCode: "COL PES",
-  handlingInformation:
-    "Temperature during transport and storage +2/+8 Celsius degrees\n24-hour emergency response telephone number:+48 512 457 163\nAttn:roberto@garibaldisingapore.com;tel.:+65 968 24212",
-  incoterms: "FOB",
-
-  currency: "USD",
-
-  commodity: [
+  packages: [
     {
-      hsCode: "HS123456",
+      hsCode: "8455666",
       name: "Commodity 1",
-      marksAndNo: "Mark123",
       description: "Electronics",
-      type: "Box",
+      volume: 45,
       noOfPackage: "100",
-      grossWeight: 20,
-      // temp: 20,
-      charges: 1000
-      // tempUnit: "Celsius"
+      grossWeight: 2000
     },
     {
-      hsCode: "HS123456",
+      hsCode: "8455666",
       name: "Commodity 1",
-      marksAndNo: "Mark123",
       description: "Electronics",
-      type: "Box",
       noOfPackage: "100",
-      grossWeight: 20,
-      // temp: 20,
-      charges: 8000
-      // tempUnit: "Celsius"
+      volume: 45,
+      grossWeight: 2000
     },
     {
-      hsCode: "HS123456",
+      hsCode: "8455666",
       name: "Commodity 1",
-      marksAndNo: "Mark123",
       description: "Electronics",
-      type: "Box",
       noOfPackage: "100",
-      grossWeight: 20,
-      // temp: 20,
-      charges: 2500
-      // tempUnit: "Celsius"
+      volume: 45,
+      grossWeight: 2000
     }
   ],
-
-  containerNo: "CONT1234567",
-
-  termsAndConditionOfCarriage: "Standard Terms Apply",
+  containerType: "40ft",
+  totalNoOfContainers: "10",
   attachements: [
     {
       data: "",
@@ -204,7 +150,12 @@ export const airwayBillTemplateCertificate: AirwayBillTemplateCertificate = {
       type: "application/json"
     }
   ],
-  watermarkText: "My WaterMark Text",
+  remarks: "54555555ASDFGGGHH",
+  signatureTimeStamp: "03/07/2024 07:11 PM IST",
+  signatureName: "John Doe",
+  watermarkText: "Watermark",
+  forReleaseOfShipment:
+    "Notifying Party JKL654 Notify St., Notify Town, NO 77889+1-555-654-3210  notifyingpartyjkl@example.com",
   termsAndConditions: `Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013
@@ -259,6 +210,5 @@ contact@lorem-ipsum.info
 11. PLACE OF PERFORMANCE
 This Site is controlled, operated and administered by us from our office in Kiev, Ukraine. We make no representation that materials at this site are appropriate or available for use at other locations outside of the Ukraine and access to them from territories where their contents are illegal is prohibited. If you access this Site from a location outside of the Ukraine, you are responsible for compliance with all local laws.`,
 
-  carrierSignature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
-  agentSignature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
+  signature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png"
 };

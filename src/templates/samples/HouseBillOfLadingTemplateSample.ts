@@ -89,6 +89,7 @@ export interface HouseBLTemplateCertificate extends v2.OpenAttestationDocument {
   placeOfBlIssue: string;
   signature?: string;
   attachments?: ProcessedFilesV2[];
+  watermarkText: string;
 }
 
 export const bltemplateCertificate: HouseBLTemplateCertificate = {
@@ -164,7 +165,7 @@ export const bltemplateCertificate: HouseBLTemplateCertificate = {
   // shippingRefNo: "SHIPREF654321",
   // properShippingName: "Electronics Equipment",
   // standardCarrierAlphaCode: "SCAC",
-
+  watermarkText: "WATERMARK TEST",
   modeOfDispatch: "Sea",
   vesselName: "Vessel Voyager",
   // voyageNumber: "VS98765",

@@ -12,7 +12,7 @@ import { airwayBillTemplate } from "./airwayBillTemplate";
 import { tradeSupportingDocumentsTemplate } from "./tradeSupportingDocuments";
 import { invoiceAttachmentTemplate } from "./invoiceAttachment";
 import { proofOfPaymentTemplate } from "./proofOfPayment/";
-
+import { bLTemplate } from "./bl";
 
 export const registry: TemplateRegistry<any> = {
   COC: templates,
@@ -21,11 +21,12 @@ export const registry: TemplateRegistry<any> = {
   CertificateOfOrigin: certificateOfOrigintemplate,
   BillOfExchange: BillOfExchangeTemplates,
   InsuranceCertificate: insuranceCertificateTemplate,
-  InvoiceAttachment:invoiceAttachmentTemplate,
-  ProofOfPayment:proofOfPaymentTemplate,
+  InvoiceAttachment: invoiceAttachmentTemplate,
+  ProofOfPayment: proofOfPaymentTemplate,
   PackingList: packingListTemplate,
   HouseBillOfLading: houseBillOfLadingTemplate,
   PromissoryNote: promissoryNoteTemplate,
   AirwayBill: airwayBillTemplate,
-  TradeSupportingDocuments: tradeSupportingDocumentsTemplate
+  TradeSupportingDocuments: tradeSupportingDocumentsTemplate,
+  BL: bLTemplate
 };

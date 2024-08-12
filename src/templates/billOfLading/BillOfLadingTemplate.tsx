@@ -3,11 +3,21 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import { css } from "@emotion/core";
 import { BLTemplateCertificate } from "../samples/BillOfLadingTemplateSample";
 import { documentTemplates } from "@govtechsg/decentralized-renderer-react-components/build/types/utils";
+import { watermarkStyle } from "../../css/main";
 
 const print = css`
   @page {
     size: A4; /* Set the paper size to A4 */
     margin: 0; /* Remove default margins */
+    @top-left {
+      content: "";
+    }
+  }
+
+  @media print {
+    .watermarkprint {
+      position: block !important; /* Make sure container is positioned relative for watermark */
+    }
   }
 `;
 
@@ -43,6 +53,7 @@ const containerStyle = css`
   padding: 10pt;
   margin: auto;
   width: 90%;
+  position: relative; /* Make container relative for watermark positioning */
   font-family: "Open Sans", sans-serif;
   overflow-wrap: anywhere;
   white-space: break-spaces;
@@ -129,6 +140,41 @@ const tableStyle = css`
   }
 `;
 
+const footerStyle = css`
+  text-align: left;
+  padding: 8pt;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const signatureHeaderStyle = css`
+  font-weight: bold;
+  font-size: 8pt;
+  margin-bottom: 4pt;
+  width: 100%;
+  text-align: left;
+  color: red;
+`;
+
+const signatureInfoStyle = css`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const signatureTitleStyle = css`
+  font-size: 8pt;
+  font-weight: bold;
+  color: red;
+`;
+
+const signatureValueStyle = css`
+  font-size: 8pt;
+  font-weight: bold;
+  color: black;
+`;
+
 export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCertificate> & { className?: string }> = ({
   document,
   className = ""
@@ -137,6 +183,10 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
     <>
       <div css={print}>
         <div css={containerStyle} className={className} id="custom-template">
+          <div css={watermarkStyle}>
+            {/* You can replace this text with an image by using an <img> tag */}
+            {document?.watermarkText}
+          </div>
           <h5 css={titleStyle}>BILL OF LADING</h5>
           <div css={innerContainer}>
             <div css={rowStyle}>
@@ -450,6 +500,19 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
               </div>
             )}
           </div>
+          <footer css={footerStyle}>
+            <div css={signatureHeaderStyle}>Digitally Signed By:</div>
+            <div css={signatureInfoStyle}>
+              <div>
+                <span css={signatureTitleStyle}>Name: </span>
+                <span css={signatureValueStyle}>{document?.signatureName}</span>
+              </div>
+              <div>
+                <span css={signatureTitleStyle}>Time Stamp: </span>
+                <span css={signatureValueStyle}>{document?.signatureTimeStamp}</span>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
       {document.termsAndConditions && (

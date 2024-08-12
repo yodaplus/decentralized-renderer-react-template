@@ -22,7 +22,7 @@ export interface ProofOfPaymentTemplateCertificate extends v2.OpenAttestationDoc
   totalAmount: number;
   valueRecieved: number;
   attachments: Attachment[];
-
+  watermarkText: string;
   attachmentsData: any;
 }
 
@@ -52,21 +52,21 @@ export const proofOfPaymentTemplateCertificate: ProofOfPaymentTemplateCertificat
     address: "Importer Address 1"
   },
   invoiceNumber: "INV123456789",
-    invoiceDate: "2023-08-01",
-    currency: "SGD",
-    totalAmount: 1000.548,
-    valueRecieved: 1000.22,
+  invoiceDate: "2023-08-01",
+  currency: "SGD",
+  totalAmount: 1000.548,
+  valueRecieved: 1000.22,
   attachments: [
     {
       data: "base64data",
       filename: "attachment1.pdf",
       documentName: "Document 1",
       type: "application/pdf"
-    },
-   
+    }
   ],
+  watermarkText: "My watermark text",
   attachmentsData: {
-    "filename": "filename",
+    filename: "filename",
     "Document 2": "filename"
   }
 };

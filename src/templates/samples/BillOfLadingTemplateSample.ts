@@ -68,7 +68,8 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
 
   paymentMethod: string;
   paymentTerms: string;
-
+  signatureTimeStamp: string;
+  signatureName: string;
   incoterms: string;
   dangerLevel: string;
   UNDGCode: string;
@@ -88,6 +89,7 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   termsAndConditions: string | null;
   signature?: string;
   attachements: ProcessedFilesV2[];
+  watermarkText: string;
 }
 
 export const bltemplateCertificate: BLTemplateCertificate = {
@@ -212,7 +214,8 @@ export const bltemplateCertificate: BLTemplateCertificate = {
       tempUnit: "Celsius"
     }
   ],
-
+  signatureTimeStamp: "03/07/2024 07:11 PM IST",
+  signatureName: "John Doe",
   containerNo: "CONT1234567",
   containerType: "40ft",
   totalNoOfConatiners: "10",
@@ -230,7 +233,8 @@ export const bltemplateCertificate: BLTemplateCertificate = {
       type: "application/json"
     }
   ],
-  termsAndConditions:`Terms and Conditions
+  watermarkText: "Watermark Test",
+  termsAndConditions: `Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013
 

@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { BLTemplate } from "./BLTemplate";
+import { blttemplateCertificate } from "../samples/BLTemplateSample";
+
+
+<Meta title="MDX|BLTemplate" component={BLTemplate} />
+
+# BLTemplate component
+
+<Description of={BLTemplate} />
+
+# Props
+
+<Props of={BLTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <BLTemplate document={object("document", blttemplateCertificate)} />
+  </Story>
+</Preview>

@@ -40,6 +40,7 @@ export interface CertOfOriginTemplateCertificate extends v2.OpenAttestationDocum
   particularsOfTransportDetails: string;
   date: string;
   attachements: ProcessedFilesV2[];
+  watermarkText: string;
 }
 
 export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = {
@@ -101,5 +102,6 @@ export const certOfOriginTemplateCertificate: CertOfOriginTemplateCertificate = 
       filename: "new.json",
       type: "application/json"
     }
-  ]
+  ],
+  watermarkText: "Watermark Text"
 };

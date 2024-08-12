@@ -46,7 +46,7 @@ export interface InsuranceCetificateTemplate extends v2.OpenAttestationDocument 
   excess: string;
   signature?: string;
   premiumSchedule: string;
-
+  watermarkText: string;
   attachements: ProcessedFilesV2[];
 }
 
@@ -119,7 +119,7 @@ export const insuranceCertificateTemplate: InsuranceCetificateTemplate = {
     "Annual Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.",
 
   signature: "https://upload.wikimedia.org/wikipedia/commons/1/19/Victoria_Justice_Signature.png",
-
+  watermarkText: "WATERMARK",
   attachements: [
     {
       data: "",

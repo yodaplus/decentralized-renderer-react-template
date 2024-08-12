@@ -86,6 +86,8 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   placeOfBlIssue: string;
   signature: string;
   attachements: ProcessedFilesV2[];
+
+  watermarkText: string;
 }
 
 export const bltemplateCertificate: BLTemplateCertificate = {
@@ -195,7 +197,7 @@ export const bltemplateCertificate: BLTemplateCertificate = {
   tempSettingForReferContainer: "Temperature Setting A",
   ffREfnum: "FF123456",
   transportDocType: "Sea Waybill",
-
+  watermarkText: "WATERMARK",
   termsAndConditionOfCarraige: "Standard Terms Apply",
   disclaimer: "Standard Disclaimer",
   placeOfBlIssue: "Export Town Office",
