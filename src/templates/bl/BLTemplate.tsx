@@ -14,6 +14,8 @@ const print = css`
   @media print {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important; /* Apply exact color printing to the entire document */
+    height: 1123px; // A4 height in pixels at 96 DPI
+    width: 794px; // A4 width in pixels at 96 DPI
   }
 `;
 
@@ -147,8 +149,6 @@ const termsPageContainer = css`
 `;
 
 const termsPageStyle = css`
-  height: 1123px; // A4 height in pixels at 96 DPI
-  width: 794px; // A4 width in pixels at 96 DPI
   align-items: center;
   justify-content: center;
   padding: 3.5pt;
@@ -310,7 +310,9 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               <div css={singleRowStyle}>
                 <div css={cellStyle}>
                   <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>SCAC: {document?.standardCarrierAlphaCode}</p>
+                    <p css={boldTextStyle}>
+                      SCAC: {document?.standardCarrierAlphaCode} ({document?.carrier?.name})
+                    </p>
                   </div>
                 </div>
               </div>
@@ -421,21 +423,20 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               <div css={cellStyle}>
                 <div css={subContainerStyle}>
                   <p css={boldTextStyle}>Total No. Of Containers</p>
-                  <p>{document.totalNoOfContainers}</p>
+                  <p>{document?.totalNoOfContainers}</p>
                 </div>
               </div>
               <div css={rowStyle}>
                 <div css={cellStyle}>
                   <div css={subContainerStyle}>
                     <p css={boldTextStyle}>Container Type</p>
-                    <p>{document.containerType}</p>
+                    <p>{document?.containerType}</p>
                   </div>
                 </div>
                 <div css={cellStyle}>
                   <div css={subContainerStyle}>
-                    <p>
-                      Shipped on Board: <span css={boldTextStyle}>{document?.shippedOnBoardDate}</span>
-                    </p>
+                    <p css={boldTextStyle}>Shipped on Board </p>
+                    <p>{document?.shippedOnBoardDate}</p>
                   </div>
                 </div>
               </div>
@@ -444,7 +445,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               <div css={rowStyle}>
                 <div css={cellStyle}>
                   <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>Carrier Remarks</p>
+                    <p css={boldTextStyle}>Carrier Remark</p>
                     <p>{document?.remarks}</p>
                   </div>
                 </div>
