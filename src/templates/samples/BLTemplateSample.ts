@@ -22,6 +22,16 @@ interface ProcessedFilesV2 {
   type: string;
 }
 
+interface HistroyChainData {
+  action: string;
+  isNewBeneficiary: boolean;
+  isNewHolder: boolean;
+  beneficiary: string;
+  holder: string;
+  timestamp: number;
+  hash: string;
+}
+
 export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   exporter: Entity;
   freightDetails: Entity;
@@ -50,6 +60,7 @@ export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   attachements: ProcessedFilesV2[];
   watermarkText: string;
   forReleaseOfShipment: string;
+  historyChain: HistroyChainData[];
 }
 
 export const blttemplateCertificate: BLTTemplateCertificate = {
@@ -105,6 +116,27 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
     phoneNumber: "+1-555-654-3210",
     email: "notifyingpartyjkl@example.com"
   },
+
+  historyChain: [
+    {
+      action: "Document has been issued by issuer",
+      isNewBeneficiary: true,
+      isNewHolder: true,
+      beneficiary: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
+      holder: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
+      timestamp: 1723808068000,
+      hash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    },
+    {
+      action: "Released",
+      isNewBeneficiary: false,
+      isNewHolder: false,
+      beneficiary: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
+      holder: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
+      timestamp: 1723808068000,
+      hash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    }
+  ],
 
   imoNumber: "655SDF",
   shippedOnBoardDate: "2023-07-15",
