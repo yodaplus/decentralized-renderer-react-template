@@ -133,6 +133,18 @@ const subContainerStyle = css`
 
 const boldTextStyle = css`
   font-weight: bold;
+  font-family: "Open Sans", sans-serif;
+`;
+
+const remattedTextStyle = css`
+  @media print {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  display: none !important;
+  font-weight: bold;
+  font-family: "Open Sans", sans-serif;
 `;
 
 const termsPageContainer = css`
@@ -562,33 +574,52 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
             </div>
           </footer>
           {/* Vertical Stepper */}
-          <table css={tableStyle2}>
-            <thead>
-              <tr>
-                <th css={tableHeaderStyle}>Action/Date</th>
-                <th css={tableHeaderStyle}>Owner</th>
-                <th css={tableHeaderStyle}>Holder</th>
-              </tr>
-            </thead>
-            <tbody>
-              {document.historyChain?.map((item: any, index: number) => {
-                return (
-                  <tr key={index}>
-                    <td css={historyColumnStyle}>
-                      <div css={actionInfoStyle}>
-                        <h4>{item?.action}</h4>
-                      </div>
-                      <div css={timestampStyle}>{formatTimestamp(item.timestamp)}</div>
-                      <div css={statusDotStyle}> </div>
-                    </td>
-                    <td css={historyColumnStyle}>{item?.beneficiary}</td>
-                    <td css={historyColumnStyle}>{item?.holder}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          {document.historyChain && (
+            <table css={tableStyle2}>
+              <thead>
+                <tr>
+                  <th css={tableHeaderStyle}>Action/Date</th>
+                  <th css={tableHeaderStyle}>Owner</th>
+                  <th css={tableHeaderStyle}>Holder</th>
+                </tr>
+              </thead>
+              <tbody>
+                {document.historyChain?.map((item: any, index: number) => {
+                  return (
+                    <tr key={index}>
+                      <td css={historyColumnStyle}>
+                        <div css={actionInfoStyle}>
+                          <h4>
+                            {item?.action === "Document surrendered to issuer" ||
+                            item?.action === "Surrender of document accepted"
+                              ? "Converted To Paper"
+                              : item?.action}
+                          </h4>
+                        </div>
+                        <div css={timestampStyle}>{formatTimestamp(item.timestamp)}</div>
+                        <div css={statusDotStyle}> </div>
+                      </td>
+                      <td css={historyColumnStyle}>
+                        {document?.fetchNameByAddress?.[item?.beneficiary] ?? item.beneficiary}
+                      </td>
+                      <td css={historyColumnStyle}>{document?.fetchNameByAddress?.[item?.holder] ?? item.holder}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
         </div>
+        {document?.historyChain?.[document?.historyChain?.length - 1]?.action === "Surrender of document accepted" && (
+          <>
+            {document?.remattedText && (
+              <div css={remattedTextStyle}>
+                {document?.remattedText}{" "}
+                {formatTimestamp(document?.historyChain?.[document?.historyChain?.length - 1]?.timestamp)}
+              </div>
+            )}
+          </>
+        )}
       </div>
       {termsPages.map((pageContent, index) => (
         <div key={index} css={termsPageContainer}>

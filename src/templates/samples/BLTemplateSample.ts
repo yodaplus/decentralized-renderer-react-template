@@ -22,6 +22,10 @@ interface ProcessedFilesV2 {
   type: string;
 }
 
+interface NameWithAddress {
+  [address: string]: string;
+}
+
 interface HistroyChainData {
   action: string;
   isNewBeneficiary: boolean;
@@ -61,6 +65,8 @@ export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   watermarkText: string;
   forReleaseOfShipment: string;
   historyChain: HistroyChainData[];
+  fetchNameByAddress: NameWithAddress;
+  remattedText: string;
 }
 
 export const blttemplateCertificate: BLTTemplateCertificate = {
@@ -122,21 +128,28 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
       action: "Document has been issued by issuer",
       isNewBeneficiary: true,
       isNewHolder: true,
-      beneficiary: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
+      beneficiary: "0x4c4A715cb2Ec9eC2f539b215EEB341428FBaa060",
       holder: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
       timestamp: 1723808068000,
       hash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     },
     {
-      action: "Released",
+      action: "Surrender of document accepted",
       isNewBeneficiary: false,
       isNewHolder: false,
-      beneficiary: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
+      beneficiary: "0x4c4A715cb2Ec9eC2f539b215EEB341428FBaa060",
       holder: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
       timestamp: 1723808068000,
       hash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     }
   ],
+
+  fetchNameByAddress: {
+    "0x4c4A715cb2Ec9eC2f539b215EEB341428FBaa060": "Rdev1",
+    "0x80914661DEFD72d923443d47Aae4187ff2F7782F": "RDEV COMPANY"
+  },
+
+  remattedText: "Converted To Paper",
 
   imoNumber: "655SDF",
   shippedOnBoardDate: "2023-07-15",
