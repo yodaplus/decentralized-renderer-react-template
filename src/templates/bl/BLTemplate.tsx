@@ -133,6 +133,18 @@ const subContainerStyle = css`
 
 const boldTextStyle = css`
   font-weight: bold;
+  font-family: "Open Sans", sans-serif;
+`;
+
+const remattedTextStyle = css`
+  @media print {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  display: none !important;
+  font-weight: bold;
+  font-family: "Open Sans", sans-serif;
 `;
 
 const termsPageContainer = css`
@@ -211,6 +223,60 @@ const signatureValueStyle = css`
   color: black;
 `;
 
+// Styles converted to CSS-in-JS
+const tableStyle2 = css`
+  width: 100%;
+  border-collapse: collapse;
+
+  @media print {
+    display: table; /* Display the table only in print */
+  }
+
+  @media screen {
+    display: none; /* Hide the table on the screen */
+  }
+`;
+
+const tableHeaderStyle = css`
+  font-weight: bold;
+  text-align: left;
+  padding: 15px;
+  font-size: 8pt;
+`;
+
+const actionInfoStyle = css`
+  display: flex;
+  align-items: center;
+
+  h4 {
+    margin: 0 10px;
+    color: #212529;
+    font-size: 9pt;
+  }
+`;
+
+const timestampStyle = css`
+  margin-top: 5px;
+  color: #7f8c8d;
+  font-size: 7pt;
+`;
+
+const statusDotStyle = css`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  width: 12px;
+  height: 12px;
+  background-color: #007854;
+  border-radius: 50%;
+`;
+
+const historyColumnStyle = css`
+  padding: 0 15px;
+  font-size: 7pt;
+`;
+
 const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
   const pages: string[] = [];
   let currentPage = "";
@@ -230,6 +296,34 @@ const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
 
   return pages;
 };
+
+function formatTimestamp(timestamp: string | number | Date) {
+  const date = new Date(timestamp);
+
+  const day = date.getDate();
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+
+  let hours = date.getHours();
+  const minutes = date
+    .getMinutes()
+    .toString()
+    .padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // Adjust for 12 AM and 12 PM
+
+  const ordinalSuffix = (n: number) => {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return s[(v - 20) % 10] || s[v] || s[0];
+  };
+
+  const formattedDate = `${day}${ordinalSuffix(day)} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
+  return formattedDate;
+}
 
 export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate> & { className?: string }> = ({
   document,
@@ -479,7 +573,53 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               </div>
             </div>
           </footer>
+          {/* Vertical Stepper */}
+          {document.historyChain && (
+            <table css={tableStyle2}>
+              <thead>
+                <tr>
+                  <th css={tableHeaderStyle}>Action/Date</th>
+                  <th css={tableHeaderStyle}>Owner</th>
+                  <th css={tableHeaderStyle}>Holder</th>
+                </tr>
+              </thead>
+              <tbody>
+                {document.historyChain?.map((item: any, index: number) => {
+                  return (
+                    <tr key={index}>
+                      <td css={historyColumnStyle}>
+                        <div css={actionInfoStyle}>
+                          <h4>
+                            {item?.action === "Document surrendered to issuer" ||
+                            item?.action === "Surrender of document accepted"
+                              ? "Converted To Paper"
+                              : item?.action}
+                          </h4>
+                        </div>
+                        <div css={timestampStyle}>{formatTimestamp(item.timestamp)}</div>
+                        <div css={statusDotStyle}> </div>
+                      </td>
+                      <td css={historyColumnStyle}>
+                        {document?.fetchNameByAddress?.[item?.beneficiary] ?? item.beneficiary}
+                      </td>
+                      <td css={historyColumnStyle}>{document?.fetchNameByAddress?.[item?.holder] ?? item.holder}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
         </div>
+        {document?.historyChain?.[document?.historyChain?.length - 1]?.action === "Surrender of document accepted" && (
+          <>
+            {document?.remattedText && (
+              <div css={remattedTextStyle}>
+                {document?.remattedText}{" "}
+                {formatTimestamp(document?.historyChain?.[document?.historyChain?.length - 1]?.timestamp)}
+              </div>
+            )}
+          </>
+        )}
       </div>
       {termsPages.map((pageContent, index) => (
         <div key={index} css={termsPageContainer}>
