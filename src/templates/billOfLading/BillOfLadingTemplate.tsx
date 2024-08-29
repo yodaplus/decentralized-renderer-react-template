@@ -622,8 +622,9 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                       <td css={historyColumnStyle}>
                         <div css={actionInfoStyle}>
                           <h4>
-                            {item?.action === "Document surrendered to issuer" ||
-                            item?.action === "Surrender of document accepted"
+                            {item?.action === "Document surrendered to issuer"
+                              ? "Request to convert to paper"
+                              : item?.action === "Surrender of document accepted"
                               ? "Converted To Paper"
                               : item?.action}
                           </h4>
