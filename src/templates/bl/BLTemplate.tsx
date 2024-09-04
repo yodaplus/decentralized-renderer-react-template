@@ -156,6 +156,11 @@ const termsWatermarkStyle = css`
   z-index: -1;
 `;
 
+const threeColumnsRowStyle = css`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
 const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
   const pages: string[] = [];
   let currentPage = "";
@@ -255,7 +260,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                   <p>{document?.notifyingParty?.email}</p>
                 </div>
               </div>
-              <div css={rowStyle}>
+              <div css={threeColumnsRowStyle}>
                 <div css={cellStyle}>
                   <div css={subContainerStyle}>
                     <p css={boldTextStyle}>Vessel Name</p>
@@ -272,12 +277,6 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                   <div css={subContainerStyle}>
                     <p css={boldTextStyle}>Voyage Number</p>
                     <p>{document.voyageNumber}</p>
-                  </div>
-                </div>
-                <div css={cellStyle}>
-                  <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>Buyer Contract</p>
-                    <p>{document.buyerContract}</p>
                   </div>
                 </div>
               </div>
