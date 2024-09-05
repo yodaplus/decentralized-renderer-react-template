@@ -202,7 +202,7 @@ const signatureHeaderStyle = css`
   margin-bottom: 4pt;
   width: 100%;
   text-align: left;
-  color: red;
+  color: black;
 `;
 
 const signatureInfoStyle = css`
@@ -277,6 +277,19 @@ const historyColumnStyle = css`
   font-size: 7pt;
 `;
 
+const threeColumnsRowStyle = css`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
+const pageNumberStyle = css`
+  position: absolute;
+  top: 10pt;
+  right: 10pt;
+  font-size: 8pt;
+  font-weight: bold;
+`;
+
 const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
   const pages: string[] = [];
   let currentPage = "";
@@ -333,10 +346,14 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
     return document?.termsAndConditions ? splitIntoPages(document?.termsAndConditions) : [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [document?.termsAndConditions]);
+  const totalPages = 1 + termsPages.length; // 1 for main document + number of terms pages
+
   return (
     <>
       <div css={print} className="watermarkprint">
         <div css={containerStyle} className={className} id="custom-template">
+          <div css={pageNumberStyle}>Page 1 of {totalPages}</div>
+
           <div css={watermarkStyle}>
             {/* You can replace this text with an image by using an <img> tag */}
             {document?.watermarkText}
@@ -428,18 +445,12 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 </div>
               </div>
             </div>
-            <div css={rowStyle}>
+            <div css={threeColumnsRowStyle}>
               <div css={singleRowStyle}>
                 <div css={cellStyle}>
                   <div css={subContainerStyle}>
                     <p css={boldTextStyle}>IMO Number</p>
                     <p>{document.imoNumber}</p>
-                  </div>
-                </div>
-                <div css={cellStyle}>
-                  <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>Buyer Contract</p>
-                    <p>{document.buyerContract}</p>
                   </div>
                 </div>
               </div>
@@ -625,6 +636,10 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
       {termsPages.map((pageContent, index) => (
         <div key={index} css={termsPageContainer}>
           <div css={[print, termsPageStyle]} className="watermarkprint page-break">
+            <div css={pageNumberStyle}>
+              Page {index + 2} of {totalPages}
+            </div>
+
             <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
             <div css={containerStyle}>
               <h5 css={titleStyle}>Terms And Conditions - Page {index + 1}</h5>
