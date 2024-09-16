@@ -202,7 +202,7 @@ const signatureHeaderStyle = css`
   margin-bottom: 4pt;
   width: 100%;
   text-align: left;
-  color: red;
+  color: black;
 `;
 
 const signatureInfoStyle = css`
@@ -277,6 +277,105 @@ const historyColumnStyle = css`
   font-size: 7pt;
 `;
 
+const threeColumnsRowStyle = css`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
+const pageNumberStyle = css`
+  position: absolute;
+  top: 10pt;
+  right: 10pt;
+  font-size: 8pt;
+  font-weight: bold;
+`;
+const endorsementChain = css`
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+`;
+
+const backButton = css`
+  padding: 8px 16px;
+  margin-bottom: 20px;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+const title = css`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+`;
+
+const chainGrid = css`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+`;
+
+const gridHeader = css`
+  font-weight: bold;
+  padding: 10px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+`;
+
+const actionDate = css`
+  position: relative;
+  padding-right: 20px;
+`;
+
+const actionInfo = css`
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px; /* Add space for the dot and line */
+`;
+
+const action = css`
+  font-weight: 500;
+  font-size: 14px;
+`;
+
+const timestamp = css`
+  font-size: 12px;
+  color: #6c757d;
+`;
+
+const statusDot = css`
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: #28a745;
+  border-radius: 50%;
+
+  z-index: 2;
+`;
+
+const verticalLine = css`
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  width: 2px;
+  height: calc(100% + 10px);
+  border-left: 2px dotted #28a745;
+  z-index: 1;
+`;
+
+const gridCell = css`
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 14px;
+`;
+
 const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
   const pages: string[] = [];
   let currentPage = "";
@@ -333,10 +432,14 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
     return document?.termsAndConditions ? splitIntoPages(document?.termsAndConditions) : [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [document?.termsAndConditions]);
+  const totalPages = 1 + termsPages.length; // 1 for main document + number of terms pages
+
   return (
     <>
       <div css={print} className="watermarkprint">
         <div css={containerStyle} className={className} id="custom-template">
+          <div css={pageNumberStyle}>Page 1 of {totalPages}</div>
+
           <div css={watermarkStyle}>
             {/* You can replace this text with an image by using an <img> tag */}
             {document?.watermarkText}
@@ -428,18 +531,12 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 </div>
               </div>
             </div>
-            <div css={rowStyle}>
+            <div css={threeColumnsRowStyle}>
               <div css={singleRowStyle}>
                 <div css={cellStyle}>
                   <div css={subContainerStyle}>
                     <p css={boldTextStyle}>IMO Number</p>
                     <p>{document.imoNumber}</p>
-                  </div>
-                </div>
-                <div css={cellStyle}>
-                  <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>Buyer Contract</p>
-                    <p>{document.buyerContract}</p>
                   </div>
                 </div>
               </div>
@@ -575,40 +672,36 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
           </footer>
           {/* Vertical Stepper */}
           {document.historyChain && (
-            <table css={tableStyle2}>
-              <thead>
-                <tr>
-                  <th css={tableHeaderStyle}>Action/Date</th>
-                  <th css={tableHeaderStyle}>Owner</th>
-                  <th css={tableHeaderStyle}>Holder</th>
-                </tr>
-              </thead>
-              <tbody>
-                {document.historyChain?.map((item: any, index: number) => {
-                  return (
-                    <tr key={index}>
-                      <td css={historyColumnStyle}>
-                        <div css={actionInfoStyle}>
-                          <h4>
-                            {item?.action === "Document surrendered to issuer"
-                              ? "Request to convert to paper"
-                              : item?.action === "Surrender of document accepted"
-                              ? "Converted To Paper"
-                              : item?.action}
-                          </h4>
-                        </div>
-                        <div css={timestampStyle}>{formatTimestamp(item.timestamp)}</div>
-                        <div css={statusDotStyle}> </div>
-                      </td>
-                      <td css={historyColumnStyle}>
-                        {document?.fetchNameByAddress?.[item?.beneficiary] ?? item.beneficiary}
-                      </td>
-                      <td css={historyColumnStyle}>{document?.fetchNameByAddress?.[item?.holder] ?? item.holder}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <div css={endorsementChain}>
+              <h2 css={title}>Endorsement Chain</h2>
+
+              <div css={chainGrid}>
+                <div css={gridHeader}>Action/Date</div>
+                <div css={gridHeader}>Owner</div>
+                <div css={gridHeader}>Holder</div>
+
+                {document.historyChain?.map((item, index) => (
+                  <React.Fragment key={index}>
+                    <div css={actionDate}>
+                      <div css={actionInfo}>
+                        <span css={action}>
+                          {item.action === "Document surrendered to issuer"
+                            ? "Request to convert to paper"
+                            : item.action === "Surrender of document accepted"
+                            ? "Converted To Paper"
+                            : item.action}
+                        </span>
+                        <span css={timestamp}>{formatTimestamp(item.timestamp)}</span>
+                      </div>
+                      <div css={statusDot}></div>
+                      {index < document.historyChain.length - 1 && <div css={verticalLine}></div>}
+                    </div>
+                    <div css={gridCell}>{document?.fetchNameByAddress?.[item?.beneficiary] ?? item.beneficiary}</div>
+                    <div css={gridCell}>{document?.fetchNameByAddress?.[item?.holder] ?? item.holder}</div>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
           )}
         </div>
         {document?.historyChain?.[document?.historyChain?.length - 1]?.action === "Surrender of document accepted" && (
@@ -625,6 +718,10 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
       {termsPages.map((pageContent, index) => (
         <div key={index} css={termsPageContainer}>
           <div css={[print, termsPageStyle]} className="watermarkprint page-break">
+            <div css={pageNumberStyle}>
+              Page {index + 2} of {totalPages}
+            </div>
+
             <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
             <div css={containerStyle}>
               <h5 css={titleStyle}>Terms And Conditions - Page {index + 1}</h5>
