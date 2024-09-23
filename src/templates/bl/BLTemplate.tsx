@@ -283,18 +283,22 @@ const threeColumnsRowStyle = css`
 `;
 
 const pageNumberStyle = css`
+  display: none;
   position: absolute;
   top: 10pt;
   right: 10pt;
   font-size: 8pt;
   font-weight: bold;
+  @media print {
+    display: block; /* Display the table only in print */
+  }
 `;
-const endorsementChain = css`
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-`;
+// const endorsementChain = css`
+//   font-family: Arial, sans-serif;
+//   padding: 20px;
+//   background-color: #f8f9fa;
+//   border-radius: 8px;
+// `;
 
 const backButton = css`
   padding: 8px 16px;
@@ -371,9 +375,23 @@ const verticalLine = css`
 
 const gridCell = css`
   padding: 10px;
-  background-color: white;
   border-radius: 4px;
   font-size: 14px;
+`;
+
+const endorsementChainContainer = css`
+  display: none; // Hide by default
+  page-break-before: always; // Ensure it starts on a new page
+
+  @media print {
+    display: block; // Show only when printing
+  }
+`;
+
+const endorsementChain = css`
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  border-radius: 8px;
 `;
 
 const splitIntoPages = (text: string, charsPerPage = 5000): string[] => {
@@ -432,7 +450,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
     return document?.termsAndConditions ? splitIntoPages(document?.termsAndConditions) : [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [document?.termsAndConditions]);
-  const totalPages = 1 + termsPages.length; // 1 for main document + number of terms pages
+  const totalPages = termsPages.length + (document.historyChain?.length > 0 ? 2 : 1);
 
   return (
     <>
@@ -532,26 +550,23 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               </div>
             </div>
             <div css={threeColumnsRowStyle}>
-              <div css={singleRowStyle}>
-                <div css={cellStyle}>
-                  <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>IMO Number</p>
-                    <p>{document.imoNumber}</p>
-                  </div>
+              <div css={cellStyle}>
+                <div css={subContainerStyle}>
+                  <p css={boldTextStyle}>IMO Number</p>
+                  <p>{document.imoNumber}</p>
                 </div>
               </div>
-              <div css={singleRowStyle}>
-                <div css={cellStyle}>
-                  <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>Vessel Name</p>
-                    <p>{document.vesselName}</p>
-                  </div>
+
+              <div css={cellStyle}>
+                <div css={subContainerStyle}>
+                  <p css={boldTextStyle}>Vessel Name</p>
+                  <p>{document.vesselName}</p>
                 </div>
-                <div css={cellStyle}>
-                  <div css={subContainerStyle}>
-                    <p css={boldTextStyle}>Voyage Number</p>
-                    <p>{document.voyageNumber}</p>
-                  </div>
+              </div>
+              <div css={cellStyle}>
+                <div css={subContainerStyle}>
+                  <p css={boldTextStyle}>Voyage Number</p>
+                  <p>{document.voyageNumber}</p>
                 </div>
               </div>
             </div>
@@ -671,10 +686,35 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
             </div>
           </footer>
           {/* Vertical Stepper */}
-          {document.historyChain && (
+        </div>
+      </div>
+      {termsPages.map((pageContent, index) => (
+        <div key={index} css={termsPageContainer}>
+          <div css={[print, termsPageStyle]} className="watermarkprint page-break">
+            <div css={pageNumberStyle}>
+              Page {index + 2} of {totalPages}
+            </div>
+
+            <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
+            <div css={containerStyle}>
+              <h5 css={titleStyle}>Terms And Conditions - Page {index + 1}</h5>
+              <div className="termsAndConditions">
+                {pageContent.split("\n").map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+      {document.historyChain && (
+        <div css={endorsementChainContainer}>
+          <div css={[print, containerStyle]} className="watermarkprint">
+            <div css={pageNumberStyle}>
+              Page {totalPages} of {totalPages}
+            </div>
             <div css={endorsementChain}>
               <h2 css={title}>Endorsement Chain</h2>
-
               <div css={chainGrid}>
                 <div css={gridHeader}>Action/Date</div>
                 <div css={gridHeader}>Owner</div>
@@ -701,39 +741,25 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                   </React.Fragment>
                 ))}
               </div>
-            </div>
-          )}
-        </div>
-        {document?.historyChain?.[document?.historyChain?.length - 1]?.action === "Surrender of document accepted" && (
-          <>
-            {document?.remattedText && (
-              <div css={remattedTextStyle}>
-                {document?.remattedText}{" "}
-                {formatTimestamp(document?.historyChain?.[document?.historyChain?.length - 1]?.timestamp)}
+              <div css={watermarkStyle}>
+                {/* You can replace this text with an image by using an <img> tag */}
+                {document?.watermarkText}
               </div>
+            </div>
+            {document?.historyChain?.[document?.historyChain?.length - 1]?.action ===
+              "Surrender of document accepted" && (
+              <>
+                {document?.remattedText && (
+                  <div css={remattedTextStyle}>
+                    {document?.remattedText}{" "}
+                    {formatTimestamp(document?.historyChain?.[document?.historyChain?.length - 1]?.timestamp)}
+                  </div>
+                )}
+              </>
             )}
-          </>
-        )}
-      </div>
-      {termsPages.map((pageContent, index) => (
-        <div key={index} css={termsPageContainer}>
-          <div css={[print, termsPageStyle]} className="watermarkprint page-break">
-            <div css={pageNumberStyle}>
-              Page {index + 2} of {totalPages}
-            </div>
-
-            <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
-            <div css={containerStyle}>
-              <h5 css={titleStyle}>Terms And Conditions - Page {index + 1}</h5>
-              <div className="termsAndConditions">
-                {pageContent.split("\n").map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
-      ))}
+      )}
     </>
   );
 };
