@@ -272,26 +272,6 @@ export const PNTemplate: FunctionComponent<TemplateProps<PNTemplateCertificate> 
               </p>
             </div>
           </div>
-          {/* <div css={oneRowStyle}>
-            <div css={cellStyle}>
-              <p css={descStyle}>Law and Arbitration</p>
-              <div css={titleDescStyle}>
-                The maker, payee and each indorsee and/or holder of this promissory note agree that: (1) This promissory
-                note shall be subject to Singapore law, without reference to any conflict of law rules thereunder (but
-                not limited to any conflict of law rules under the Bills of Exchange Act 1949) or under any other system
-                of law. (2) Any and all disputes arising out of or in connection with this contract, including any
-                question regarding its existence, validity or termination, shall be referred to and finally resolved by
-                arbitration seated in Singapore in accordance with the Arbitration Rules of the Singapore Chamber of
-                Maritime Arbitration (&ldquo;SCMA Rules&rdquo;) current at the commencement of the arbitration, which
-                rules are deemed to be incorporated by reference in this clause No presentation / Notice / Protest
-                Required The maker, payee and each indorsee and/or holder of this promissory note agree that any and all
-                requirements for presentation, notice and/or protest under any law (whether as a precondition to
-                liability or otherwise) are fully and irrevocably waived and all parties to this promissory note shall
-                be estopped from raising the non-fulfillment of any such alleged requirements for presentation and/or
-                notification to avoid liability for payment hereunder.
-              </div>
-            </div>
-          </div> */}
           <div css={oneRowStyle}>
             <div css={cellStyle}>
               <p
