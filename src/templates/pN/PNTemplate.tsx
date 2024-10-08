@@ -186,10 +186,12 @@ export const PNTemplate: FunctionComponent<TemplateProps<PNTemplateCertificate> 
                 <p>Company Name:</p>
                 <div>{document?.drawerName}</div>
               </div>
-              <div css={titleDescStyle}>
-                <p>Company Number/LEI:</p>
-                <div>{document?.leiOfDrawer}</div>
-              </div>
+              {document?.leiOfDrawer && (
+                <div css={titleDescStyle}>
+                  <p>Company Number/LEI:</p>
+                  <div>{document?.leiOfDrawer}</div>
+                </div>
+              )}
               {document?.countryOfDrawer && (
                 <div css={titleDescStyle}>
                   <p>Jurisdiction of Incorporation:</p>
@@ -207,10 +209,12 @@ export const PNTemplate: FunctionComponent<TemplateProps<PNTemplateCertificate> 
                 <p>Company Name:</p>
                 <div>{document?.draweeName}</div>
               </div>
-              <div css={titleDescStyle}>
-                <p>Company Number/LEI:</p>
-                <div>{document?.leiOfDrawee}</div>
-              </div>
+              {document?.leiOfDrawee && (
+                <div css={titleDescStyle}>
+                  <p>Company Number/LEI:</p>
+                  <div>{document?.leiOfDrawee}</div>
+                </div>
+              )}
               {document?.countryOfDrawee && (
                 <div css={titleDescStyle}>
                   <p>Jurisdiction of Incorporation:</p>
