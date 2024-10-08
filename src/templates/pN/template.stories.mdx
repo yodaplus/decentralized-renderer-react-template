@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { PNTemplate } from "./PNTemplate";
+import { pNTemplateCertificate } from "../samples/pNTemplateSample";
+
+
+<Meta title="MDX|PNTemplate" component={PNTemplate} />
+
+# PNTemplate component
+
+<Description of={PNTemplate} />
+
+# Props
+
+<Props of={PNTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <PNTemplate document={object("document", pNTemplateCertificate)} />
+  </Story>
+</Preview>
