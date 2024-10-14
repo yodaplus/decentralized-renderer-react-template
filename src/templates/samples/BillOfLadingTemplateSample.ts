@@ -107,6 +107,7 @@ export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
   historyChain: HistroyChainData[];
   fetchNameByAddress: NameWithAddress;
   remattedText: string;
+  mode: "preview" | "print";
 }
 
 export const bltemplateCertificate: BLTemplateCertificate = {
@@ -279,6 +280,7 @@ export const bltemplateCertificate: BLTemplateCertificate = {
     }
   ],
   watermarkText: "Watermark Test",
+  mode: "preview",
   termsAndConditions: `Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013

@@ -22,6 +22,8 @@ export interface PNTemplateCertificate extends v2.OpenAttestationDocument {
   leiOfDrawee: string;
   signatureName: string;
   signatureTimeStamp: string;
+  mode: "preview" | "print";
+  jurisdiction: string;
 }
 
 export const pNTemplateCertificate: PNTemplateCertificate = {
@@ -64,5 +66,7 @@ export const pNTemplateCertificate: PNTemplateCertificate = {
   leiOfDrawee: "1A2B3C4D5E6F7G8H9I0J",
   watermarkText: "My watermark text",
   signatureName: "Jane Smith",
-  signatureTimeStamp: "03/07/2024 07:11 PM IST"
+  signatureTimeStamp: "03/07/2024 07:11 PM IST",
+  mode: "preview",
+  jurisdiction: "United States of America"
 };

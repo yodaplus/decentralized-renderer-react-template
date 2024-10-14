@@ -271,11 +271,12 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
   document,
   className = ""
 }) => {
+  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
   return (
     <>
       <div css={print}>
         <div css={containerStyle} className={className} id="custom-template">
-          <div css={watermarkStyle}>
+          <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
             {/* You can replace this text with an image by using an <img> tag */}
             {document?.watermarkText}
           </div>

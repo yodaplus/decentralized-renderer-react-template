@@ -21,6 +21,7 @@ export interface BillOfExchangeTemplateCertificate extends v2.OpenAttestationDoc
   dueDate: string;
   placeOfIssue: string;
   watermarkText: string;
+  mode: "preview" | "print";
 }
 
 export const billOfExchangeTemplateCertificate: BillOfExchangeTemplateCertificate = {
@@ -59,5 +60,6 @@ export const billOfExchangeTemplateCertificate: BillOfExchangeTemplateCertificat
   placeOfIssue: "New York",
   currency: "US Dollar",
   currencyCode: "USD",
-  watermarkText: "Watermark Text"
+  watermarkText: "Watermark Text",
+  mode: "preview"
 };

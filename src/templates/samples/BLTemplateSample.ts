@@ -67,6 +67,7 @@ export interface BLTTemplateCertificate extends v2.OpenAttestationDocument {
   historyChain: HistroyChainData[];
   fetchNameByAddress: NameWithAddress;
   remattedText: string;
+  mode: "preview" | "print";
 }
 
 export const blttemplateCertificate: BLTTemplateCertificate = {
@@ -150,6 +151,8 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
   },
 
   remattedText: "Converted To Paper",
+
+  mode: "preview",
 
   imoNumber: "655SDF",
   shippedOnBoardDate: "2023-07-15",
