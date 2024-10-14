@@ -451,14 +451,14 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [document?.termsAndConditions]);
   const totalPages = termsPages.length + (document.historyChain?.length > 0 ? 2 : 1);
-
+  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
   return (
     <>
       <div css={print} className="watermarkprint">
         <div css={containerStyle} className={className} id="custom-template">
           <div css={pageNumberStyle}>Page 1 of {totalPages}</div>
 
-          <div css={watermarkStyle}>
+          <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
             {/* You can replace this text with an image by using an <img> tag */}
             {document?.watermarkText}
           </div>

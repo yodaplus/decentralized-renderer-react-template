@@ -73,10 +73,11 @@ const signatureStyle = css`
 export const BillOfExchangeTemplate: FunctionComponent<TemplateProps<BillOfExchangeTemplateCertificate> & {
   className?: string;
 }> = ({ document, className = "" }) => {
+  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
   return (
     <div css={pageStyle}>
       <div css={containerStyle} className={className} id="custom-template">
-        <div css={watermarkStyle}>
+        <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
           {/* You can replace this text with an image by using an <img> tag */}
           {document?.watermarkText}
         </div>

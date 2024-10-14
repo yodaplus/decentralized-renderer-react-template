@@ -22,6 +22,7 @@ export interface PromissoryNoteTemplateCertificate extends v2.OpenAttestationDoc
   placeOfIssue: string;
   watermarkText: string;
   jurisdiction: string;
+  mode: "preview" | "print";
 }
 
 export const promissoryNoteTemplateCertificate: PromissoryNoteTemplateCertificate = {
@@ -61,5 +62,6 @@ export const promissoryNoteTemplateCertificate: PromissoryNoteTemplateCertificat
   currency: "US Dollar",
   currencyCode: "USD",
   jurisdiction: "",
-  watermarkText: "My watermark text"
+  watermarkText: "My watermark text",
+  mode: "preview"
 };
