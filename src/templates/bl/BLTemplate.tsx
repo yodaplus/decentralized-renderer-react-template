@@ -451,7 +451,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [document?.termsAndConditions]);
   const totalPages = termsPages.length + (document.historyChain?.length > 0 ? 2 : 1);
-  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
+  const isWatermarkVisible = document?.mode === "preview";
   return (
     <>
       <div css={print} className="watermarkprint">

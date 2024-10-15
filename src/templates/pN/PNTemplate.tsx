@@ -165,7 +165,7 @@ const wordBold = css`
 export const PNTemplate: FunctionComponent<TemplateProps<PNTemplateCertificate> & {
   className?: string;
 }> = ({ document, className = "" }) => {
-  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
+  const isWatermarkVisible = document?.mode === "preview";
   return (
     <div css={pageStyle}>
       <div css={containerStyle} className={className} id="custom-template">
