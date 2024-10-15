@@ -271,7 +271,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
   document,
   className = ""
 }) => {
-  const isWatermarkVisible = document?.mode === "preview";
+  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
   return (
     <>
       <div css={print}>

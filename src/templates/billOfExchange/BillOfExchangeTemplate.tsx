@@ -73,7 +73,7 @@ const signatureStyle = css`
 export const BillOfExchangeTemplate: FunctionComponent<TemplateProps<BillOfExchangeTemplateCertificate> & {
   className?: string;
 }> = ({ document, className = "" }) => {
-  const isWatermarkVisible = document?.mode === "preview";
+  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
   return (
     <div css={pageStyle}>
       <div css={containerStyle} className={className} id="custom-template">
