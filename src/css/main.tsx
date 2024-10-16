@@ -11,13 +11,15 @@ export const containerStyle = css`
 export const watermarkStyle = css`
   display: none; /* Hide watermark by default */
   position: absolute;
+  margin-top: 26pt;
   top: 50%;
   left: 50%;
+  font-family: "Open Sans", sans-serif;
   transform: translate(-50%, -50%) rotate(-45deg); /* Rotate the watermark */
   opacity: 0.2; /* Adjust opacity for watermark visibility */
   font-size: 60pt; /* Adjust size for text watermark */
   color: #000; /* Adjust color for text watermark */
-  z-index: -1; /* Ensure watermark is behind content */
+  z-index: 9999; /* Ensure watermark is behind content */
   white-space: nowrap; /* Prevent text from wrapping */
   @media print {
     display: block !important; /* Show watermark only when printing */
