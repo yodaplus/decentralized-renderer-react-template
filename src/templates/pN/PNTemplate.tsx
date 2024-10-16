@@ -244,40 +244,73 @@ export const PNTemplate: FunctionComponent<TemplateProps<PNTemplateCertificate> 
               </p>
             </div>
           </div>
-          <div css={paragraphStyle}>
-            <p css={lawHeaderStyle}>Law and Arbitration</p>
-            <p
-              style={{
-                fontWeight: 600
-              }}
-            >
-              The maker, payee and each indorsee and/or holder of this promissory note agree that:
-            </p>
-            <div css={titleDescStyleIndented}>
-              <p>
-                (1) This promissory note shall be subject to Singapore law, without reference to any conflict of law
-                rules thereunder (but not limited to any conflict of law rules under the Bills of Exchange Act 1949) or
-                under any other system of law.
+          {document?.jurisdiction ? (
+            <div css={paragraphStyle}>
+              <p css={lawHeaderStyle}>Law and Arbitration</p>
+              <p
+                style={{
+                  fontWeight: 600
+                }}
+              >
+                The maker, payee and each indorsee and/or holder of this promissory note agree that:
               </p>
-              <p>
-                (2) Any and all disputes arising out of or in connection with this contract, including any question
-                regarding its existence, validity or termination, shall be referred to and finally resolved by
-                arbitration seated in Singapore in accordance with the Arbitration Rules of the Singapore Chamber of
-                Maritime Arbitration (&ldquo;SCMA Rules&rdquo;) current at the commencement of the arbitration, which
-                rules are deemed to be incorporated by reference in this clause.
-              </p>
+              <div css={titleDescStyleIndented}>
+                <p>(1) This promissory note shall be subject to {document?.jurisdiction},</p>
+                <p>
+                  (2) Any and all disputes arising out of or in connection with this contract, including any question
+                  regarding its existence, validity or termination, shall be referred to and finally resolved by
+                  arbitration seated in {document?.jurisdiction} in accordance with the Arbitration Rules of the [insert
+                  relevant arbitration institution or mutually agreed upon rules] current at the commencement of the
+                  arbitration, which rules are deemed to be incorporated by reference in this clause.
+                </p>
+              </div>
+              <p css={lawHeaderStyle}>No presentation / Notice / Protest Required</p>
+              <div css={titleDescStyleIndented}>
+                <p>
+                  The maker, payee and each indorsee and/or holder of this promissory note agree that any and all
+                  requirements for presentation, notice and/or protest under any law (whether as a precondition to
+                  liability or otherwise) are fully and irrevocably waived and all parties to this promissory note shall
+                  be estopped from raising the non-fulfillment of any such alleged requirements for presentation and/or
+                  notification to avoid liability for payment hereunder.
+                </p>
+              </div>
             </div>
-            <p css={lawHeaderStyle}>No presentation / Notice / Protest Required</p>
-            <div css={titleDescStyleIndented}>
-              <p>
-                The maker, payee and each indorsee and/or holder of this promissory note agree that any and all
-                requirements for presentation, notice and/or protest under any law (whether as a precondition to
-                liability or otherwise) are fully and irrevocably waived and all parties to this promissory note shall
-                be estopped from raising the non-fulfillment of any such alleged requirements for presentation and/or
-                notification to avoid liability for payment hereunder.
+          ) : (
+            <div css={paragraphStyle}>
+              <p css={lawHeaderStyle}>Law and Arbitration</p>
+              <p
+                style={{
+                  fontWeight: 600
+                }}
+              >
+                The maker, payee and each indorsee and/or holder of this promissory note agree that:
               </p>
+              <div css={titleDescStyleIndented}>
+                <p>
+                  (1) This promissory note shall be subject to Singapore law, without reference to any conflict of law
+                  rules thereunder (but not limited to any conflict of law rules under the Bills of Exchange Act 1949)
+                  or under any other system of law.
+                </p>
+                <p>
+                  (2) Any and all disputes arising out of or in connection with this contract, including any question
+                  regarding its existence, validity or termination, shall be referred to and finally resolved by
+                  arbitration seated in Singapore in accordance with the Arbitration Rules of the Singapore Chamber of
+                  Maritime Arbitration (&ldquo;SCMA Rules&rdquo;) current at the commencement of the arbitration, which
+                  rules are deemed to be incorporated by reference in this clause.
+                </p>
+              </div>
+              <p css={lawHeaderStyle}>No presentation / Notice / Protest Required</p>
+              <div css={titleDescStyleIndented}>
+                <p>
+                  The maker, payee and each indorsee and/or holder of this promissory note agree that any and all
+                  requirements for presentation, notice and/or protest under any law (whether as a precondition to
+                  liability or otherwise) are fully and irrevocably waived and all parties to this promissory note shall
+                  be estopped from raising the non-fulfillment of any such alleged requirements for presentation and/or
+                  notification to avoid liability for payment hereunder.
+                </p>
+              </div>
             </div>
-          </div>
+          )}
           <div css={oneRowStyle}>
             <div css={cellStyle}>
               <p

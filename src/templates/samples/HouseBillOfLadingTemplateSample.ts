@@ -90,6 +90,7 @@ export interface HouseBLTemplateCertificate extends v2.OpenAttestationDocument {
   signature?: string;
   attachments?: ProcessedFilesV2[];
   watermarkText: string;
+  mode: string;
 }
 
 export const bltemplateCertificate: HouseBLTemplateCertificate = {
@@ -136,6 +137,7 @@ export const bltemplateCertificate: HouseBLTemplateCertificate = {
     phoneNumber: "+1-555-789-0123",
     email: "consignee1@example.com"
   },
+  mode: "preview",
   // carrier: {
   //   name: "Carrier GHI",
   //   address: "321 Carrier Ln., Carrier City, CA 44556",
