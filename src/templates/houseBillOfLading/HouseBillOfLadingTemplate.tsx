@@ -164,11 +164,11 @@ export const HouseBillOfLadingTemplate: FunctionComponent<TemplateProps<HouseBLT
 
   return (
     <div css={print}>
+      <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
+        {/* You can replace this text with an image by using an <img> tag */}
+        {document?.watermarkText}
+      </div>
       <div css={containerStyle} className={className} id="custom-template">
-        <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
-          {/* You can replace this text with an image by using an <img> tag */}
-          {document?.watermarkText}
-        </div>{" "}
         <h5 css={titleStyle}>HOUSE BILL OF LADING</h5>
         <div
           style={{
