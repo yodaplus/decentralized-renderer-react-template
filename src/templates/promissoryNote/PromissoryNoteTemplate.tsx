@@ -81,11 +81,11 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
   const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
   return (
     <div css={pageStyle}>
+      <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
+        {/* You can replace this text with an image by using an <img> tag */}
+        {document?.watermarkText}
+      </div>
       <div css={containerStyle} className={className} id="custom-template">
-        <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
-          {/* You can replace this text with an image by using an <img> tag */}
-          {document?.watermarkText}
-        </div>
         <h5 css={titleStyle}>Promissory Note</h5>
         <div css={innerContainer}>
           <div css={rowStyle}>
