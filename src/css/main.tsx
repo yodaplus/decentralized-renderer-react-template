@@ -11,7 +11,6 @@ export const containerStyle = css`
 export const watermarkStyle = css`
   display: none; /* Hide watermark by default */
   position: absolute;
-  margin-top: 26pt;
   top: 50%;
   left: 50%;
   font-family: "Open Sans", sans-serif;
