@@ -455,13 +455,12 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
   return (
     <>
       <div css={print} className="watermarkprint">
-        <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
-          {/* You can replace this text with an image by using an <img> tag */}
-          {document?.watermarkText}
-        </div>
         <div css={containerStyle} className={className} id="custom-template">
           <div css={pageNumberStyle}>Page 1 of {totalPages}</div>
-
+          <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
+            {/* You can replace this text with an image by using an <img> tag */}
+            {document?.watermarkText}
+          </div>
           <h5 css={titleStyle}>BL</h5>
           <div css={innerContainer}>
             <div css={rowStyle}>
