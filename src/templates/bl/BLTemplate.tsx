@@ -694,8 +694,8 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               Page {index + 2} of {totalPages}
             </div>
 
-            <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
             <div css={containerStyle}>
+              <div css={termsWatermarkStyle}>{document?.watermarkText}</div>
               <h5 css={titleStyle}>Terms And Conditions - Page {index + 1}</h5>
               <div className="termsAndConditions">
                 {pageContent.split("\n").map((paragraph, i) => (
