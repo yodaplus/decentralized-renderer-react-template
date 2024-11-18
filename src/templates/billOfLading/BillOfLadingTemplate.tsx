@@ -593,7 +593,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
               </div>
             )}
           </div>
-          <footer css={footerStyle}>
+          {/* <footer css={footerStyle}>
             <div css={signatureHeaderStyle}>Digitally Signed By:</div>
             <div css={signatureInfoStyle}>
               <div>
@@ -605,7 +605,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                 <span css={signatureValueStyle}>{document?.signatureTimeStamp}</span>
               </div>
             </div>
-          </footer>
+          </footer> */}
           {/* Vertical Stepper */}
           {document.historyChain && (
             <table css={tableStyle2}>
