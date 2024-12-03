@@ -232,7 +232,7 @@ export const PNTemplate: FunctionComponent<TemplateProps<PNTemplateCertificate> 
                   fontSize: "10pt"
                 }}
               >
-                We promise to pay <span css={wordBold}>{document?.drawerName}</span> on&nbsp;
+                We promise to pay <span css={wordBold}>{document?.draweeName}</span> on&nbsp;
                 <span css={wordBold}>{document?.dueDate}</span>, the sum of&nbsp;
                 <span css={wordBold}>
                   {document?.currencyCode}
@@ -240,7 +240,7 @@ export const PNTemplate: FunctionComponent<TemplateProps<PNTemplateCertificate> 
                   {document?.amountInFigures} ({document?.currencyCode} {document?.amountInWords})&nbsp;
                 </span>
                 &nbsp; for value received. Payment shall be made to the designated bank account of the&nbsp;
-                <span css={wordBold}>{document?.drawerName}</span>.
+                <span css={wordBold}>{document?.draweeName}</span>.
               </p>
             </div>
           </div>
