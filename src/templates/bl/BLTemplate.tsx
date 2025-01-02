@@ -719,17 +719,18 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 <div css={gridHeader}>Action/Date</div>
                 <div css={gridHeader}>Owner</div>
                 <div css={gridHeader}>Holder</div>
+                <div css={gridHeader}>Remark</div>
 
                 {document.historyChain?.map((item, index) => (
                   <React.Fragment key={index}>
                     <div css={actionDate}>
                       <div css={actionInfo}>
                         <span css={action}>
-                          {item.action === "Document surrendered to issuer"
+                          {item?.action === "ETR returned to issuer"
                             ? "Request to convert to paper"
-                            : item.action === "Surrender of document accepted"
+                            : item?.action === "ETR taken out of circulation"
                             ? "Converted To Paper"
-                            : item.action}
+                            : item?.action}
                         </span>
                         <span css={timestamp}>{formatTimestamp(item.timestamp)}</span>
                       </div>
@@ -738,6 +739,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                     </div>
                     <div css={gridCell}>{document?.fetchNameByAddress?.[item?.beneficiary] ?? item.beneficiary}</div>
                     <div css={gridCell}>{document?.fetchNameByAddress?.[item?.holder] ?? item.holder}</div>
+                    <div css={gridCell}>{item?.remark}</div>
                   </React.Fragment>
                 ))}
               </div>

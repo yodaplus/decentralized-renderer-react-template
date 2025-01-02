@@ -38,6 +38,7 @@ interface HistroyChainData {
   holder: string;
   timestamp: number;
   hash: string;
+  remark: string;
 }
 
 export interface BLTemplateCertificate extends v2.OpenAttestationDocument {
@@ -175,7 +176,8 @@ export const bltemplateCertificate: BLTemplateCertificate = {
       beneficiary: "0x4c4A715cb2Ec9eC2f539b215EEB341428FBaa060",
       holder: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
       timestamp: 1723808068000,
-      hash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+      hash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      remark: "test remark 1"
     },
     {
       action: "Surrender of document accepted",
@@ -184,7 +186,8 @@ export const bltemplateCertificate: BLTemplateCertificate = {
       beneficiary: "0x4c4A715cb2Ec9eC2f539b215EEB341428FBaa060",
       holder: "0x80914661DEFD72d923443d47Aae4187ff2F7782F",
       timestamp: 1723808068000,
-      hash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+      hash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      remark: ""
     }
   ],
 

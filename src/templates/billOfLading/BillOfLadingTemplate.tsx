@@ -614,6 +614,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                   <th css={tableHeaderStyle}>Action/Date</th>
                   <th css={tableHeaderStyle}>Owner</th>
                   <th css={tableHeaderStyle}>Holder</th>
+                  <th css={tableHeaderStyle}>Remark</th>
                 </tr>
               </thead>
               <tbody>
@@ -623,9 +624,9 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                       <td css={historyColumnStyle}>
                         <div css={actionInfoStyle}>
                           <h4>
-                            {item?.action === "Document surrendered to issuer"
+                            {item?.action === "ETR returned to issuer"
                               ? "Request to convert to paper"
-                              : item?.action === "Surrender of document accepted"
+                              : item?.action === "ETR taken out of circulation"
                               ? "Converted To Paper"
                               : item?.action}
                           </h4>
@@ -637,6 +638,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
                         {document?.fetchNameByAddress?.[item?.beneficiary] ?? item.beneficiary}
                       </td>
                       <td css={historyColumnStyle}>{document?.fetchNameByAddress?.[item?.holder] ?? item.holder}</td>
+                      <td css={historyColumnStyle}>{item?.remark}</td>
                     </tr>
                   );
                 })}
