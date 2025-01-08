@@ -646,7 +646,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BLTemplateCer
             </table>
           )}
         </div>
-        {document?.historyChain?.[document?.historyChain?.length - 1]?.action === "Surrender of document accepted" && (
+        {document?.historyChain?.[document?.historyChain?.length - 1]?.action === "ETR taken out of circulation" && (
           <>
             {document?.remattedText && (
               <div css={remattedTextStyle}>

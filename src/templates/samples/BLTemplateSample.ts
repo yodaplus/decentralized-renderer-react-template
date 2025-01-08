@@ -137,7 +137,7 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
       remark: "test remark1"
     },
     {
-      action: "Surrender of document accepted",
+      action: "ETR taken out of circulation",
       isNewBeneficiary: false,
       isNewHolder: false,
       beneficiary: "0x4c4A715cb2Ec9eC2f539b215EEB341428FBaa060",
