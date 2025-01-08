@@ -749,7 +749,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
               </div>
             </div>
             {document?.historyChain?.[document?.historyChain?.length - 1]?.action ===
-              "Surrender of document accepted" && (
+              "ETR taken out of circulation" && (
               <>
                 {document?.remattedText && (
                   <div css={remattedTextStyle}>
