@@ -1,0 +1,23 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { ShipperLetterOfInstructionTemplate } from "./ShipperLetterOfInstructionTemplate";
+import { shipperLetterOfInstructionCertificate } from "../samples/shipperLetterOfInstructionSample";
+
+
+<Meta title="MDX|ShipperLetterOfInstructionTemplate" component={ShipperLetterOfInstructionTemplate} />
+
+# ShipperLetterOfInstructionTemplate component
+
+<Description of={ShipperLetterOfInstructionTemplate} />
+
+# Props
+
+<Props of={ShipperLetterOfInstructionTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <ShipperLetterOfInstructionTemplate document={object("document", shipperLetterOfInstructionCertificate)}  />
+  </Story>
+</Preview>

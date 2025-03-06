@@ -14,6 +14,7 @@ import { invoiceAttachmentTemplate } from "./invoiceAttachment";
 import { proofOfPaymentTemplate } from "./proofOfPayment/";
 import { bLTemplate } from "./bl";
 import { pNTemplate } from "./pN";
+import { shipperLetterOfInstructionTemplate } from "./shipperLetterOfInstruction";
 
 export const registry: TemplateRegistry<any> = {
   COC: templates,
@@ -30,5 +31,6 @@ export const registry: TemplateRegistry<any> = {
   AirwayBill: airwayBillTemplate,
   TradeSupportingDocuments: tradeSupportingDocumentsTemplate,
   BL: bLTemplate,
-  PN: pNTemplate
+  PN: pNTemplate,
+  ShipperLetterOfInstruction: shipperLetterOfInstructionTemplate
 };
