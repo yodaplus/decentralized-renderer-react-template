@@ -12,15 +12,15 @@ interface PackageInterface {
   name: string;
   description: string;
   noOfPackage: number;
-  packageWidth: number;
-  packageLength: number;
+  packageWidth?: number;
+  packageLength?: number;
   volumeCube: number;
   typeOfPackagingAndShippingMarks: string;
   shippingMarks: string;
 }
 
 export interface ShipperLetterOfInstructionCertificate extends v2.OpenAttestationDocument {
-  documentaryCreditIdentifier: string;
+  documentaryCreditIdentifier?: string;
   issueDate: string;
   dispatchDate: string;
   consignee: Entity;
@@ -91,7 +91,7 @@ export const shipperLetterOfInstructionCertificate: ShipperLetterOfInstructionCe
       }
     }
   ],
-  documentaryCreditIdentifier: "someIdentifier",
+  //   documentaryCreditIdentifier: "someIdentifier",
   issueDate: "2023-08-01",
   dispatchDate: "2023-08-03",
   consignee: {
@@ -132,8 +132,6 @@ export const shipperLetterOfInstructionCertificate: ShipperLetterOfInstructionCe
       name: "Commodity 1",
       description: "Electronics",
       noOfPackage: 100,
-      packageWidth: 30,
-      packageLength: 40,
       volumeCube: 20,
       typeOfPackagingAndShippingMarks: "Some instructions",
       shippingMarks: "shipping marks"

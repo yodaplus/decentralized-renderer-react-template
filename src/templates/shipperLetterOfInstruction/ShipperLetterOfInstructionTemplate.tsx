@@ -167,14 +167,14 @@ export const ShipperLetterOfInstructionTemplate: FunctionComponent<TemplateProps
                 <p>{document?.dispatchDate}</p>
               </div>
             </div>
-            <div css={rowStyle}>
-              {document?.documentaryCreditIdentifier && (
+            {document?.documentaryCreditIdentifier && (
+              <div css={rowStyle}>
                 <div css={cellStyle}>
                   <h4>Documentary Credit Idenitifier</h4>
                   <p>{document?.documentaryCreditIdentifier}</p>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
             <div css={rowStyle}>
               <div css={cellStyle}>
                 <h4>Consignee</h4>
@@ -231,7 +231,7 @@ export const ShipperLetterOfInstructionTemplate: FunctionComponent<TemplateProps
                   <td css={tableHeaderCellStyle}>Commodity Description</td>
                   <td css={tableHeaderCellStyle}>No. of Package</td>
                   <td css={tableHeaderCellStyle}>Package Width</td>
-                  <td css={tableHeaderCellStyle}>Package Height</td>
+                  <td css={tableHeaderCellStyle}>Package Length</td>
                   <td css={tableHeaderCellStyle}>Volume (Cube)</td>
                   <td css={tableHeaderCellStyle}>Type Of Packaging & Shipping Marks</td>
                   <td css={tableHeaderCellStyle}>Shipping Marks</td>
@@ -242,8 +242,8 @@ export const ShipperLetterOfInstructionTemplate: FunctionComponent<TemplateProps
                     <td css={tableCellStyle}>{commodity.name}</td>
                     <td css={tableCellStyle}>{commodity.description}</td>
                     <td css={tableCellStyle}>{commodity.noOfPackage}</td>
-                    <td css={tableCellStyle}>{commodity.packageLength}</td>
-                    <td css={tableCellStyle}>{commodity.packageWidth}</td>
+                    <td css={tableCellStyle}>{commodity?.packageLength || ""}</td>
+                    <td css={tableCellStyle}>{commodity?.packageWidth || ""}</td>
                     <td css={tableCellStyle}>{commodity.volumeCube}</td>
                     <td css={tableCellStyle}>{commodity.typeOfPackagingAndShippingMarks}</td>
                     <td css={tableCellStyle}>{commodity.shippingMarks}</td>
