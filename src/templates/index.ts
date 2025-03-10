@@ -15,6 +15,7 @@ import { proofOfPaymentTemplate } from "./proofOfPayment/";
 import { bLTemplate } from "./bl";
 import { pNTemplate } from "./pN";
 import { shipperLetterOfInstructionTemplate } from "./shipperLetterOfInstruction";
+import { purchaseOrderTemplate } from "./purchaseOrder";
 
 export const registry: TemplateRegistry<any> = {
   COC: templates,
@@ -32,5 +33,6 @@ export const registry: TemplateRegistry<any> = {
   TradeSupportingDocuments: tradeSupportingDocumentsTemplate,
   BL: bLTemplate,
   PN: pNTemplate,
-  ShipperLetterOfInstruction: shipperLetterOfInstructionTemplate
+  ShipperLetterOfInstruction: shipperLetterOfInstructionTemplate,
+  PurchaseOrder: purchaseOrderTemplate
 };
