@@ -198,13 +198,15 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
               <p>{document.importer.email}</p>
               <p>{document.importer.phoneNumber}</p>
             </div>
-            <div css={docNumHeaderStyle}>
-              <h4>SHIP TO :</h4>
-              <p>{document.deliveryParty.name}</p>
-              <p>{document.deliveryParty.address}</p>
-              <p>{document.deliveryParty.email}</p>
-              <p>{document.deliveryParty.phoneNumber}</p>
-            </div>
+            {document.deliveryParty.name && (
+              <div css={docNumHeaderStyle}>
+                <h4>SHIP TO :</h4>
+                <p>{document.deliveryParty.name}</p>
+                <p>{document.deliveryParty.address}</p>
+                <p>{document.deliveryParty.email}</p>
+                <p>{document.deliveryParty.phoneNumber}</p>
+              </div>
+            )}
             <div css={docNumHeaderStyle}>
               <h4>SUPPLIER :</h4>
               <p>{document.exporter.name}</p>
@@ -279,7 +281,7 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
 
             <div css={rowStyle}>
               <div css={cellStyle}>
-                <h4>AMOUNT IN WORDS</h4>
+                <h4>AMOUNT IN WORDS - {document.currency}</h4>
                 <p>
                   {`${numWords(
                     Math.round(
@@ -287,7 +289,7 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
                         document?.miscCharges +
                         document?.taxAmount
                     )
-                  ).toUpperCase()} ${document.currency} ONLY`}
+                  ).toUpperCase()} ONLY`}
                 </p>
               </div>
 
@@ -344,11 +346,12 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
               <p>{document.purchaseOrderTerms}</p>
               <p>{document.paymentTerms}</p>
             </div>
-
-            <div css={docNumHeaderStyle}>
-              <img css={signatureStyle} src={document?.signature} alt="Signature" />
-              <p>Authorised Signatory</p>
-            </div>
+            {document?.signature && (
+              <div css={docNumHeaderStyle}>
+                <img css={signatureStyle} src={document?.signature} alt="Signature" />
+                <p>Authorised Signatory</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
