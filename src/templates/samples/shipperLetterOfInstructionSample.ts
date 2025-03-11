@@ -19,6 +19,12 @@ interface PackageInterface {
   shippingMarks: string;
 }
 
+interface ProcessedFilesV2 {
+  data: string;
+  filename: string;
+  type: string;
+}
+
 export interface ShipperLetterOfInstructionCertificate extends v2.OpenAttestationDocument {
   documentaryCreditIdentifier?: string;
   issueDate: string;
@@ -40,6 +46,8 @@ export interface ShipperLetterOfInstructionCertificate extends v2.OpenAttestatio
   vesselName: string;
   imoNumber: string;
   watermarkText: string;
+  mode: "print" | "preview";
+  attachements?: ProcessedFilesV2[];
 }
 
 const termsAndConditions = `Terms and Conditions
@@ -140,5 +148,13 @@ export const shipperLetterOfInstructionCertificate: ShipperLetterOfInstructionCe
   netWeight: 100,
   vesselName: "Vessel Voyager",
   imoNumber: "IMO Nummber",
-  watermarkText: "My WaterMark Text"
+  watermarkText: "My WaterMark Text",
+  mode: "print",
+  attachements: [
+    {
+      data: "",
+      filename: "new.json",
+      type: "application/json"
+    }
+  ]
 };
