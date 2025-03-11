@@ -147,14 +147,15 @@ export const ShipperLetterOfInstructionTemplate: FunctionComponent<TemplateProps
 > & {
   className?: string;
 }> = ({ document, className = "" }) => {
+  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
   return (
     <>
       <div css={print}>
+        <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
+          {/* You can replace this text with an image by using an <img> tag */}
+          {document?.watermarkText}
+        </div>
         <div css={containerStyle} className={className} id="custom-template">
-          <div css={watermarkStyle}>
-            {/* You can replace this text with an image by using an <img> tag */}
-            {document?.watermarkText}
-          </div>
           <h5 css={titleStyle}>Shipper Letter of Instruction</h5>
           <div css={innerContainer}>
             <div css={rowStyle}>
