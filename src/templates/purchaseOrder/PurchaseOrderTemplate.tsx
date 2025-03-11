@@ -159,7 +159,7 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
   className?: string;
 }> = ({ document, handleObfuscation, className = "" }) => {
   const [editable, setEditable] = React.useState(false);
-
+  const isWatermarkVisible = document?.mode === "preview" || document?.mode === "print";
   return (
     <>
       {/* <div css={hideOnPrint}>
@@ -167,11 +167,11 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
       </div> */}
 
       <div css={pageStyle}>
+        <div className={`watermark ${isWatermarkVisible ? "show-watermark" : ""}`} css={watermarkStyle}>
+          {/* You can replace this text with an image by using an <img> tag */}
+          {document?.watermarkText}
+        </div>
         <div css={containerStyle} className={className} id="custom-template">
-          <div css={watermarkStyle}>
-            {/* You can replace this text with an image by using an <img> tag */}
-            {document?.watermarkText}
-          </div>
           <h3 css={titleStyle}>PURCHASE ORDER</h3>
 
           {/* P O NUMBER */}
@@ -250,7 +250,7 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
                 <p>{document.paymentMethod}</p>
               </div>
               <div css={cellStyle}>
-                <p>{document.paymentTerms}</p>
+                <p>{`${document.paymentTerms} ${document.paymentTerms === 1 ? "Day" : "Days"}`}</p>
               </div>
             </div>
           </div>
@@ -259,10 +259,16 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
             <div css={singleRowStyle}>
               <table css={[cellStyle, tableStyle]}>
                 <tr>
-                  <td css={tableHeaderCellStyle}>QTY</td>
-                  <td css={tableHeaderCellStyle}>PRODUCT IDENTIFIER</td>
+                  <td css={tableHeaderCellStyle} style={{ width: "50pt" }}>
+                    QTY
+                  </td>
+                  <td css={tableHeaderCellStyle} style={{ width: "200pt" }}>
+                    PRODUCT IDENTIFIER
+                  </td>
                   <td css={tableHeaderCellStyle}>DESCRIPTION</td>
-                  <td css={tableHeaderCellStyle}>UNIT PRICE</td>
+                  <td css={tableHeaderCellStyle} style={{ width: "50pt" }}>
+                    UNIT PRICE
+                  </td>
                   <td css={tableHeaderCellStyle} style={{ width: "150pt" }}>
                     TOTAL
                   </td>
@@ -342,9 +348,8 @@ export const PurchaseOrderTemplate: FunctionComponent<TemplateProps<PurchaseOrde
 
           <div css={rowStyle}>
             <div css={docNumHeaderStyle}>
-              <h4>TERMS</h4>
+              <h4>P. O. TERMS</h4>
               <p>{document.purchaseOrderTerms}</p>
-              <p>{document.paymentTerms}</p>
             </div>
             {document?.signature && (
               <div css={docNumHeaderStyle}>
