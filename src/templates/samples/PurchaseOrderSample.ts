@@ -26,7 +26,7 @@ export interface PurchaseOrderCertificate extends v2.OpenAttestationDocument {
 
   purchaseOrderDate: string;
   paymentMethod: string;
-  paymentTerms: string;
+  paymentTerms: number;
 
   importer: {
     name: string;
@@ -46,6 +46,7 @@ export interface PurchaseOrderCertificate extends v2.OpenAttestationDocument {
   placeOfDelivery: string;
 
   watermarkText: string;
+  mode: "print" | "preview";
 
   commodity: ComodityInterface[];
 
@@ -104,9 +105,10 @@ export const purchaseOrderCertificate: PurchaseOrderCertificate = {
   countryOfOrigin: "Country 1",
   placeOfDelivery: "Delivery Point A",
   paymentMethod: "Online",
-  paymentTerms: "30 Days",
+  paymentTerms: 30,
 
   watermarkText: "WATERMARK",
+  mode: "print",
 
   commodity: [
     {
