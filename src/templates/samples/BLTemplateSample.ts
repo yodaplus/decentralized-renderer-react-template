@@ -14,6 +14,7 @@ interface Entity {
   address: string;
   phoneNumber: string;
   email: string;
+  country?: string;
 }
 
 interface ProcessedFilesV2 {
@@ -116,7 +117,8 @@ export const blttemplateCertificate: BLTTemplateCertificate = {
     name: "Carrier GHI",
     address: "321 Carrier Ln., Carrier City, CA 44556",
     phoneNumber: "+1-555-321-0987",
-    email: "carrierghi@example.com"
+    email: "carrierghi@example.com",
+    country: "Singapore"
   },
   notifyingParty: {
     name: "Notifying Party JKL",
