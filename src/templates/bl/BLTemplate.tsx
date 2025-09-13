@@ -507,6 +507,7 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 <div css={subContainerStyle}>
                   <p>{document?.carrier?.name}</p>
                   <p>{document?.carrier?.address}</p>
+                  <p>{document?.carrier?.country}</p>
                   <p>{document?.carrier?.phoneNumber}</p>
                   <p>{document?.carrier?.email}</p>
                 </div>
@@ -671,6 +672,22 @@ export const BLTemplate: FunctionComponent<TemplateProps<BLTTemplateCertificate>
                 </div>
               </div>
             )}
+            <div css={singleRowStyle}>
+              <div css={cellStyle}>
+                <div
+                  css={css`
+                    padding: 4pt;
+                  `}
+                >
+                  <p>
+                    This is a TradeTrust eBL governed by the law of <b>{document.carrier.country}</b> which has adopted
+                    the UNCITRAL Model Law on Electronic Transferable Records (MLETR). This TradeTrust eBL meets the
+                    requirements of the MLETR as implemented under <b>{document.carrier.country}</b> law, which gives
+                    legal recognition to it as equivalent to a paper bill of lading.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
           <footer css={footerStyle}>
             <div css={signatureHeaderStyle}>Digitally Signed By:</div>
